@@ -1,0 +1,16 @@
+image: "nixos/nix"
+
+variables:
+    flags: '--extra-experimental-features nix-command --extra-experimental-features flakes'
+
+fmt:
+    script:
+        nix ${flags} fmt
+
+lint:
+    script:
+        nix ${flags} run "nixpkgs#statix" -- check .
+
+build:
+    script:
+        NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild ${flags} build --flake .
