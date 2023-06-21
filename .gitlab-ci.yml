@@ -1,11 +1,15 @@
 image: "nixos/nix"
 
 stages:
-  - test
+  - check
   - pretty
 
 variables:
   flags: '--extra-experimental-features nix-command --extra-experimental-features flakes'
+
+flake-check:
+  stage: check
+  script: nix ${flags} flake check .
 
 fmt:
   stage: pretty
@@ -16,8 +20,3 @@ lint:
   stage: pretty
   script:
     nix ${flags} run "nixpkgs#statix" -- check .
-
-build-test:
-  stage: test
-  script:
-    nix ${flags} build --no-link .#nixosConfigurations.g14.config.system.build.toplevel
