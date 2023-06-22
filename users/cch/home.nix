@@ -1,7 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -34,6 +33,7 @@
     evince
     wl-clipboard
     tree
+    vscodium.fhs
     gnome.eog
     gnome3.gnome-tweaks
     gnome.nautilus
