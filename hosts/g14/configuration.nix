@@ -9,6 +9,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../programs/flatpak.nix
+    ../../services/pwr_manage.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
