@@ -1,9 +1,10 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }: {
   imports = [
     # Include the results of the hardware scan.
@@ -51,8 +52,8 @@
       desktopManager.gnome.enable = true;
       layout = "es";
       xkbVariant = "";
-      excludePackages = [ pkgs.xterm ];
-      videoDrivers = [ "nvidia" ];
+      excludePackages = [pkgs.xterm];
+      videoDrivers = ["nvidia"];
     };
     gnome.core-utilities.enable = false; #Minimal gnome install
     asusd = {
@@ -63,7 +64,7 @@
   };
 
   # See https://github.com/NixOS/nixpkgs/issues/239059
-  systemd.services.supergfxd.path = [ pkgs.pciutils ];
+  systemd.services.supergfxd.path = [pkgs.pciutils];
 
   hardware.opengl.enable = true;
 
@@ -81,7 +82,7 @@
 
   #fonts
   fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
 
   # Enable sound with pipewire.
@@ -101,7 +102,7 @@
   users.users.cch = {
     isNormalUser = true;
     description = "cch";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
   };
 
   programs.zsh.enable = true;
@@ -124,4 +125,3 @@
 
   system.stateVersion = "23.05"; # Do not change this
 }
-
