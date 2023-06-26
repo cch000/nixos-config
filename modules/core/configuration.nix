@@ -1,25 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
   pkgs,
   ...
 }: {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ../../programs/flatpak.nix
-    ../../services/pwr_manage.nix
-  ];
-
-  nixpkgs.config.allowUnfree = true;
-
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
-  };
-
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -37,10 +20,8 @@
       "/crypto_keyfile.bin" = null;
     };
   };
-  powerManagement.cpuFreqGovernor = "schedutil";
 
   networking = {
-    hostName = "g14";
     networkmanager.enable = true;
   };
 
@@ -53,23 +34,11 @@
       layout = "es";
       xkbVariant = "";
       excludePackages = [pkgs.xterm];
-      videoDrivers = ["nvidia"];
     };
     gnome.core-utilities.enable = false; #Minimal gnome install
-    asusd = {
-      enable = true;
-      enableUserService = true;
-    };
-    supergfxd.enable = true;
   };
 
-  # See https://github.com/NixOS/nixpkgs/issues/239059
-  systemd.services.supergfxd.path = [pkgs.pciutils];
-
   hardware.opengl.enable = true;
-
-  # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway
-  hardware.nvidia.modesetting.enable = true;
 
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
@@ -94,8 +63,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this jack.enable =
-    #true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -122,6 +89,4 @@
     LC_TELEPHONE = "sv_SE.UTF-8";
     LC_TIME = "sv_SE.UTF-8";
   };
-
-  system.stateVersion = "23.05"; # Do not change this
 }
