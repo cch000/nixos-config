@@ -40,7 +40,7 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   networking = {
-    hostName = "g14";
+    hostName = "athena";
     networkmanager.enable = true;
   };
 

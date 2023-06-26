@@ -24,7 +24,7 @@
     };
   in {
     nixosConfigurations = {
-      g14 = nixpkgs.lib.nixosSystem {
+      athena = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           ./hosts/g14/configuration.nix
