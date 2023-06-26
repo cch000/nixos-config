@@ -11,16 +11,11 @@
     };
   };
 
-  outputs =
-    { self  , ...
-    } @ inputs :
-    let
+  outputs = {self, ...} @ inputs: let
+    pkgs = inputs.nixpkgs;
+  in {
+    nixosConfigurations = import ./hosts inputs;
 
-      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-    in
-    {
-      nixosConfigurations = import ./hosts inputs;
-
-      formatter.x86_64-linux = pkgs.legacyPackages.x86_64-linux.alejandra;
-    };
+    formatter.x86_64-linux = pkgs.legacyPackages.x86_64-linux.alejandra;
+  };
 }
