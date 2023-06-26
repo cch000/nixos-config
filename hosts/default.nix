@@ -6,6 +6,8 @@
   inherit (self) inputs;
   core = ../modules/core;
   nvidia = ../modules/nvidia;
+  sound = ../modules/sound;
+  gnome = ../modules/gnome;
   laptop = ../modules/laptop;
   hm_module = inputs.home-manager.nixosModules.home-manager;
 
@@ -26,8 +28,10 @@ in {
       ./athena/hardware-configuration.nix
       nvidia
       core
-      hm_module
       laptop
+      gnome
+      sound
+      hm_module
       {inherit home-manager;}
     ];
   };
