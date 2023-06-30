@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }: {
   security = {
     protectKernelImage = true;
@@ -9,7 +10,7 @@
     apparmor = {
       enable = true;
       killUnconfinedConfinables = true;
-      packages = [ pkgs.apparmor-profiles ];
+      packages = [pkgs.apparmor-profiles];
     };
   };
 
@@ -19,14 +20,14 @@
   # See description in nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
   boot.loader.systemd-boot.editor = false;
 
-  nix.settings.allowed-users = [ "root" "cch" ];
+  nix.settings.allowed-users = ["root" "cch"];
 
   networking = {
     networkmanager.wifi.macAddress = "random";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ ];
-      allowedUDPPorts = [ ];
+      allowedTCPPorts = [];
+      allowedUDPPorts = [];
       allowPing = false;
     };
   };
@@ -72,7 +73,7 @@
     "net.core.default_qdisc" = "cake";
   };
 
-  boot.kernelModules = [ "tcp_bbr" ];
+  boot.kernelModules = ["tcp_bbr"];
 
   boot.blacklistedKernelModules = [
     # Obscure network protocols
