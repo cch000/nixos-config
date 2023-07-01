@@ -6,7 +6,7 @@
 }: {
   security = {
     protectKernelImage = true;
-    lockKernelModules = false;
+    lockKernelModules = true;
     apparmor = {
       enable = true;
       killUnconfinedConfinables = true;
@@ -15,12 +15,23 @@
   };
 
   #Make /tmp volatile by mounting it in ram
-  boot.tmp.useTmpfs = lib.mkDefault true;
+  boot = {
+    tmp.useTmpfs = lib.mkDefault true;
+    # See description in nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
+    loader.systemd-boot.editor = false;
+    kernelParams = [
+      "lsm=landlock,lockdown,yama,apparmor,bpf"
+      "iommu=force"
+      "lockdown=confidentiality"
+      "pti=on"
+      "init_on_free=1"
+      "slub_debug=FZ"
+      "vsyscall=none"
+      "randomize_kstack_offset=on"
+    ];
+  };
 
-  # See description in nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
-  boot.loader.systemd-boot.editor = false;
-
-  nix.settings.allowed-users = ["root" "cch"];
+  nix.settings.allowed-users = ["@wheel"];
 
   networking = {
     networkmanager.wifi.macAddress = "random";
@@ -51,6 +62,9 @@
     # Don't send ICMP redirects (again, we're not a router)
     "net.ipv4.conf.all.send_redirects" = 0;
     "net.ipv4.conf.default.send_redirects" = 0;
+    # Ingnore broadcasts requests
+    "net.ipv4.icmp_echo_ignore_all" = 1;
+    "net.ipv6.icmp.echo_ignore_all" = 1;
     # Refuse ICMP redirects (MITM mitigations)
     "net.ipv4.conf.all.accept_redirects" = 0;
     "net.ipv4.conf.default.accept_redirects" = 0;
@@ -58,8 +72,9 @@
     "net.ipv4.conf.default.secure_redirects" = 0;
     "net.ipv6.conf.all.accept_redirects" = 0;
     "net.ipv6.conf.default.accept_redirects" = 0;
-    # Protects against SYN flood attacks
-    "net.ipv4.tcp_syncookies" = 1;
+    # Make sure spoofed packets get logged
+    "net.ipv4.conf.default.log_martians" = 1;
+    "net.ipv4.conf.all.log_martians" = 1;
     # Incomplete protection again TIME-WAIT assassination
     "net.ipv4.tcp_rfc1337" = 1;
 
@@ -71,6 +86,33 @@
     # Bufferbloat mitigations + slight improvement in throughput & latency
     "net.ipv4.tcp_congestion_control" = "bbr";
     "net.core.default_qdisc" = "cake";
+
+    "kernel.exec-shield" = 1;
+
+    # No core dump of executable setuid
+    "fs.suid_dumpable" = 0;
+    # Activation of the ASLR
+    "kernel.randomize_va_space" = 2;
+    # Prohibit mapping of memory in low addresses (0)
+    "vm.mmap_min_addr" = 65536;
+    # Larger choice space for PID values
+    "kernel.pid_max" = 65536;
+    # Obfuscation of addresses memory kernel
+    "kernel.kptr_restrict" = 2;
+    # Access restriction to the dmesg buffer
+    "kernel.dmesg_restrict" = 1;
+    # Restricts the use of the perf system
+    "kernel.perf_event_paranoid" = 3;
+    "kernel.perf_event_max_sample_rate" = 1;
+    "kernel.perf_cpu_time_max_percent" = 1;
+    # Control access rights to ptrace
+    "kernel.yama.ptrace_scope" = 1;
+    #Prevents a lot of possible attacks against the JIT compiler such as heap spraying
+    "kernel.unprivileged_bpf_disabled" = 1;
+    # Disable User Namespaces, as it opens up a large attack surface to unprivileged users.
+    #"user.max_user_namespaces" = 0;
+    # Disable tty line discipline autoloading
+    "dev.tty.ldisc_autoload" = 0;
   };
 
   boot.kernelModules = ["tcp_bbr"];

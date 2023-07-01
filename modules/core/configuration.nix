@@ -13,7 +13,6 @@
     kernelParams = [
       "amd_pstate=passive"
       "quiet"
-      "lsm=landlock,lockdown,yama,apparmor,bpf"
     ];
     # For gaming
     kernel.sysctl."vm.max_map_count" = 2147483642;
