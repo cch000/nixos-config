@@ -12,10 +12,19 @@
       killUnconfinedConfinables = true;
       packages = [pkgs.apparmor-profiles];
     };
+    auditd.enable = true;
+    audit.enable = true;
+    audit.rules = [
+      "-a exit,always -F arch=b64 -S execve"
+    ];
+    sudo.execWheelOnly = true;
   };
 
-  #Make /tmp volatile by mounting it in ram
+  #Rip out the default packages
+  environment.defaultPackages = lib.mkForce [];
+
   boot = {
+    #Make /tmp volatile by mounting it in ram
     tmp.useTmpfs = lib.mkDefault true;
     # See description in nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
     loader.systemd-boot.editor = false;
