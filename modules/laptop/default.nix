@@ -1,7 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   services = {
     asusd = {
@@ -11,10 +10,11 @@
     supergfxd.enable = true;
   };
 
-  environment.systemPackages = [pkgs.inotify-tools];
+  environment.systemPackages = [ pkgs.inotify-tools ];
 
-  systemd.services.pwr-manage = let
-    pwr-manage = pkgs.writeScript "pwr-manage" ''
+  systemd.services.pwr-manage =
+    let
+      pwr-manage = pkgs.writeScript "pwr-manage" ''
 
       #!/usr/bin/env bash
 
@@ -25,18 +25,18 @@
 
         if [[ $(cat "$bat_status") == "Discharging" ]]; then
 
-          echo "passive" | tee /sys/devices/system/cpu/amd_pstate/status
+          echo "passive" | tee /sys/devices/system/cpu/amd_pstate/status >/dev/null
 
           for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
-            echo "conservative" | tee "$i"
+            echo "conservative" | tee "$i"  >/dev/null
           done
 
         else
 
-          echo "active" | tee /sys/devices/system/cpu/amd_pstate/status
+          echo "active" | tee /sys/devices/system/cpu/amd_pstate/status  >/dev/null
 
           for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
-            echo "performance" | tee "$i"
+            echo "performance" | tee "$i"  >/dev/null
           done
 
         fi
@@ -46,9 +46,10 @@
       done
 
     '';
-  in {
-    enable = true;
-    script = "${pwr-manage}";
-    wantedBy = ["default.target"];
-  };
+    in
+    {
+      enable = true;
+      script = "${pwr-manage}";
+      wantedBy = [ "default.target" ]; 
+    };
 }
