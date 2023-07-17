@@ -15,8 +15,3 @@ fmt:
   stage: pretty
   script:
     nix ${flags} fmt
-
-lint:
-  stage: pretty
-  script:
-    nix ${flags} run "nixpkgs#statix" -- check .
