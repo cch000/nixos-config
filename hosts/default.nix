@@ -1,8 +1,8 @@
-{
-  nixpkgs,
-  self,
-  ...
-}: let
+{ nixpkgs
+, self
+, ...
+}:
+let
   inherit (self) inputs;
   core = ../modules/core;
   nvidia = ../modules/nvidia;
@@ -20,11 +20,12 @@
       inherit self;
     };
   };
-in {
+in
+{
   athena = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      {networking.hostName = "athena";}
+      { networking.hostName = "athena"; }
       ./athena/hardware-configuration.nix
       nvidia
       core
@@ -32,7 +33,7 @@ in {
       gnome
       sound
       hm_module
-      {inherit home-manager;}
+      { inherit home-manager; }
     ];
   };
 }

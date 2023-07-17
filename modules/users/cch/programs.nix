@@ -1,7 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
+{ pkgs
+, ...
 }: {
   home.packages = with pkgs; [
     htop
@@ -11,7 +9,7 @@
     neovim
     yarn
     nodejs
-    rnix-lsp
+    nil
     evince
     wl-clipboard
     tree

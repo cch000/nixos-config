@@ -1,5 +1,4 @@
-{ config
-, pkgs
+{ pkgs
 , ...
 }: {
   services = {
@@ -51,6 +50,6 @@
     {
       enable = true;
       script = "${pwr-manage}";
-      wantedBy = [ "default.target" ]; 
+      wantedBy = [ "default.target" ];
     };
 }

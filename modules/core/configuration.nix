@@ -1,7 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
+{ pkgs
+, ...
 }: {
   boot = {
     loader = {
@@ -35,7 +33,7 @@
   users.users.cch = {
     isNormalUser = true;
     description = "cch";
-    extraGroups = ["networkmanager" "wheel" "users"];
+    extraGroups = [ "networkmanager" "wheel" "users" ];
   };
 
   programs.zsh.enable = true;

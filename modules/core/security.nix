@@ -1,8 +1,6 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ pkgs
+, lib
+, ...
 }: {
   security = {
     protectKernelImage = true;
@@ -10,7 +8,7 @@
     apparmor = {
       enable = true;
       killUnconfinedConfinables = true;
-      packages = [pkgs.apparmor-profiles];
+      packages = [ pkgs.apparmor-profiles ];
     };
     auditd.enable = true;
     audit.enable = true;
@@ -21,7 +19,7 @@
   };
 
   #Rip out the default packages
-  environment.defaultPackages = lib.mkForce [];
+  environment.defaultPackages = lib.mkForce [ ];
 
   boot = {
     #Make /tmp volatile by mounting it in ram
@@ -40,14 +38,14 @@
     ];
   };
 
-  nix.settings.allowed-users = ["@wheel"];
+  nix.settings.allowed-users = [ "@wheel" ];
 
   networking = {
     networkmanager.wifi.macAddress = "random";
     firewall = {
       enable = true;
-      allowedTCPPorts = [];
-      allowedUDPPorts = [];
+      allowedTCPPorts = [ ];
+      allowedUDPPorts = [ ];
       allowPing = false;
     };
   };
@@ -124,7 +122,7 @@
     "dev.tty.ldisc_autoload" = 0;
   };
 
-  boot.kernelModules = ["tcp_bbr"];
+  boot.kernelModules = [ "tcp_bbr" ];
 
   boot.blacklistedKernelModules = [
     # Obscure network protocols
