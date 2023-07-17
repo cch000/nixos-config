@@ -9,6 +9,8 @@
       efi.canTouchEfiVariables = true;
     };
 
+    plymouth.enable = false;
+
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "amd_pstate=passive"

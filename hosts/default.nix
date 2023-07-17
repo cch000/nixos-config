@@ -8,7 +8,7 @@
   nvidia = ../modules/nvidia;
   sound = ../modules/sound;
   gnome = ../modules/gnome;
-  laptop = ../modules/laptop;
+  gaming_laptop = ../modules/gaming_laptop;
   hm_module = inputs.home-manager.nixosModules.home-manager;
 
   home-manager = {
@@ -28,7 +28,7 @@ in {
       ./athena/hardware-configuration.nix
       nvidia
       core
-      laptop
+      gaming_laptop
       gnome
       sound
       hm_module

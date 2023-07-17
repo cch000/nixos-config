@@ -8,6 +8,7 @@
       enableUserService = true;
     };
     supergfxd.enable = true;
+    switcherooControl.enable = true;
   };
 
   environment.systemPackages = [ pkgs.inotify-tools ];
