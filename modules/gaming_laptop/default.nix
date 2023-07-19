@@ -18,32 +18,38 @@
 
       #!/usr/bin/env bash
 
+      pwr_supply=$(echo /sys/class/power_supply/A*)
+      connected="$pwr_supply/online"
+
       bat=$(echo /sys/class/power_supply/BAT*)
       bat_status="$bat/status"
 
       while true; do
 
-        if [[ $(cat "$bat_status") == "Discharging" ]]; then
+        #check if the laptop is plugged
+        if [[ $(cat "$connected") == "0" ]]; then
 
           "${pkgs.power-profiles-daemon}"/bin/powerprofilesctl set power-saver
 
-          echo "passive" | tee /sys/devices/system/cpu/amd_pstate/status >/dev/null
-
-          for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
-            echo "conservative" | tee "$i" >/dev/null
-          done
+          driver="passive"
+          profile="schedutil"
 
         else
 
-          echo "active" | tee /sys/devices/system/cpu/amd_pstate/status >/dev/null
-
-          for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
-            echo "performance" | tee "$i" >/dev/null
-          done
+          driver="active"
+          profile="performance"
 
         fi
 
-        "${pkgs.inotify-tools}"/bin/inotifywait -qq "$bat_status"
+
+        echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status > /dev/null
+
+        for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
+          echo "$profile" | tee "$i" > /dev/null
+        done
+
+        #wait for the next power change event
+       "${pkgs.inotify-tools}"/bin/inotifywait -qq "$bat_status"
 
       done
 
