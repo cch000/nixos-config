@@ -1,16 +1,32 @@
 { pkgs
+, lib
 , ...
 }: {
   nixpkgs.config.allowUnfree = true;
 
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = "experimental-features = nix-command flakes";
-    settings.auto-optimise-store = true;
+    settings = {
+      auto-optimise-store = true;
+      #Don't warn me about the dirty git tree
+      warn-dirty = false;
+    };
     gc = {
       automatic = true;
       dates = "daily";
       options = "--delete-older-than 10d";
+    };
+  };
+
+  documentation = {
+    doc.enable = false;
+    nixos.enable = false;
+    info.enable = false;
+    man = {
+      enable = lib.mkDefault true;
+      generateCaches = lib.mkDefault true;
     };
   };
 
