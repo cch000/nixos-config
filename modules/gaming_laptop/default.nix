@@ -24,6 +24,8 @@
       bat=$(echo /sys/class/power_supply/BAT*)
       bat_status="$bat/status"
 
+      prev=0
+
       while true; do
 
         #check if the laptop is plugged
@@ -41,15 +43,20 @@
 
         fi
 
+        if [[ $prev != "$profile" ]]; then
 
-        echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status > /dev/null
+          echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
 
-        for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
-          echo "$profile" | tee "$i" > /dev/null
-        done
+          for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
+            echo "$profile" | tee "$i" > /dev/null
+          done
+
+        fi
+
+        prev=$profile
 
         #wait for the next power change event
-       "${pkgs.inotify-tools}"/bin/inotifywait -qq "$bat_status"
+        "${pkgs.inotify-tools}"/bin/inotifywait -qq "$bat_status"
 
       done
 
