@@ -12,14 +12,12 @@
   ];
 
   security = {
-    protectKernelImage = true;
-    #can break some stuff
-    lockKernelModules = true;
     # User namespaces are required for sandboxing. Better than nothing imo.
     allowUserNamespaces = true;
 
     # Disable unprivileged user namespaces, unless containers are enabled
     unprivilegedUsernsClone = config.virtualisation.containers.enable;
+
     apparmor = {
       enable = true;
       killUnconfinedConfinables = true;

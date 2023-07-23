@@ -17,5 +17,6 @@
     gnome3.gnome-tweaks
     gnome.nautilus
     gimp
+    tor-browser-bundle-bin
   ];
 }
