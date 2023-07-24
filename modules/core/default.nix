@@ -23,9 +23,6 @@
     # For gaming
     kernel.sysctl."vm.max_map_count" = 2147483642;
 
-    initrd.secrets = {
-      "/crypto_keyfile.bin" = null;
-    };
   };
 
   networking.networkmanager.enable = true;
