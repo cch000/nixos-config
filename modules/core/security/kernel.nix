@@ -3,7 +3,7 @@
   security = {
     protectKernelImage = true;
     #can break some stuff
-    lockKernelModules = true;
+    #lockKernelModules = true;
   };
 
   boot = {
@@ -21,10 +21,11 @@
       "randomize_kstack_offset=on"
     ];
 
-    kernelModules = [
-      "sd_mod"
-      "usb_storage"
-    ]; #Otherwise usb hardrives won't work
+    # Only necessary when lockKernelModules = true;
+    #kernelModules = [ 
+    #  "sd_mod"
+    #  "usb_storage"
+    #]; #Otherwise usb hardrives won't work
 
     kernel.sysctl = {
       # The Magic SysRq key is a key combo that allows users connected to the
