@@ -9,6 +9,7 @@
     ./kernel.nix
     #Networking related options
     ./networking.nix
+    ./impermanence.nix
   ];
 
   security = {

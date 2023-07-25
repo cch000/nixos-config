@@ -10,6 +10,7 @@ let
   gnome = ../modules/gnome;
   gaming_laptop = ../modules/gaming_laptop;
   hm_module = inputs.home-manager.nixosModules.home-manager;
+  impermanence = inputs.impermanence.nixosModules.impermanence;
 
   home-manager = {
     useUserPackages = true;
@@ -32,6 +33,7 @@ in
       gaming_laptop
       gnome
       sound
+      impermanence
       hm_module
       { inherit home-manager; }
     ];
