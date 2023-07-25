@@ -28,6 +28,7 @@
       "/etc/nixos"
       "/etc/nix"
       "/etc/NetworkManager"
+      "/etc/asusd"
       "/var/db/sudo"
       "/var/lib/flatpak"
       "/var/lib/libvirt"
@@ -50,6 +51,7 @@
     "L /var/lib/NetworkManager/timestamps - - - - /persist/var/lib/NetworkManager/timestamps"
   ];
 
+  # https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
   # Note `lib.mkBefore` is used instead of `lib.mkAfter` here.
   boot.initrd.postDeviceCommands = pkgs.lib.mkBefore ''
     mkdir -p /mnt
