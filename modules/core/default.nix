@@ -25,6 +25,8 @@
 
   };
 
+  services.fstrim.enable = true;
+
   zramSwap.enable = true;
 
   networking.networkmanager.enable = true;

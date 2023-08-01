@@ -23,7 +23,10 @@
       options = [ "subvol=root" ];
     };
 
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/8ed52442-0753-4ebf-8cea-b98bc66b8225";
+  boot.initrd.luks.devices."enc" = {
+    device = "/dev/disk/by-uuid/8ed52442-0753-4ebf-8cea-b98bc66b8225";
+    allowDiscards = true;
+  };
 
   fileSystems."/home" =
     {
