@@ -5,15 +5,20 @@
 {
   #Mainly dconf settings that affect gnome
 
-  home.packages = with pkgs.gnomeExtensions; [
-    appindicator
-    pop-shell
-    unite
-    removable-drive-menu
-    user-themes
+  home.packages = with pkgs; [
+    gnomeExtensions.appindicator
+    gnomeExtensions.pop-shell
+    gnomeExtensions.unite
+    gnomeExtensions.removable-drive-menu
+    gnomeExtensions.user-themes
+    gruvbox-gtk-theme
   ];
 
   dconf.settings = {
+
+    "org/gnome/shell/extensions/user-theme" = {
+      name = "Gruvbox-Dark-BL";
+    };
 
     "org/gnome/desktop/wm/keybindings" = {
       close = [ "<Super>q" ];

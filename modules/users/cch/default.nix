@@ -12,5 +12,6 @@
     ./gtk.nix
     ./vscodium.nix
     ./gnome.nix
+    ./xdg.nix
   ];
 }

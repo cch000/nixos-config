@@ -18,5 +18,7 @@
     gnome.nautilus
     gimp
     tor-browser-bundle-bin
+    fragments
+    celluloid
   ];
 }
