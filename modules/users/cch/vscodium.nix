@@ -25,12 +25,15 @@
       redhat.java
       jdinhlife.gruvbox
       matklad.rust-analyzer
+      ritwickdey.liveserver
     ];
 
     userSettings = {
       workbench.colorTheme = "Gruvbox Dark Medium";
       files.autoSave = "afterDelay";
       window.menuBarVisibility = "toggle";
+
+      redhat.telemetry.enabled = false;
 
       editor = {
         minimap.enabled = false;
@@ -60,6 +63,14 @@
         ];
         jdt.ls.java.home = "${pkgs.jdk}/lib/openjdk";
       };
+
+      vim.normalModeKeyBindings = [{
+
+        before = [ "<S-d>" ];
+        commands = [
+          "editor.action.formatDocument"
+        ];
+      }];
     };
   };
 }
