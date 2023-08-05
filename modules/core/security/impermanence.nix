@@ -25,17 +25,18 @@
 
   environment.persistence."/persist" = {
     directories = [
-      "/etc/nixos"
-      "/etc/nix"
       "/etc/NetworkManager"
       "/etc/asusd"
-      "/var/db/sudo"
-      "/var/lib/flatpak"
-      "/var/lib/libvirt"
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/pipewire"
-      "/var/lib/systemd/coredump"
+      #"/var/db/sudo"
+      #"/var/lib/flatpak"
+      #"/var/lib/libvirt"
+      #"/var/lib/bluetooth"
+      #"/var/lib/nixos"
+      #"/var/lib/upower"
+      #"/var/lib/pipewire"
+      #"/var/lib/power-profiles-daemon"
+      #"/var/lib/systemd/coredump"
+      "/var/lib"
     ];
 
     files = [
