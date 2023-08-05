@@ -9,6 +9,7 @@
     gcc
     jdk
     nixpkgs-fmt
+    llvmPackages_rocm.clang-tools-extra
   ];
 
   programs.vscode = {
@@ -26,6 +27,8 @@
       jdinhlife.gruvbox
       matklad.rust-analyzer
       ritwickdey.liveserver
+      llvm-vs-code-extensions.vscode-clangd
+      ms-vscode.cmake-tools
     ];
 
     userSettings = {
