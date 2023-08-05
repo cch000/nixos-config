@@ -20,7 +20,7 @@
     {
       device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
       fsType = "btrfs";
-      options = [ "subvol=root" ];
+      options = [ "subvol=root" "noatime" ];
     };
 
   boot.initrd.luks.devices."enc" = {
@@ -32,21 +32,21 @@
     {
       device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
       fsType = "btrfs";
-      options = [ "subvol=home" ];
+      options = [ "subvol=home" "noatime" ];
     };
 
   fileSystems."/nix" =
     {
       device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
       fsType = "btrfs";
-      options = [ "subvol=nix" ];
+      options = [ "subvol=nix" "noatime" ];
     };
 
   fileSystems."/persist" =
     {
       device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
       fsType = "btrfs";
-      options = [ "subvol=persist" ];
+      options = [ "subvol=persist" "noatime" ];
       neededForBoot = true;
     };
 
@@ -54,7 +54,7 @@
     {
       device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
       fsType = "btrfs";
-      options = [ "subvol=log" ];
+      options = [ "subvol=log" "noatime" ];
       neededForBoot = true;
     };
 
@@ -62,6 +62,7 @@
     {
       device = "/dev/disk/by-uuid/7CB6-9876";
       fsType = "vfat";
+      options = [ "noatime" ];
     };
 
 
