@@ -31,6 +31,10 @@
 
   networking.networkmanager.enable = true;
 
+  programs.gnupg.agent = {
+    enable = true;
+  };
+
   # Configure console keymap
   console.keyMap = "es";
 

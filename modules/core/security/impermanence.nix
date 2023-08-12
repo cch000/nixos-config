@@ -27,7 +27,7 @@
     directories = [
       "/etc/NetworkManager"
       "/etc/asusd"
-      #"/var/db/sudo"
+      "/var/db/sudo"
       #"/var/lib/flatpak"
       #"/var/lib/libvirt"
       #"/var/lib/bluetooth"
