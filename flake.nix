@@ -13,7 +13,7 @@
     };
   };
 
-  outputs = { self, ... } @ inputs:
+  outputs = inputs:
     let
       pkgs = inputs.nixpkgs;
     in

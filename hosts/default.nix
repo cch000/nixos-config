@@ -11,7 +11,7 @@ let
   gaming_laptop = ../modules/gaming_laptop;
   virtualisation = ../modules/virtualisation;
   hm_module = inputs.home-manager.nixosModules.home-manager;
-  impermanence = inputs.impermanence.nixosModules.impermanence;
+  inherit (inputs.impermanence.nixosModules) impermanence;
 
   home-manager = {
     useUserPackages = true;

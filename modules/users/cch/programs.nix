@@ -10,6 +10,8 @@
     yarn
     nodejs
     nil
+    deadnix
+    statix
     evince
     wl-clipboard
     tree
