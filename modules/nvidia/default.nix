@@ -6,6 +6,7 @@ _: {
       modesetting.enable = true;
       open = false;
       powerManagement.enable = true;
+      dynamicBoost.enable = true;
     };
   };
 }
