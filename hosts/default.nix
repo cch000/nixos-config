@@ -10,7 +10,6 @@ let
   gnome = ../modules/gnome;
   gaming_laptop = ../modules/gaming_laptop;
   virtualisation = ../modules/virtualisation;
-  university = ../modules/university;
   hm_module = inputs.home-manager.nixosModules.home-manager;
   inherit (inputs.impermanence.nixosModules) impermanence;
 
@@ -36,7 +35,6 @@ in
       gnome
       sound
       virtualisation
-      university
       impermanence
       hm_module
       { inherit home-manager; }
