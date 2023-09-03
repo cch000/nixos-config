@@ -26,9 +26,9 @@
       redhat.java
       jdinhlife.gruvbox
       matklad.rust-analyzer
-      ritwickdey.liveserver
       llvm-vs-code-extensions.vscode-clangd
       ms-vscode.cmake-tools
+      octref.vetur
     ];
 
     userSettings = {
