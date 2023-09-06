@@ -13,6 +13,5 @@
     ./vscodium.nix
     ./gnome.nix
     ./xdg.nix
-    ./uni.nix
   ];
 }

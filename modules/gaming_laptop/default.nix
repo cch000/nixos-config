@@ -10,7 +10,9 @@
     switcherooControl.enable = true;
   };
 
-  environment.systemPackages = [ pkgs.inotify-tools ];
+  powerManagement.cpuFreqGovernor = "conservative";
+
+  environment.systemPackages = with pkgs; [ inotify-tools ryzenadj ];
 
   systemd.services.pwr-manage =
     let
@@ -34,26 +36,26 @@
           "${pkgs.power-profiles-daemon}"/bin/powerprofilesctl set power-saver
 
           driver="passive"
-          profile="schedutil"
+          governor="conservative"
 
         else
 
           driver="active"
-          profile="performance"
+          governor="performance"
 
         fi
 
-        if [[ $prev != "$profile" ]]; then
+        if [[ $prev != "$governor" ]]; then
 
           echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
 
           for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
-            echo "$profile" | tee "$i" > /dev/null
+            echo "$governor" | tee "$i" > /dev/null
           done
 
         fi
 
-        prev=$profile
+        prev=$governor
 
         #wait for the next power change event
         "${pkgs.inotify-tools}"/bin/inotifywait -qq "$bat_status"
@@ -65,6 +67,48 @@
     {
       enable = true;
       script = "${pwr-manage}";
+      wantedBy = [ "default.target" ];
+    };
+
+  systemd.services.ryzenadj =
+    let
+      ryzenadj = pkgs.writeScript "ryzenadj" ''
+
+      #!/usr/bin/env bash
+      
+      prev=0
+      
+      while true; do
+      
+        pwr_profile=$("${pkgs.power-profiles-daemon}"/bin/powerprofilesctl get)
+      
+        if [[ "$pwr_profile" == "power-saver" ]]; then
+      
+          sus_pl=7000                              # Sustained Power Limit (mW)
+          actual_pl=7000                           # ACTUAL Power Limit    (mW)
+          avg_pl=7000                              # Average Power Limit   (mW)
+          vrm_edc=90000                            # VRM EDC Current       (mA)
+          max_tmp=85                               # Max Tctl              (C)
+
+          "${pkgs.ryzenadj}"/bin/ryzenadj -a $sus_pl -b $actual_pl -c $avg_pl -k $vrm_edc -f $max_tmp > /dev/null
+      
+        elif [[ "$pwr_profile" != "$prev" ]]; then
+        
+          "${pkgs.power-profiles-daemon}"/bin/powerprofilesctl set "$pwr_profile"
+        
+        fi
+        
+        prev=$pwr_profile
+        
+        sleep 10
+      
+      done
+
+    '';
+    in
+    {
+      enable = true;
+      script = "${ryzenadj}";
       wantedBy = [ "default.target" ];
     };
 }
