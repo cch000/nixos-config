@@ -1,5 +1,4 @@
-{ ...
-}: {
+{...}: {
   home.username = "cch";
 
   home.stateVersion = "23.05"; #Do not change this

@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./pwr-manage.nix
     ./ryzenadj.nix
@@ -17,6 +15,5 @@
 
   powerManagement.cpuFreqGovernor = "conservative";
 
-  environment.systemPackages = with pkgs; [ inotify-tools ryzenadj ];
-
+  environment.systemPackages = with pkgs; [inotify-tools ryzenadj];
 }

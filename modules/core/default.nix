@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./flatpak
     ./nix
@@ -22,7 +20,6 @@
     ];
     # For gaming
     kernel.sysctl."vm.max_map_count" = 2147483642;
-
   };
 
   services.fstrim.enable = true;
@@ -43,7 +40,7 @@
   users.users.cch = {
     isNormalUser = true;
     description = "cch";
-    extraGroups = [ "networkmanager" "wheel" "users" ];
+    extraGroups = ["networkmanager" "wheel" "users"];
   };
 
   programs.zsh.enable = true;

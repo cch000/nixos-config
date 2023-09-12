@@ -1,5 +1,4 @@
 _: {
-
   security = {
     protectKernelImage = true;
     #can break some stuff
@@ -22,7 +21,7 @@ _: {
     ];
 
     # Only necessary when lockKernelModules = true;
-    #kernelModules = [ 
+    #kernelModules = [
     #  "sd_mod"
     #  "usb_storage"
     #]; #Otherwise usb hardrives won't work

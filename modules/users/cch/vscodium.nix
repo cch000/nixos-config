@@ -1,7 +1,4 @@
-{ pkgs
-, ...
-}: {
-
+{pkgs, ...}: {
   home.packages = with pkgs; [
     cargo
     rustc
@@ -49,7 +46,7 @@
         serverSettings = {
           nil = {
             formatting = {
-              command = [ "nixpkgs-fmt" ];
+              command = ["nixpkgs-fmt"];
             };
           };
         };
@@ -66,13 +63,14 @@
         jdt.ls.java.home = "${pkgs.jdk}/lib/openjdk";
       };
 
-      vim.normalModeKeyBindings = [{
-
-        before = [ "<S-d>" ];
-        commands = [
-          "editor.action.formatDocument"
-        ];
-      }];
+      vim.normalModeKeyBindings = [
+        {
+          before = ["<S-d>"];
+          commands = [
+            "editor.action.formatDocument"
+          ];
+        }
+      ];
 
       telemetry.telemetryLevel = "off";
     };

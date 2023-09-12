@@ -1,9 +1,9 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }: {
-
   imports = [
     #Kernel related options
     ./kernel.nix
@@ -22,7 +22,7 @@
     apparmor = {
       enable = true;
       killUnconfinedConfinables = true;
-      packages = [ pkgs.apparmor-profiles ];
+      packages = [pkgs.apparmor-profiles];
     };
 
     # virtualisation
@@ -66,7 +66,7 @@
   };
 
   #Rip out the default packages
-  environment.defaultPackages = lib.mkForce [ ];
+  environment.defaultPackages = lib.mkForce [];
 
   boot = {
     #Make /tmp volatile by mounting it in ram
@@ -75,5 +75,5 @@
     loader.systemd-boot.editor = false;
   };
 
-  nix.settings.allowed-users = [ "@wheel" ];
+  nix.settings.allowed-users = ["@wheel"];
 }

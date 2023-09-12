@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{pkgs, ...}: {
   virtualisation = {
     podman = {
       enable = true;
@@ -10,7 +8,7 @@
     libvirtd.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ virt-manager ];
+  environment.systemPackages = with pkgs; [virt-manager];
 
-  users.users.cch.extraGroups = [ "libvirtd" ];
+  users.users.cch.extraGroups = ["libvirtd"];
 }

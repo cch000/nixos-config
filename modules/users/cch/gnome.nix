@@ -1,8 +1,8 @@
-{ lib
-, pkgs
-, ...
-}:
 {
+  lib,
+  pkgs,
+  ...
+}: {
   #Mainly dconf settings that affect gnome
 
   home.packages = with pkgs; [
@@ -15,19 +15,18 @@
   ];
 
   dconf.settings = {
-
     "org/gnome/shell/extensions/user-theme" = {
       name = "Gruvbox-Dark-BL";
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      close = [ "<Super>q" ];
-      minimize = [ "<Super>a" ];
-      show-desktop = [ "<Super>d" ];
-      switch-applications = [ ];
-      switch-applications-backward = [ ];
-      switch-windows = [ "<Alt>Tab" ];
-      switch-windows-backward = [ "<Shift><Alt>Tab" ];
+      close = ["<Super>q"];
+      minimize = ["<Super>a"];
+      show-desktop = ["<Super>d"];
+      switch-applications = [];
+      switch-applications-backward = [];
+      switch-windows = ["<Alt>Tab"];
+      switch-windows-backward = ["<Shift><Alt>Tab"];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -55,7 +54,6 @@
     };
 
     "org/gnome/shell" = {
-
       disable-user-extensions = false;
       disabled-extensions = [
         "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
@@ -69,7 +67,7 @@
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
-      favorite-apps = [ ];
+      favorite-apps = [];
     };
 
     "org/gnome/shell/extensions/just-perfection" = {

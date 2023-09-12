@@ -3,8 +3,8 @@ _: {
     networkmanager.wifi.macAddress = "random";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ ];
-      allowedUDPPorts = [ ];
+      allowedTCPPorts = [];
+      allowedUDPPorts = [];
       allowPing = false;
     };
     #Should block "most" junk sites
@@ -19,7 +19,7 @@ _: {
     };
   };
 
-  networking = { };
+  networking = {};
 
   boot.kernel.sysctl = {
     ## TCP hardening
@@ -63,5 +63,5 @@ _: {
     "net.core.default_qdisc" = "cake";
   };
 
-  boot.kernelModules = [ "tcp_bbr" ];
+  boot.kernelModules = ["tcp_bbr"];
 }

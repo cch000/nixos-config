@@ -1,9 +1,6 @@
-{ pkgs
-, ...
-}: {
-  systemd.services.pwr-manage =
-    let
-      pwr-manage = pkgs.writeScript "pwr-manage" ''
+{pkgs, ...}: {
+  systemd.services.pwr-manage = let
+    pwr-manage = pkgs.writeScript "pwr-manage" ''
 
       #!/usr/bin/env bash
 
@@ -50,10 +47,9 @@
       done
 
     '';
-    in
-    {
-      enable = true;
-      script = "${pwr-manage}";
-      wantedBy = [ "default.target" ];
-    };
+  in {
+    enable = true;
+    script = "${pwr-manage}";
+    wantedBy = ["default.target"];
+  };
 }

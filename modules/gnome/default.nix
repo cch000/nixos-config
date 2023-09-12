@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{pkgs, ...}: {
   services = {
     xserver = {
       enable = true;
@@ -8,7 +6,7 @@
       desktopManager.gnome.enable = true;
       layout = "es";
       xkbVariant = "";
-      excludePackages = [ pkgs.xterm ];
+      excludePackages = [pkgs.xterm];
     };
     gnome.core-utilities.enable = false; #Minimal gnome install
   };
@@ -23,6 +21,6 @@
 
   #fonts
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
 }
