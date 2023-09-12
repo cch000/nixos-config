@@ -74,6 +74,8 @@
           "editor.action.formatDocument"
         ];
       }];
+
+      telemetry.telemetryLevel = "off";
     };
   };
 }
