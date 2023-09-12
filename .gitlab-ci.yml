@@ -1,17 +1,11 @@
 image: "nixos/nix"
 
 stages:
-  - check
-  - pretty
+  - test
 
 variables:
   flags: '--extra-experimental-features nix-command --extra-experimental-features flakes'
 
 flake-check:
-  stage: check
+  stage: test
   script: nix ${flags} flake check .
-
-fmt:
-  stage: pretty
-  script:
-    nix ${flags} fmt
