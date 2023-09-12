@@ -2,19 +2,25 @@
 , ...
 }: {
   home.packages = with pkgs; [
+    #terminal stuff
     htop
     neofetch
     powerline-fonts
     terminator
+    wl-clipboard
+    tree
+
+    #dev
     neovim
     yarn
     nodejs
     nil
     deadnix
     statix
+    alejandra
+
+    #gui
     evince
-    wl-clipboard
-    tree
     gnome.eog
     gnome3.gnome-tweaks
     gnome.nautilus

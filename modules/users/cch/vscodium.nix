@@ -8,7 +8,6 @@
     rustfmt
     gcc
     jdk
-    nixpkgs-fmt
     llvmPackages_rocm.clang-tools-extra
   ];
 

@@ -20,6 +20,6 @@
     {
       nixosConfigurations = import ./hosts inputs;
 
-      formatter.x86_64-linux = pkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      formatter.x86_64-linux = pkgs.legacyPackages.x86_64-linux.alejandra;
     };
 }
