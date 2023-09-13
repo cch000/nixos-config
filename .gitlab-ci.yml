@@ -2,6 +2,7 @@ image: "nixos/nix"
 
 stages:
   - test
+  - style
 
 variables:
   flags: '--extra-experimental-features nix-command --extra-experimental-features flakes'
@@ -9,3 +10,15 @@ variables:
 flake-check:
   stage: test
   script: nix ${flags} flake check .
+
+statix:
+  stage: style
+  script: nix ${flags} run nixpkgs#statix check
+
+deadnix:
+  stage: style
+  script: nix ${flags} run nixpkgs#deadnix -- -f
+
+alejandra:
+  stage: style
+  script: nix ${flags} run nixpkgs#alejandra -- -c
