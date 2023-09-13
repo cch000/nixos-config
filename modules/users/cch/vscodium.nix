@@ -46,7 +46,7 @@
         serverSettings = {
           nil = {
             formatting = {
-              command = ["nixpkgs-fmt"];
+              command = ["alejandra"];
             };
           };
         };
