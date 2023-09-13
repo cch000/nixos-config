@@ -18,7 +18,3 @@ statix:
 deadnix:
   stage: style
   script: nix ${flags} run nixpkgs#deadnix -- -f
-
-alejandra:
-  stage: style
-  script: nix ${flags} run nixpkgs#alejandra -- -c
