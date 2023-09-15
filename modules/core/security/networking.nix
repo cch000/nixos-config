@@ -19,8 +19,6 @@ _: {
     };
   };
 
-  networking = {};
-
   boot.kernel.sysctl = {
     ## TCP hardening
     # Prevent bogus ICMP errors from filling up logs.
