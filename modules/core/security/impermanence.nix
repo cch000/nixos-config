@@ -24,6 +24,7 @@
     directories = [
       "/etc/NetworkManager"
       "/etc/asusd"
+      "/etc/mullvad-vpn"
       "/var/db/sudo"
       #"/var/lib/flatpak"
       #"/var/lib/libvirt"

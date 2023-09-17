@@ -7,6 +7,7 @@ _: {
       allowedUDPPorts = [];
       allowPing = false;
     };
+
     #Should block "most" junk sites
     stevenblack = {
       enable = true;
@@ -18,6 +19,8 @@ _: {
       ];
     };
   };
+
+  services.mullvad-vpn.enable = true;
 
   boot.kernel.sysctl = {
     ## TCP hardening
