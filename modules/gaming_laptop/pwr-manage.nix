@@ -4,6 +4,9 @@
 
       #!/usr/bin/env bash
 
+      readonly min_version=6.3
+      current_version=$(uname -r | cut -c1-3)
+
       pwr_supply=$(echo /sys/class/power_supply/A*)
       connected="$pwr_supply/online"
 
@@ -29,9 +32,11 @@
 
         fi
 
-        if [[ $prev != "$governor" ]]; then
+        if [[ "$prev" != "$governor" ]]; then
 
-          echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
+          if (( $(echo "$current_version >= $min_version" |"${pkgs.bc}"/bin/bc -l ))); then
+            echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
+          fi
 
           for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
             echo "$governor" | tee "$i" > /dev/null
@@ -50,6 +55,7 @@
   in {
     enable = true;
     script = "${pwr-manage}";
+    after = ["cpufreq.service"];
     wantedBy = ["default.target"];
   };
 }

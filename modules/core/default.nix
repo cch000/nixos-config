@@ -13,9 +13,10 @@
 
     plymouth.enable = false;
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "amd_pstate=passive"
+      #"amdgpu.noretry=0"
       "quiet"
     ];
     # For gaming
