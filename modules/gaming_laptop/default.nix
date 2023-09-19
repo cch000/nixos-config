@@ -4,6 +4,8 @@
     ./ryzenadj.nix
   ];
 
+  programs.steam.enable = true;
+
   services = {
     asusd = {
       enable = true;
@@ -15,5 +17,5 @@
 
   powerManagement.cpuFreqGovernor = "conservative";
 
-  environment.systemPackages = with pkgs; [inotify-tools ryzenadj];
+  environment.systemPackages = with pkgs; [inotify-tools mangohud ryzenadj];
 }
