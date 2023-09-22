@@ -11,12 +11,12 @@
     gnomeExtensions.unite
     gnomeExtensions.removable-drive-menu
     gnomeExtensions.user-themes
-    gruvbox-gtk-theme
+    flat-remix-gnome
   ];
 
   dconf.settings = {
     "org/gnome/shell/extensions/user-theme" = {
-      name = "Gruvbox-Dark-BL";
+      name = "Flat-Remix-Green-Darkest-fullPanel";
     };
 
     "org/gnome/desktop/wm/keybindings" = {
