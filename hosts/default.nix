@@ -12,7 +12,6 @@
   virtualisation = ../modules/virtualisation;
   university = ../modules/university/default.nix;
   hm_module = inputs.home-manager.nixosModules.home-manager;
-  inherit (inputs.impermanence.nixosModules) impermanence;
 
   home-manager = {
     useUserPackages = true;
@@ -35,10 +34,10 @@ in {
       gnome
       sound
       virtualisation
-      impermanence
       university
       hm_module
       {inherit home-manager;}
     ];
+    specialArgs = {inherit inputs;};
   };
 }

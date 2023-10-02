@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [inputs.impermanence.nixosModule];
   users = {
     # this option makes it that users are not mutable outside our configurations
     # if you are on nixos, you are probably smart enough to not try and edit users
