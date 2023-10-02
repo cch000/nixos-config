@@ -12,7 +12,7 @@
   virtualisation = ../modules/virtualisation;
   university = ../modules/university/default.nix;
   hm_module = inputs.home-manager.nixosModules.home-manager;
-  impermanence = inputs.impermanence.nixosModules.impermanence;
+  inherit (inputs.impermanence.nixosModules) impermanence;
 
   home-manager = {
     useUserPackages = true;
