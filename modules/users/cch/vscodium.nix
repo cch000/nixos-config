@@ -3,9 +3,11 @@
     cargo
     rustc
     rustfmt
+    cmake
+    ninja
     gcc
     jdk
-    llvmPackages_rocm.clang-tools-extra
+    clang-tools
   ];
 
   programs.vscode = {
@@ -24,7 +26,6 @@
       matklad.rust-analyzer
       llvm-vs-code-extensions.vscode-clangd
       ms-vscode.cmake-tools
-      octref.vetur
     ];
 
     userSettings = {
@@ -39,6 +40,8 @@
         fontFamily = "JetBrainsMono Nerd Font";
         fontLigatures = true;
       };
+
+      clangd.path = "${pkgs.clang-tools}/bin/clangd";
 
       nix = {
         enableLanguageServer = true;
