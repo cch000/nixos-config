@@ -20,15 +20,15 @@
         #check if the laptop is plugged
         if [[ $(cat "$connected") == "0" ]]; then
 
-          "${pkgs.power-profiles-daemon}"/bin/powerprofilesctl set power-saver
-
           driver="passive"
           governor="conservative"
+          ryzenadj="start"
 
         else
 
           driver="active"
           governor="performance"
+          ryzenadj="stop"
 
         fi
 
@@ -41,6 +41,18 @@
           for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
             echo "$governor" | tee "$i" > /dev/null
           done
+
+          #check if ryzenadj service exists
+          if { systemctl --all --type service || service --status-all; } 2>/dev/null |
+            grep -q "ryzenadj.service"; then
+            "${pkgs.systemdMinimal}"/bin/systemctl "$ryzenadj" ryzenadj.service
+          fi
+
+          # if not connected set power saver profile
+          if [[ $(cat "$connected") == "0" ]]; then
+            sleep 2
+            "${pkgs.power-profiles-daemon}"/bin/powerprofilesctl set power-saver
+          fi
 
         fi
 
@@ -55,7 +67,7 @@
   in {
     enable = true;
     script = "${pwr-manage}";
-    after = ["cpufreq.service"];
+    after = ["cpufreq.service" "ryzenadj.service"];
     wantedBy = ["default.target"];
   };
 }
