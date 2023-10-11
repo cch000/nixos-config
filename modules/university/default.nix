@@ -2,8 +2,7 @@
   environment.systemPackages = with pkgs; [
     pandoc
     texlive.combined.scheme-small
-    postman
-    chromium
+    #postman
   ];
 
   #virtualisation.oci-containers.backend = "podman";

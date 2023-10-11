@@ -16,7 +16,7 @@
       availableKernelModules = ["nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod"];
       kernelModules = [];
       luks.devices."enc" = {
-        device = "/dev/disk/by-uuid/8ed52442-0753-4ebf-8cea-b98bc66b8225";
+        device = "/dev/disk/by-uuid/14115856-ad90-4ced-8de5-63170886747a";
         allowDiscards = true;
       };
     };
@@ -26,39 +26,39 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
+      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
       options = ["subvol=root" "noatime"];
     };
 
     "/home" = {
-      device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
+      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
       options = ["subvol=home" "noatime"];
     };
 
     "/nix" = {
-      device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
+      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
       options = ["subvol=nix" "noatime"];
     };
 
     "/persist" = {
-      device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
+      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
       options = ["subvol=persist" "noatime"];
       neededForBoot = true;
     };
 
     "/var/log" = {
-      device = "/dev/disk/by-uuid/136edf89-f560-4ccd-9177-f4bcfe02a39f";
+      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
       options = ["subvol=log" "noatime"];
       neededForBoot = true;
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/7CB6-9876";
+      device = "/dev/disk/by-uuid/1E6F-2D1D";
       fsType = "vfat";
       options = ["noatime"];
     };
