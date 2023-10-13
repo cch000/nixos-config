@@ -12,11 +12,11 @@
 
         if [[ "$pwr_profile" == "power-saver" ]]; then
 
-          sus_pl=7000                              # Sustained Power Limit (mW)
-          actual_pl=7000                           # ACTUAL Power Limit    (mW)
-          avg_pl=7000                              # Average Power Limit   (mW)
+          sus_pl=6000                              # Sustained Power Limit (mW)
+          actual_pl=6000                           # ACTUAL Power Limit    (mW)
+          avg_pl=6000                              # Average Power Limit   (mW)
           vrm_edc=90000                            # VRM EDC Current       (mA)
-          max_tmp=85                               # Max Tctl              (C)
+          max_tmp=75                               # Max Tctl              (C)
 
           "${pkgs.ryzenadj}"/bin/ryzenadj -a $sus_pl -b $actual_pl -c $avg_pl -k $vrm_edc -f $max_tmp > /dev/null
 

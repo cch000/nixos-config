@@ -27,7 +27,13 @@
         else
 
           driver="active"
-          governor="performance"
+
+          if (( $(echo "$current_version >= $min_version" |"${pkgs.bc}"/bin/bc -l ))); then
+            governor="performance"
+          else
+            governor="schedutil"
+          fi
+
           ryzenadj="stop"
 
         fi
