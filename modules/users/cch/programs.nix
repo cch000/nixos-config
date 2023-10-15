@@ -28,4 +28,6 @@
     fragments
     celluloid
   ];
+
+  programs.obs-studio.enable = true;
 }

@@ -13,7 +13,7 @@
 
     plymouth.enable = false;
 
-    #kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "amd_pstate=passive"
       #"amdgpu.noretry=0"
@@ -28,6 +28,7 @@
   zramSwap.enable = true;
 
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   programs.gnupg.agent = {
     enable = true;
