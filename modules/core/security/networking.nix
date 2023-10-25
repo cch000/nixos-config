@@ -1,6 +1,10 @@
 _: {
   networking = {
-    networkmanager.wifi.macAddress = "random";
+    networkmanager.wifi = {
+      macAddress = "random";
+      powersave = true;
+      scanRandMacAddress = true; #random MAC when scanning for wifi networks
+    };
     firewall = {
       enable = true;
       allowedTCPPorts = [];
