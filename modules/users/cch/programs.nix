@@ -23,6 +23,7 @@
     gnome.eog
     gnome3.gnome-tweaks
     gnome.nautilus
+    gnome.gnome-calendar
     gimp
     tor-browser-bundle-bin
     fragments
