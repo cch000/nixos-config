@@ -24,7 +24,7 @@ _: {
     };
   };
 
-  services.mullvad-vpn.enable = true;
+  #services.mullvad-vpn.enable = true;
 
   boot.kernel.sysctl = {
     ## TCP hardening
