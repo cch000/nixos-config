@@ -11,6 +11,7 @@
     gnomeExtensions.unite
     gnomeExtensions.removable-drive-menu
     gnomeExtensions.user-themes
+    gnomeExtensions.just-perfection
     flat-remix-gnome
   ];
 
@@ -58,7 +59,6 @@
       disabled-extensions = [
         "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         "places-menu@gnome-shell-extensions.gcampax.github.com"
-        "just-perfection-desktop@just-perfection"
       ];
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
@@ -66,6 +66,7 @@
         "unite@hardpixel.eu"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "just-perfection-desktop@just-perfection"
       ];
       favorite-apps = [];
     };
