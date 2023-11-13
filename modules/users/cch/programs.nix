@@ -7,7 +7,6 @@
     terminator
     wl-clipboard
     tree
-    direnv
 
     #dev
     neovim

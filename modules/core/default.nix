@@ -3,6 +3,7 @@
     ./flatpak
     ./nix
     ./security
+    ./programs
   ];
 
   boot = {

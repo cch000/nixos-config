@@ -13,7 +13,7 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
-    mutableExtensionsDir = true;
+    mutableExtensionsDir = false;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
 
@@ -26,6 +26,7 @@
       matklad.rust-analyzer
       llvm-vs-code-extensions.vscode-clangd
       ms-vscode.cmake-tools
+      ms-dotnettools.csharp
     ];
 
     userSettings = {
@@ -40,6 +41,8 @@
         fontFamily = "JetBrainsMono Nerd Font";
         fontLigatures = true;
       };
+
+      extensions.ignoreRecommendations = true;
 
       clangd.path = "${pkgs.clang-tools}/bin/clangd";
 
