@@ -51,8 +51,6 @@ _: {
       "kernel.perf_cpu_time_max_percent" = 1;
       # Control access rights to ptrace
       "kernel.yama.ptrace_scope" = 1;
-      #Prevents a lot of possible attacks against the JIT compiler such as heap spraying
-      "kernel.unprivileged_bpf_disabled" = 1;
       # Disable User Namespaces, as it opens up a large attack surface to unprivileged users.
       #"user.max_user_namespaces" = 0;
       # Disable tty line discipline autoloading
