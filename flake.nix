@@ -18,5 +18,14 @@
   in {
     nixosConfigurations = import ./hosts inputs;
     formatter.x86_64-linux = pkgs.alejandra;
+
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      packages = with pkgs; [
+        nil
+        deadnix
+        statix
+        alejandra
+      ];
+    };
   };
 }

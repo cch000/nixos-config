@@ -1,14 +1,4 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    cargo
-    rustc
-    rustfmt
-    cmake
-    ninja
-    gcc
-    jdk
-    clang-tools
-  ];
 
   programs.vscode = {
     enable = true;
@@ -25,6 +15,7 @@
       jdinhlife.gruvbox
       matklad.rust-analyzer
       llvm-vs-code-extensions.vscode-clangd
+      mkhl.direnv
       ms-vscode.cmake-tools
       ms-dotnettools.csharp
     ];

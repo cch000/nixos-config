@@ -10,12 +10,6 @@
 
     #dev
     neovim
-    yarn
-    nodejs
-    nil
-    deadnix
-    statix
-    alejandra
 
     #gui
     evince
