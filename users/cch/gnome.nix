@@ -6,7 +6,7 @@
 #Mainly dconf settings that affect gnome
 let
 
-  my-pop-shell = pkgs.gnomeExtensions.pop-shell.overrideAttrs ({
+  my-pop-shell = pkgs.gnomeExtensions.pop-shell.overrideAttrs {
     src = pkgs.fetchFromGitHub {
       owner = "pop-os";
       repo = "shell";
@@ -14,7 +14,7 @@ let
       hash = "sha256-74lZbEYHj7fufRSbuI2SN9rqbB3gpRa0V96qjAFc01s=";
     };
     patches = [];
-  });
+  };
 in {
   nixpkgs.overlays = [
     my-pop-shell
