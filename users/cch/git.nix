@@ -13,6 +13,7 @@ _: {
         sshCommand = "ssh -i ~/.ssh/id_ed25519";
         editor = "nvim";
       };
+      push.autoSetupRemote = true;
     };
 
     includes = [
