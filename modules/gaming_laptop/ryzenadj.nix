@@ -28,7 +28,7 @@
 
         prev=$pwr_profile
 
-        sleep 10
+        sleep 20
 
       done
 
