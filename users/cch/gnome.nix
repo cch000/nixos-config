@@ -2,12 +2,27 @@
   lib,
   pkgs,
   ...
-}: {
-  #Mainly dconf settings that affect gnome
+}:
+#Mainly dconf settings that affect gnome
+let
+
+  my-pop-shell = pkgs.gnomeExtensions.pop-shell.overrideAttrs (old: rec {
+    src = pkgs.fetchFromGitHub {
+      owner = "pop-os";
+      repo = "shell";
+      rev = "aafc9458a47a68c396933c637de00421f5198a2a";
+      hash = "sha256-74lZbEYHj7fufRSbuI2SN9rqbB3gpRa0V96qjAFc01s=";
+    };
+    patches = [];
+  });
+in {
+  nixpkgs.overlays = [
+    my-pop-shell
+  ];
 
   home.packages = with pkgs; [
+    my-pop-shell
     gnomeExtensions.appindicator
-    gnomeExtensions.pop-shell
     gnomeExtensions.unite
     gnomeExtensions.removable-drive-menu
     gnomeExtensions.user-themes
