@@ -6,7 +6,7 @@
 #Mainly dconf settings that affect gnome
 let
 
-  my-pop-shell = pkgs.gnomeExtensions.pop-shell.overrideAttrs (old: {
+  my-pop-shell = pkgs.gnomeExtensions.pop-shell.overrideAttrs ({
     src = pkgs.fetchFromGitHub {
       owner = "pop-os";
       repo = "shell";
