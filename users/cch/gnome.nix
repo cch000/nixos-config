@@ -127,7 +127,7 @@ in {
     "org/gnome/shell/extensions/unite" = {
       enable-titlebar-actions = false;
       extend-left-box = false;
-      hide-activities-button = "always";
+      hide-activities-button = "never";
       hide-window-titlebars = "always";
       notifications-position = "center";
       restrict-to-primary-screen = false;
