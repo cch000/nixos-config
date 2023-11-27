@@ -23,6 +23,7 @@
           driver="passive"
           governor="conservative"
           ryzenadj="start"
+          profile="power-saver"
 
         else
 
@@ -35,6 +36,7 @@
           fi
 
           ryzenadj="stop"
+          profile="balanced"
 
         fi
 
@@ -54,11 +56,9 @@
             "${pkgs.systemdMinimal}"/bin/systemctl "$ryzenadj" ryzenadj.service
           fi
 
-          # if not connected set power saver profile
-          if [[ $(cat "$connected") == "0" ]]; then
-            sleep 2
-            "${pkgs.power-profiles-daemon}"/bin/powerprofilesctl set power-saver
-          fi
+          # Set power profile
+          sleep 5
+          "${pkgs.power-profiles-daemon}"/bin/powerprofilesctl set "$profile"
 
         fi
 
