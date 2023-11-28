@@ -31,10 +31,6 @@
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  programs.gnupg.agent = {
-    enable = true;
-  };
-
   # Configure console keymap
   console.keyMap = "es";
 
@@ -46,11 +42,15 @@
     extraGroups = ["networkmanager" "wheel" "users"];
   };
 
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
+  programs = {
+    neovim = {
+      enable = true;
+      vimAlias = true;
+    };
+    zsh.enable = true;
+    gnupg.agent.enable = true;
   };
-  programs.zsh.enable = true;
+
   users.users.cch.shell = pkgs.zsh;
 
   time.timeZone = "Europe/Stockholm";
