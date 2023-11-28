@@ -8,9 +8,6 @@
     wl-clipboard
     tree
 
-    #dev
-    neovim
-
     #gui
     evince
     gnome.eog

@@ -12,5 +12,6 @@
     ./vscodium.nix
     ./gnome.nix
     ./xdg.nix
+    ./shell.nix
   ];
 }

@@ -1,5 +1,4 @@
 {pkgs, ...}: {
-
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
@@ -31,6 +30,7 @@
         minimap.enabled = false;
         fontFamily = "JetBrainsMono Nerd Font";
         fontLigatures = true;
+        cursorSurroundingLines = 999;
       };
 
       extensions.ignoreRecommendations = true;

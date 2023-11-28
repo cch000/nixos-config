@@ -46,6 +46,10 @@
     extraGroups = ["networkmanager" "wheel" "users"];
   };
 
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+  };
   programs.zsh.enable = true;
   users.users.cch.shell = pkgs.zsh;
 
