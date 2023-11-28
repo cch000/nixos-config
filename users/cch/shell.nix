@@ -1,4 +1,9 @@
-{config, pkgs, lib, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   programs = {
     zsh = {
       enable = true;
@@ -12,6 +17,12 @@
       };
 
       initExtra = ''
+        # Vi mode
+        bindkey -v
+
+        bindkey "^A" vi-beginning-of-line
+        bindkey "^E" vi-end-of-line
+
         bindkey '^[k' autosuggest-accept
       '';
     };
