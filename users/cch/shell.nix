@@ -1,10 +1,14 @@
-{config, ...}: {
+{config, pkgs, lib, ...}: {
   programs = {
     zsh = {
       enable = true;
       enableAutosuggestions = true;
       sessionVariables = {
         ZSH_AUTOSUGGEST_USE_ASYNC = "true";
+      };
+
+      shellAliases = with pkgs; {
+        code = "${lib.getExe vscodium}";
       };
 
       initExtra = ''
