@@ -6,18 +6,27 @@
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
 
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-      vscodevim.vim
-      valentjn.vscode-ltex
-      redhat.java
-      jdinhlife.gruvbox
-      matklad.rust-analyzer
-      llvm-vs-code-extensions.vscode-clangd
-      mkhl.direnv
-      ms-vscode.cmake-tools
-      ms-dotnettools.csharp
-    ];
+    extensions = with pkgs.vscode-extensions;
+      [
+        jnoortheen.nix-ide
+        vscodevim.vim
+        valentjn.vscode-ltex
+        redhat.java
+        jdinhlife.gruvbox
+        matklad.rust-analyzer
+        llvm-vs-code-extensions.vscode-clangd
+        mkhl.direnv
+        ms-vscode.cmake-tools
+        ms-dotnettools.csharp
+      ]
+      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "vsliveshare";
+          publisher = "ms-vsliveshare";
+          version = "1.0.5892";
+          sha256 = "0c4xvs96ccih47l76r6l5bkjfhgiair90yy8syibdq3zshw0kxvv";
+        }
+      ];
 
     userSettings = {
       workbench.colorTheme = "Gruvbox Dark Medium";
