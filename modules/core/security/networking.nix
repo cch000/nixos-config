@@ -1,9 +1,68 @@
-_: {
-  networking = {
-    networkmanager.wifi = {
-      macAddress = "random";
-      scanRandMacAddress = true; #random MAC when scanning for wifi networks
+{
+  lib,
+  config,
+  ...
+}: {
+  services = {
+    # systemd DNS resolver daemon
+    resolved.enable = false;
+  };
+
+  users = lib.mkIf config.networking.tcpcrypt.enable {
+    groups.tcpcryptd = {};
+    users.tcpcryptd = {
+      group = "tcpcryptd";
+      isSystemUser = true;
     };
+  };
+
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    settings = {
+      ipv6_servers = true;
+      require_dnssec = true;
+
+      sources.public-resolvers = {
+        urls = [
+          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+          "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+        ];
+        cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
+        minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+      };
+
+      # You can choose a specific set of servers from https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
+      server_names = ["mullvad-doh"];
+    };
+  };
+
+  systemd.services.dnscrypt-proxy2.serviceConfig = {
+    StateDirectory = "dnscrypt-proxy";
+  };
+
+  networking = {
+    useDHCP = lib.mkForce false;
+    useNetworkd = lib.mkForce true;
+
+    tcpcrypt.enable = false;
+
+    # dns
+    nameservers = [
+      "127.0.0.1"
+      "::1"
+    ];
+
+    networkmanager = {
+      enable = true;
+      plugins = lib.mkForce []; # disable all plugins
+      dns = "none"; # use systemd-resolved as dns backend
+
+      wifi = {
+        macAddress = "random";
+        scanRandMacAddress = true; #random MAC when scanning for wifi networks
+      };
+    };
+
     firewall = {
       enable = true;
       allowedTCPPorts = [];
