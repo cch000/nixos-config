@@ -13,7 +13,7 @@
 
   hardware.opengl.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  #environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
