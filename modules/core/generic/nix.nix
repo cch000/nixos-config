@@ -12,6 +12,7 @@
       auto-optimise-store = true;
       #Don't warn me about the dirty git tree
       warn-dirty = false;
+      allowed-users = ["@wheel"];
     };
     gc = {
       automatic = true;

@@ -6,11 +6,9 @@
   inherit (self) inputs;
   core = ../modules/core;
   nvidia = ../modules/nvidia;
-  sound = ../modules/sound;
-  gnome = ../modules/gnome;
+  wayland = ../modules/wayland;
   gaming_laptop = ../modules/gaming_laptop;
-  virtualisation = ../modules/virtualisation;
-  university = ../modules/university/default.nix;
+  university = ../modules/university;
   hm_module = inputs.home-manager.nixosModules.home-manager;
 
   home-manager = {
@@ -31,9 +29,7 @@ in {
       nvidia
       core
       gaming_laptop
-      gnome
-      sound
-      virtualisation
+      wayland
       university
       hm_module
       {inherit home-manager;}
