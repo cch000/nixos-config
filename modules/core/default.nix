@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./flatpak
     ./nix
@@ -24,12 +28,13 @@
     kernel.sysctl."vm.max_map_count" = 2147483642;
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   services.fstrim.enable = true;
 
   zramSwap.enable = true;
 
   networking.networkmanager.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Configure console keymap
   console.keyMap = "es";
