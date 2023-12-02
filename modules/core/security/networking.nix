@@ -45,6 +45,12 @@
         macAddress = "random";
         scanRandMacAddress = true; #random MAC when scanning for wifi networks
       };
+
+      #equivalent to "macchanger --ending"
+      extraConfig = ''
+        [connection]
+        wifi.generate-mac-address-mask=FE:FF:FF:00:00:00
+      '';
     };
 
     firewall = {
