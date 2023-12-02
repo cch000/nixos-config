@@ -9,10 +9,11 @@
     extensions = with pkgs.vscode-extensions;
       [
         jnoortheen.nix-ide
+        christian-kohler.path-intellisense
+        enkia.tokyo-night
         vscodevim.vim
         valentjn.vscode-ltex
         redhat.java
-        jdinhlife.gruvbox
         matklad.rust-analyzer
         llvm-vs-code-extensions.vscode-clangd
         mkhl.direnv
@@ -29,9 +30,11 @@
       ];
 
     userSettings = {
-      workbench.colorTheme = "Gruvbox Dark Medium";
+      workbench.colorTheme = "Tokyo Night Storm";
       files.autoSave = "afterDelay";
-      window.menuBarVisibility = "toggle";
+      window = {
+        menuBarVisibility = "toggle";
+      };
 
       redhat.telemetry.enabled = false;
 
@@ -40,6 +43,10 @@
         fontFamily = "JetBrainsMono Nerd Font";
         fontLigatures = true;
         cursorSurroundingLines = 999;
+      };
+
+      terminal = {
+        integrated.fontFamily = "JetBrainsMono Nerd Font Mono";
       };
 
       extensions.ignoreRecommendations = true;
