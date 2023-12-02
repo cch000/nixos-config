@@ -6,7 +6,6 @@
       flushL1DataCache = "always";
     };
     rtkit.enable = true;
-    sudo.execWheelOnly = true;
   };
 
   #Rip out the default packages

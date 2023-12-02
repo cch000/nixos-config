@@ -7,6 +7,7 @@ _: {
     ./impermanence.nix
     ./pam.nix
     ./logging.nix
+    ./sudo.nix
     #options that do not fit anywhere else
     ./misc.nix
   ];
