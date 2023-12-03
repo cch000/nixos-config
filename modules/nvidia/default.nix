@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+_:
 #example of let block and package version override
 # let
 #  nvidia-535-129 = config.boot.kernelPackages.nvidiaPackages.stable.overrideAttrs {
