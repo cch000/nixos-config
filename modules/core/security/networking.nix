@@ -39,7 +39,7 @@
     networkmanager = {
       enable = true;
       plugins = lib.mkForce []; # disable all plugins
-      dns = "none"; # use systemd-resolved as dns backend
+      dns = "none"; # use dnscrypt-proxy2 as dns backend
 
       wifi = {
         macAddress = "random";
