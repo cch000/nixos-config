@@ -19,6 +19,7 @@
         mkhl.direnv
         ms-vscode.cmake-tools
         ms-dotnettools.csharp
+        gitlab.gitlab-workflow
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
