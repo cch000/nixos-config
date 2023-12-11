@@ -9,7 +9,6 @@
     extensions = with pkgs.vscode-extensions;
       [
         jnoortheen.nix-ide
-        christian-kohler.path-intellisense
         enkia.tokyo-night
         vscodevim.vim
         valentjn.vscode-ltex
@@ -20,6 +19,9 @@
         ms-vscode.cmake-tools
         ms-dotnettools.csharp
         gitlab.gitlab-workflow
+        redhat.vscode-yaml
+        timonwong.shellcheck
+        foxundermoon.shell-format
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
