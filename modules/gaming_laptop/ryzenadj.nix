@@ -6,9 +6,9 @@
 
       prev=0
 
-      sleep 20
-
       while true; do
+
+      sleep 20
 
         pwr_profile=$("${pkgs.power-profiles-daemon}"/bin/powerprofilesctl get)
 
