@@ -6,15 +6,17 @@
 
       prev=0
 
+      sleep 20
+
       while true; do
 
         pwr_profile=$("${pkgs.power-profiles-daemon}"/bin/powerprofilesctl get)
 
         if [[ "$pwr_profile" == "power-saver" ]]; then
 
-          sus_pl=6000                              # Sustained Power Limit (mW)
-          actual_pl=6000                           # ACTUAL Power Limit    (mW)
-          avg_pl=6000                              # Average Power Limit   (mW)
+          sus_pl=7000                              # Sustained Power Limit (mW)
+          actual_pl=7000                           # ACTUAL Power Limit    (mW)
+          avg_pl=7000                              # Average Power Limit   (mW)
           vrm_edc=90000                            # VRM EDC Current       (mA)
           max_tmp=75                               # Max Tctl              (C)
 
@@ -27,8 +29,6 @@
         fi
 
         prev=$pwr_profile
-
-        sleep 20
 
       done
 

@@ -4,9 +4,6 @@
 
       #!/usr/bin/env bash
 
-      readonly min_version=6.3
-      current_version=$(uname -r | cut -c1-3)
-
       pwr_supply=$(echo /sys/class/power_supply/A*)
       connected="$pwr_supply/online"
 
@@ -28,33 +25,21 @@
         else
 
           driver="active"
-
-          if (( $(echo "$current_version >= $min_version" |"${pkgs.bc}"/bin/bc -l ))); then
-            governor="performance"
-          else
-            governor="schedutil"
-          fi
-
+          governor="performance"
           ryzenadj="stop"
           profile="balanced"
 
         fi
 
         if [[ "$prev" != "$governor" ]]; then
-
-          if (( $(echo "$current_version >= $min_version" |"${pkgs.bc}"/bin/bc -l ))); then
-            echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
-          fi
+  
+          echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status 
 
           for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
             echo "$governor" | tee "$i" > /dev/null
           done
 
-          #check if ryzenadj service exists
-          if { systemctl --all --type service || service --status-all; } 2>/dev/null |
-            grep -q "ryzenadj.service"; then
-            "${pkgs.systemdMinimal}"/bin/systemctl "$ryzenadj" ryzenadj.service
-          fi
+          "${pkgs.systemdMinimal}"/bin/systemctl "$ryzenadj" ryzenadj.service
 
           # Set power profile
           sleep 5
