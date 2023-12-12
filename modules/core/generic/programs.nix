@@ -10,7 +10,7 @@
       silent = true;
       # faster, permanent implementation of use_nix and use_flake
       nix-direnv.enable = true;
-    }; 
+    };
     zsh.enable = true;
     gnupg.agent.enable = true;
 

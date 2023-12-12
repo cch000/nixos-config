@@ -32,8 +32,8 @@
         fi
 
         if [[ "$prev" != "$governor" ]]; then
-  
-          echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status 
+
+          echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
 
           for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
             echo "$governor" | tee "$i" > /dev/null
