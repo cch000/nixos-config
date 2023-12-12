@@ -14,7 +14,7 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    users.cch = ../users/cch;
+    users.cch = ../home/cch;
     extraSpecialArgs = {
       inherit inputs;
       inherit self;
