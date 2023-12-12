@@ -13,5 +13,6 @@
     ./gnome.nix
     ./xdg.nix
     ./shell.nix
+    ./nvim.nix
   ];
 }
