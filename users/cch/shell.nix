@@ -8,6 +8,14 @@
     zsh = {
       enable = true;
       enableAutosuggestions = true;
+      #  historySubstringSearch = {
+      #    enable = true;
+      #    searchDownKey = "$terminfo[kcud1]";
+      #    searchUpKey = "$terminfo[kcuu1]";
+      # };
+
+      oh-my-zsh.enable = true;
+
       sessionVariables = {
         ZSH_AUTOSUGGEST_USE_ASYNC = "true";
       };
