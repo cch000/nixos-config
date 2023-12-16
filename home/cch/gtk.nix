@@ -10,4 +10,19 @@
       package = adw-gtk3;
     };
   };
+
+  home = {
+    pointerCursor = {
+    package = pkgs.gnome.adwaita-icon-theme;
+      name = "Adwaita";
+      size = 22;
+      gtk.enable = true;
+      x11.enable = true;
+    };
+
+    sessionVariables = {
+      XCURSOR_SIZE = "22";
+      GTK_USE_PORTAL = "1";
+    };
+  };
 }

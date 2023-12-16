@@ -1,0 +1,53 @@
+window#waybar {
+    background-color: black;
+    font-family: JetBrainsMono Nerd Font Mono;
+}
+
+#workspaces {
+    border-radius: 10px;
+    background-color: black;
+    font-size: 30px;
+}
+
+#workspaces button {
+    color: white;
+    border-radius: 10px;
+}
+
+#workspaces button.active {
+    border-radius: 10px;
+    color: #ff7800;
+}
+
+#network {
+    color: white;
+    font-size: 23px;
+}
+
+#battery {
+    color: white;
+    font-size: 23px;
+}
+
+#wireplumber {
+    color: white;
+    font-size: 25px;
+}
+
+#custom-power {
+    color: #141b1e;
+    background-color: #ff7800;
+    padding: 1px 0px;
+    margin: 0px 2px;
+    border-radius: 10px;
+    font-size: 26px
+}
+
+#clock {
+    color: #dadada;
+    margin-bottom: 8px;
+}
+
+#custom-separator {
+    color: #dadada;
+}

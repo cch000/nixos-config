@@ -14,5 +14,6 @@
     ./xdg.nix
     ./shell.nix
     ./nvim.nix
+    ./rice
   ];
 }
