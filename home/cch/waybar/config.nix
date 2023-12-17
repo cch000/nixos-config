@@ -1,7 +1,7 @@
 _: {
   programs.waybar = {
     enable = true;
-    style = builtins.readFile ./waybar.css;
+    style = builtins.readFile ./style.css;
     settings = {
       mainBar = {
         width = 40;

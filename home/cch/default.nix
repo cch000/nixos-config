@@ -14,6 +14,8 @@
     ./xdg.nix
     ./shell.nix
     ./nvim.nix
-    ./rice
+    ./waybar
+    ./hyprland
+    ./wofi
   ];
 }
