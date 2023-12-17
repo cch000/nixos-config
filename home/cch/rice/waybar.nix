@@ -8,7 +8,8 @@ _: {
         layer = "top";
         position = "left";
         modules-left = ["hyprland/workspaces"];
-        modules-right = ["tray" "wireplumber" "network" "battery" "custom/separator" "clock" "custom/power"];
+        modules-center = ["clock"];
+        modules-right = ["tray" "wireplumber" "network" "battery" "custom/power"];
 
         "hyprland/workspaces" = {
           format = "";
@@ -16,10 +17,6 @@ _: {
 
         "clock" = {
           format = "{:%H\n%M}";
-        };
-
-        "custom/separator" = {
-          format = "─";
         };
 
         "wireplumber" = {

@@ -44,10 +44,7 @@ window#waybar {
 }
 
 #clock {
-    color: #dadada;
-    margin-bottom: 8px;
-}
-
-#custom-separator {
-    color: #dadada;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
 }
