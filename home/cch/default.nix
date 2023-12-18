@@ -17,5 +17,6 @@
     ./waybar
     ./hyprland
     ./wofi
+    ./chromium.nix
   ];
 }
