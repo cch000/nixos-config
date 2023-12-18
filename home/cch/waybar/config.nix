@@ -9,10 +9,15 @@ _: {
         position = "left";
         modules-left = ["hyprland/workspaces"];
         modules-center = ["clock"];
-        modules-right = ["tray" "wireplumber" "network" "battery" "custom/power"];
+        modules-right = ["tray" "backlight" "wireplumber" "network" "battery" "custom/power"];
 
         "hyprland/workspaces" = {
           format = "";
+        };
+
+        "backlight" = {
+          format = "{icon}";
+          format-icons = ["" "" "" "" "" "" "" "" ""];
         };
 
         "clock" = {
