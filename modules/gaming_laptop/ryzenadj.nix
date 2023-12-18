@@ -20,7 +20,7 @@
           vrm_edc=90000                            # VRM EDC Current       (mA)
           max_tmp=75                               # Max Tctl              (C)
 
-          "${pkgs.ryzenadj}"/bin/ryzenadj -a $sus_pl -b $actual_pl -c $avg_pl -k $vrm_edc -f $max_tmp > /dev/null
+          "${pkgs.ryzenadj}"/bin/ryzenadj -a $sus_pl -b $actual_pl -c $avg_pl -k $vrm_edc -f $max_tmp --power-saving > /dev/null
 
         elif [[ "$pwr_profile" != "$prev" ]]; then
 
