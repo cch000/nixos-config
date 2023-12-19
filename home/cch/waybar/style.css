@@ -29,6 +29,14 @@ window#waybar {
     font-size: 23px;
 }
 
+#battery.warning {
+    color: orange
+}
+
+#battery.critical {
+    color: red;
+}
+
 #backlight {
     font-size: 23px;
     color: #939393;
@@ -48,8 +56,13 @@ window#waybar {
     font-size: 26px
 }
 
-#clock {
+#custom-pwrprofiles {
     color: #939393;
+    font-size: 23px;
+}
+
+#clock {
+    color: #ff7800;
     font-size: 20px;
     font-weight: bold;
 }

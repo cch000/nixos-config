@@ -1,4 +1,14 @@
-_: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  pwrprofilecycle = pkgs.writeShellApplication {
+    name = "pwrprofilecycle";
+    text = builtins.readFile ./pwrprofilecycle.sh;
+    runtimeInputs = ["powerprofilesctl" "sleep"];
+  };
+in {
   programs.waybar = {
     enable = true;
     style = builtins.readFile ./style.css;
@@ -9,7 +19,7 @@ _: {
         position = "left";
         modules-left = ["hyprland/workspaces"];
         modules-center = ["clock"];
-        modules-right = ["tray" "backlight" "wireplumber" "network" "battery" "custom/power"];
+        modules-right = ["custom/pwrprofiles" "backlight" "wireplumber" "network" "battery" "custom/power"];
 
         "hyprland/workspaces" = {
           format = "";
@@ -18,6 +28,7 @@ _: {
         "backlight" = {
           format = "{icon}";
           format-icons = ["" "" "" "" "" "" "" "" ""];
+          tooltip = false;
         };
 
         "clock" = {
@@ -28,14 +39,27 @@ _: {
           format = "{icon}";
           format-muted = "󰝟";
           format-icons = ["" "" ""];
+          tooltip-format = "{node_name} {volume}%";
+        };
+
+        "bluetooth" = {
+        };
+
+        "custom/pwrprofiles" = {
+          exec = "${lib.getBin pwrprofilecycle}/bin/pwrprofilecycle -m";
+          interval = 60;
+          on-click = "${lib.getBin pwrprofilecycle}/bin/pwrprofilecycle";
+          exec-on-event = true;
+          tooltip = false;
         };
 
         "network" = {
           format-wifi = "{icon}";
-          format-ethernet = " ";
+          format-ethernet = "";
           format-linked = "";
-          format-disconnected = ":(";
+          format-disconnected = "0";
           format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
+          tooltip-format = "{essid} {signalStrength}%";
 
           on-click = "terminator -e nmtui";
         };
@@ -48,6 +72,7 @@ _: {
           format = "{icon}";
           format-plugged = "";
           format-icons = ["" "" "" "" ""];
+          tooltip-format = "{capacity}% {timeTo}";
         };
 
         "custom/power" = {

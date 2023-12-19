@@ -17,8 +17,7 @@ in {
         # set cursor for HL itself
         "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
 
-        # bar
-        "run-as-service waybar"
+        "waybar"
       ];
 
       gestures = {
