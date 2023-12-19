@@ -17,6 +17,6 @@
       ExecStart = "${lib.getExe pkgs.hyprpaper}";
       Restart = "on-failure";
     };
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = ["hyprland-session.target"];
   };
 }
