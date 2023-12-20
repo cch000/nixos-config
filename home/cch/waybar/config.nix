@@ -60,8 +60,6 @@ in {
           format-disconnected = "0";
           format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
           tooltip-format = "{essid} {signalStrength}%";
-
-          on-click = "terminator -e nmtui";
         };
 
         "battery" = {

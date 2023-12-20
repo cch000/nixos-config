@@ -4,7 +4,6 @@
     htop
     neofetch
     powerline-fonts
-    terminator
     wl-clipboard
     tree
 

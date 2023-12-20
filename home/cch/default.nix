@@ -17,5 +17,6 @@
     ./hyprland
     ./wofi
     ./chromium.nix
+    ./foot.nix
   ];
 }

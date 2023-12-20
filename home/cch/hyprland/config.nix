@@ -87,7 +87,7 @@ in {
 
         # window swallowing
         enable_swallow = true; # hide windows that spawn other windows
-        swallow_regex = "terminator"; # windows for which swallow is applied
+        swallow_regex = "foot"; # windows for which swallow is applied
 
         # dpms
         mouse_move_enables_dpms = true; # enable dpms on mouse/touchpad action
@@ -107,7 +107,7 @@ in {
         "SUPER, Z, exec, grimshot save area ~/$(date +'%Y-%m-%d-%H%M%S').png"
         " ,XF86Launch4, exec, asusctl profile -n"
 
-        "$mainMod, T, exec, terminator"
+        "$mainMod, T, exec, foot"
         "$mainMod, Q, killactive,"
         "$mainMod, O, exit,"
         "$mainMod, E, exec, dolphin"
