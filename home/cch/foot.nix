@@ -9,6 +9,10 @@ _: {
         pad = "16x16";
       };
 
+      mouse = {
+        hide-when-typing = "yes";
+      };
+
       colors = rec {
         alpha = 0.8;
         #comments are original colors
