@@ -1,6 +1,6 @@
 _: {
   imports = [
-  ./config.nix
-  ./hyprpaper.nix
+    ./config.nix
+    ./hyprpaper.nix
   ];
 }

@@ -28,3 +28,4 @@ I have taken "inspiration" from these amazing configs:
 - [Nýx by NotAShelf](https://github.com/NotAShelf/nyx#--n%C3%BDx)
 - [Sioodmy's dotfiles](https://github.com/sioodmy/dotfiles)
 - [viperML's dotfiles](https://github.com/viperML/dotfiles)
+- [fufexan's dotfiles](https://github.com/fufexan/dotfiles)

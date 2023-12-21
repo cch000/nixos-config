@@ -16,6 +16,7 @@
     ./waybar
     ./hyprland
     ./wofi
+    ./lockscreen
     ./chromium.nix
     ./foot.nix
   ];

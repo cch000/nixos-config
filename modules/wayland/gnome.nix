@@ -13,8 +13,6 @@
 
   hardware.opengl.enable = true;
 
-  
-
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
   ];

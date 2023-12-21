@@ -1,2 +1,3 @@
-_:{
-imports = [./config.nix];}
+_: {
+  imports = [./config.nix];
+}

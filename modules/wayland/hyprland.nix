@@ -10,4 +10,9 @@
   };
 
   services.power-profiles-daemon.enable = true;
+
+  security.pam.services = {
+    #Allow swaylock to unlock the screen
+    swaylock.text = "auth include login";
+  };
 }
