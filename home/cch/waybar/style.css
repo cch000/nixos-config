@@ -47,6 +47,11 @@ window#waybar {
     font-size: 25px;
 }
 
+#bluetooth {
+    color: #939393;
+    font-size: 20px;
+}
+
 #custom-power {
     color: #141b1e;
     background-color: #ff7800;

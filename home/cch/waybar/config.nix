@@ -19,7 +19,7 @@ in {
         position = "left";
         modules-left = ["hyprland/workspaces"];
         modules-center = ["clock"];
-        modules-right = ["custom/pwrprofiles" "backlight" "wireplumber" "network" "battery" "custom/power"];
+        modules-right = ["bluetooth" "custom/pwrprofiles" "backlight" "wireplumber" "network" "battery" "custom/power"];
 
         "hyprland/workspaces" = {
           format = "";
@@ -43,6 +43,13 @@ in {
         };
 
         "bluetooth" = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-connected = "󰂱";
+          tooltip-format = "{device_alias}";
+          tooltip-format-connected = "{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}";
+          on-click = "blueman-manager";
         };
 
         "custom/pwrprofiles" = {
