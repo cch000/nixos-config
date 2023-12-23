@@ -1,14 +1,22 @@
+# taken from https://github.com/fufexan/dotfiles/blob/main/home/services/swayidle.nix
 {
   lib,
   pkgs,
   ...
 }: let
-  # taken from https://github.com/fufexan/dotfiles/blob/main/home/services/swayidle.nix
-  suspendScript = pkgs.writeShellScript "suspend-script" ''
-    ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
-    # only suspend if audio isn't running
-    if [ $? == 1 ]; then
-      ${pkgs.systemd}/bin/systemctl suspend
+  suspendScript = pkgs.writeScript "suspend-script" ''
+    #!/usr/bin/env bash
+
+    pwr_supply=$(echo /sys/class/power_supply/A*)
+    connected="$pwr_supply/online"
+
+    if [[ $(cat "$connected") == "0" ]]; then
+
+      # only suspend if audio isn't running
+      ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
+      if [[ $? == 1 ]]; then
+        ${pkgs.systemd}/bin/systemctl suspend
+      fi
     fi
   '';
 in {
