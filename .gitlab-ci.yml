@@ -2,7 +2,6 @@ image: "nixos/nix"
 
 stages:
   - test
-  - style
 
 variables:
   flags: "--extra-experimental-features nix-command --extra-experimental-features flakes"
