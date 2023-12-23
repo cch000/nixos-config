@@ -11,16 +11,7 @@
     gnome.core-utilities.enable = false; #Minimal gnome install
   };
 
-  hardware.opengl.enable = true;
-
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
-  ];
-
-  programs.dconf.enable = true;
-
-  #fonts
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
 }

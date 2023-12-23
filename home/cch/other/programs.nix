@@ -6,6 +6,7 @@
     powerline-fonts
     wl-clipboard
     tree
+    killall
 
     #gui
     evince
