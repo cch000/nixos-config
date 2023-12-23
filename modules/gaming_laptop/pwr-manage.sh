@@ -27,7 +27,7 @@ while true; do
 
   fi
 
-  if [[ "$prev" != "$governor" ]]; then
+  if [[ $prev != "$governor" ]]; then
 
     echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
 
