@@ -46,8 +46,7 @@
           inputsFrom = [config.treefmt.build.devShell];
 
           packages = with pkgs; [
-            deadnix
-            statix
+            nil
           ];
         };
       };

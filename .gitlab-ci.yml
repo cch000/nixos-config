@@ -5,16 +5,8 @@ stages:
   - style
 
 variables:
-  flags: '--extra-experimental-features nix-command --extra-experimental-features flakes'
+  flags: "--extra-experimental-features nix-command --extra-experimental-features flakes"
 
 flake-check:
   stage: test
-  script: nix ${flags} flake check .
-
-statix:
-  stage: style
-  script: nix ${flags} run nixpkgs#statix check
-
-deadnix:
-  stage: style
-  script: nix ${flags} run nixpkgs#deadnix -- -f
+  script: nix ${flags} flake check
