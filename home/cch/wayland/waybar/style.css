@@ -1,0 +1,73 @@
+window#waybar {
+    background-color: black;
+    font-family: JetBrainsMono Nerd Font Mono;
+}
+
+#workspaces {
+    border-radius: 10px;
+    background-color: black;
+    font-size: 26px;
+}
+
+#workspaces button {
+    color: #939393;
+    border-radius: 10px;
+}
+
+#workspaces button.active {
+    border-radius: 10px;
+    color: #ff7800;
+}
+
+#network {
+    color: #939393;
+    font-size: 23px;
+}
+
+#battery {
+    color: #939393;
+    font-size: 23px;
+}
+
+#battery.warning {
+    color: orange
+}
+
+#battery.critical {
+    color: red;
+}
+
+#backlight {
+    font-size: 23px;
+    color: #939393;
+}
+
+#wireplumber {
+    color: #939393;
+    font-size: 25px;
+}
+
+#bluetooth {
+    color: #939393;
+    font-size: 20px;
+}
+
+#custom-power {
+    color: #141b1e;
+    background-color: #ff7800;
+    padding: 1px 0px;
+    margin: 0px 2px;
+    border-radius: 10px;
+    font-size: 26px
+}
+
+#custom-pwrprofiles {
+    color: #939393;
+    font-size: 25px;
+}
+
+#clock {
+    color: #ff7800;
+    font-size: 20px;
+    font-weight: bold;
+}

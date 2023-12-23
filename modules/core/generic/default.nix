@@ -7,5 +7,6 @@ _: {
     ./services.nix
     ./users.nix
     ./virtualisation.nix
+    ./bluetooth.nix
   ];
 }

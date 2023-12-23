@@ -37,6 +37,7 @@
       files.autoSave = "afterDelay";
       window = {
         menuBarVisibility = "toggle";
+        titleBarStyle = "custom";
       };
 
       redhat.telemetry.enabled = false;
