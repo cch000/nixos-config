@@ -6,6 +6,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     impermanence.url = "github:nix-community/impermanence";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     hyprland = {
       url = "github:hyprwm/Hyprland/";
@@ -17,20 +19,38 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+  outputs = {flake-parts, ...} @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} ({...}: {
+      systems = ["x86_64-linux"];
 
-  outputs = inputs: let
-    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-  in {
-    nixosConfigurations = import ./hosts inputs;
-    formatter.x86_64-linux = pkgs.alejandra;
-
-    devShells.x86_64-linux.default = pkgs.mkShell {
-      packages = with pkgs; [
-        nil
-        deadnix
-        statix
-        alejandra
+      imports = [
+        inputs.treefmt-nix.flakeModule
       ];
-    };
-  };
+
+      perSystem = {
+        config,
+        pkgs,
+        ...
+      }: {
+        treefmt.config = {
+          projectRootFile = "flake.nix";
+          programs = {
+            alejandra.enable = true;
+            shfmt.enable = true;
+            shellcheck.enable = true;
+            deadnix.enable = true;
+            statix.enable = true;
+          };
+        };
+        devShells.default = pkgs.mkShell {
+          inputsFrom = [config.treefmt.build.devShell];
+
+          packages = with pkgs; [
+            deadnix
+            statix
+          ];
+        };
+      };
+      flake.nixosConfigurations = import ./hosts inputs;
+    });
 }
