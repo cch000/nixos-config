@@ -1,11 +1,14 @@
-# taken from https://github.com/fufexan/dotfiles/blob/main/home/services/swayidle.nix
+# inspired by https://github.com/fufexan/dotfiles/blob/c16e7e2e2c19cd2f5be044b2b3548b5a19348a65/home/services/swayidle.nix
 {
-  lib,
   pkgs,
+  lib,
   ...
 }: let
   suspendScript = pkgs.writeScript "suspend-script" ''
+
     #!/usr/bin/env bash
+
+    export PATH=$PATH:${dependencies}
 
     pwr_supply=$(echo /sys/class/power_supply/A*)
     connected="$pwr_supply/online"
@@ -13,16 +16,31 @@
     if [[ $(cat "$connected") == "0" ]]; then
 
       # only suspend if audio isn't running
-      ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
+      pw-cli i all | rg running
       if [[ $? == 1 ]]; then
-        ${pkgs.systemd}/bin/systemctl suspend
+        systemctl suspend
       fi
+
+    else
+
+      swaylock & disown
+      sleep 2
+      hyprctl dispatch dpms off
+
     fi
   '';
+  dependencies = with pkgs;
+    lib.makeBinPath [
+      ripgrep
+      coreutils
+      pipewire
+      swaylock-effects
+      hyprland
+    ];
 in {
-  systemd.user.services.swayidle.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
   # screen idle
   services.swayidle = {
+    systemdTarget = "hyprland-session.target";
     enable = true;
     events = [
       {
@@ -36,7 +54,7 @@ in {
     ];
     timeouts = [
       {
-        timeout = 330;
+        timeout = 300;
         command = suspendScript.outPath;
       }
     ];

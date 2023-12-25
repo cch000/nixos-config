@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.swaylock = {
     enable = true;
-    package = pkgs.swaylock;
+    package = pkgs.swaylock-effects;
     settings = rec {
       clock = true;
       font = "JetBrainsMono Nerd Font";
