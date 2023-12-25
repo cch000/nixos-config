@@ -23,7 +23,7 @@
 
     else
 
-      swaylock & disown
+      swaylock
       sleep 2
       hyprctl dispatch dpms off
 

@@ -3,6 +3,7 @@
     enable = true;
     package = pkgs.swaylock-effects;
     settings = rec {
+      daemonize = true;
       clock = true;
       font = "JetBrainsMono Nerd Font";
       indicator = true;
