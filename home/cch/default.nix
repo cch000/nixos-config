@@ -10,6 +10,7 @@
     ./cli
     ./gui
     ./other
+    ./services
     ./wayland
   ];
 }
