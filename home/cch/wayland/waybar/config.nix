@@ -22,7 +22,11 @@ in {
         modules-right = ["bluetooth" "custom/pwrprofiles" "backlight" "wireplumber" "network" "battery" "custom/power"];
 
         "hyprland/workspaces" = {
+          active-only = false;
           format = "";
+          persistent-workspaces = {
+            "*" = 5;
+          };
         };
 
         "backlight" = {
