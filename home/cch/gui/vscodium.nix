@@ -22,6 +22,7 @@
         redhat.vscode-yaml
         timonwong.shellcheck
         foxundermoon.shell-format
+        james-yu.latex-workshop
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
