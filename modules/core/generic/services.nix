@@ -7,6 +7,7 @@
 
   services = {
     fstrim.enable = true;
+    gvfs.enable = true; # so that external devices to show up on nautilus
   };
 
   zramSwap = {
