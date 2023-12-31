@@ -105,7 +105,7 @@ in {
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         "SUPER, Z, exec, grimshot save area ~/$(date +'%Y-%m-%d-%H%M%S').png"
-        " ,XF86Launch4, exec, asusctl profile -n"
+        ",XF86Launch4, exec, asusctl profile -n; pkill -SIGRTMIN+8 waybar"
 
         "$mainMod, T, exec, foot"
         "$mainMod, Q, killactive,"

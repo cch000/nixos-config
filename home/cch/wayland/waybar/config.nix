@@ -57,11 +57,10 @@ in {
         };
 
         "custom/pwrprofiles" = {
-          exec = "${lib.getBin pwrprofilecycle}/bin/pwrprofilecycle -m";
-          interval = 60;
-          on-click = "${lib.getBin pwrprofilecycle}/bin/pwrprofilecycle";
-          exec-on-event = true;
+          exec = "${lib.getBin pwrprofilecycle}/bin/pwrprofilecycle";
+          on-click = "asusctl profile -n; pkill -SIGRTMIN+8 waybar";
           tooltip = false;
+          signal = 8;
         };
 
         "network" = {

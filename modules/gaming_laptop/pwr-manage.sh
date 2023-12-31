@@ -40,6 +40,9 @@ while true; do
     # Set power profile
     powerprofilesctl set "$profile"
 
+    # Update waybar icon
+    pkill -SIGRTMIN+8 waybar
+
   fi
 
   prev=$governor
