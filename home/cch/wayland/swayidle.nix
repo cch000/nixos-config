@@ -36,6 +36,7 @@
       pipewire
       swaylock-effects
       hyprland
+      systemd
     ];
 in {
   # screen idle
