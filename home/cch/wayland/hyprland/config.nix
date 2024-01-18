@@ -114,11 +114,23 @@ in {
         "$mainMod, V, togglefloating,"
         "$mainMod, R, exec, wofi --show drun"
         "$mainMod, P, pseudo, # dwindle"
-        "$mainMod, J, togglesplit, # dwindle"
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+        "$mainMod, S, togglesplit, # dwindle"
+
+        "$mainMod, H, movefocus, l"
+        "$mainMod, L, movefocus, r"
+        "$mainMod, K, movefocus, u"
+        "$mainMod, J, movefocus, d"
+
+        "$mainMod SHIFT, H, movewindow, l"
+        "$mainMod SHIFT, L, movewindow, r"
+        "$mainMod SHIFT, K, movewindow, u"
+        "$mainMod SHIFT, J, movewindow, d"
+
+        "$mainMod CONTROL, H, resizeactive, -10 0"
+        "$mainMod CONTROL, L, resizeactive, 10 0"
+        "$mainMod CONTROL, K, resizeactive, 0 -10"
+        "$mainMod CONTROL, J, resizeactive, 0 10"
+
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
         "$mainMod, 3, workspace, 3"
@@ -142,7 +154,7 @@ in {
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
       ];
-      bindr = "SUPER, SUPER_L, exec, pkill wofi || wofi --show drun -a --normal-window";
+      bindr = "SUPER, SUPER_L, exec, wofi --show drun -a";
       bindm = ["$mainMod, mouse:272, movewindow" "$mainMod, mouse:273, resizewindow"];
     };
   };
