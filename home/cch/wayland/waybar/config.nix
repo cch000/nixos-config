@@ -1,16 +1,20 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: let
   pwrprofilecycle = pkgs.writeShellApplication {
     name = "pwrprofilecycle";
     text = builtins.readFile ./pwrprofilecycle.sh;
-    runtimeInputs = ["powerprofilesctl" "sleep"];
+    runtimeInputs = with pkgs; [power-profiles-daemon coreutils];
   };
 in {
+
   programs.waybar = {
     enable = true;
+    package = inputs.waybar.packages.x86_64-linux.default;
+    systemd.enable = true;
     style = builtins.readFile ./style.css;
     settings = {
       mainBar = {
@@ -57,7 +61,7 @@ in {
         };
 
         "custom/pwrprofiles" = {
-          exec = "${lib.getBin pwrprofilecycle}/bin/pwrprofilecycle";
+          exec = "${lib.getExe pwrprofilecycle}";
           on-click = "asusctl profile -n; pkill -SIGRTMIN+8 waybar";
           tooltip = false;
           signal = 8;

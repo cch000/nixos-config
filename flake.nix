@@ -4,7 +4,7 @@
   # All inputs for the system
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
+    waybar.url = "github:Alexays/Waybar";
     impermanence.url = "github:nix-community/impermanence";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";
