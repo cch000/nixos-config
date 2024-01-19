@@ -10,7 +10,6 @@
     runtimeInputs = with pkgs; [power-profiles-daemon coreutils];
   };
 in {
-
   programs.waybar = {
     enable = true;
     package = inputs.waybar.packages.x86_64-linux.default;
