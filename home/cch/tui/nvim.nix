@@ -55,6 +55,7 @@
 
       "Coc shorcuts
       nmap <S-d> :CocCommand editor.action.formatDocument<CR>
+      inoremap <silent><expr> <A-k> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
     '';
 
     coc = {
