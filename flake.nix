@@ -18,6 +18,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vim-eva01 = {
+      url = "github:hachy/eva01.vim";
+      flake = false;
+    };
+
+    vim-img-paste = {
+      url = "github:img-paste-devs/img-paste.vim";
+      flake = false;
+    };
   };
   outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} ({...}: {

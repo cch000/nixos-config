@@ -214,6 +214,8 @@
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs",
         "treefmt-nix": "treefmt-nix",
+        "vim-eva01": "vim-eva01",
+        "vim-img-paste": "vim-img-paste",
         "waybar": "waybar"
       }
     },
@@ -247,6 +249,38 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "vim-eva01": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704889575,
+        "narHash": "sha256-1A2Gq/rIGmSNtpiE6ILZUn0dJfmPGjhuWOWg6FTxAi4=",
+        "owner": "hachy",
+        "repo": "eva01.vim",
+        "rev": "8ab19cfc230806a5ce0ed8f3f75c990c78a949bd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hachy",
+        "repo": "eva01.vim",
+        "type": "github"
+      }
+    },
+    "vim-img-paste": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1666591630,
+        "narHash": "sha256-LaqEGKbpZmcOJeIz00Ts5DvbFnduScBEUnisTcX1srI=",
+        "owner": "img-paste-devs",
+        "repo": "img-paste.vim",
+        "rev": "787be15ff52ea2db5ae7b813ab8808c8d4cf749e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "img-paste-devs",
+        "repo": "img-paste.vim",
         "type": "github"
       }
     },
