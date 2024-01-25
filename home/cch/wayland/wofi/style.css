@@ -9,7 +9,7 @@
     margin: auto;
     padding: 10px;
     border-radius: 10px;
-    border: none;
+    border: 2px solid #ff7800;
 }
 
 #input {
