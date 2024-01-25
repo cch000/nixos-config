@@ -6,5 +6,6 @@ _: {
     ./hyprland
     ./waybar
     ./wofi
+    ./dunst.nix
   ];
 }
