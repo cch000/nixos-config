@@ -23,6 +23,7 @@
         timonwong.shellcheck
         foxundermoon.shell-format
         james-yu.latex-workshop
+        vadimcn.vscode-lldb
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
