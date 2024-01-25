@@ -60,7 +60,7 @@ in {
         };
 
         "custom/pwrprofiles" = {
-          exec = "${lib.getExe pwrprofilecycle}";
+          exec = "${pkgs.toybox}/bin/sleep 1 && ${lib.getExe pwrprofilecycle}";
           on-click = "${pkgs.asusctl}/bin/asusctl profile -n; ${pkgs.busybox}/bin/pkill -SIGRTMIN+8 waybar";
           tooltip = false;
           signal = 8;
