@@ -56,7 +56,7 @@ in {
           tooltip-format = "{device_alias}";
           tooltip-format-connected = "{device_enumerate}";
           tooltip-format-enumerate-connected = "{device_alias}";
-          on-click = "blueman-manager";
+          on-click = "${pkgs.blueman}/bin/blueman-manager";
         };
 
         "custom/pwrprofiles" = {
