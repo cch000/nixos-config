@@ -22,10 +22,19 @@ in {
         position = "left";
         modules-left = ["hyprland/workspaces"];
         modules-center = ["clock"];
-        modules-right = ["bluetooth" "custom/pwrprofiles" "backlight" "wireplumber" "network" "battery" "custom/power"];
+        modules-right = [
+          "custom/pwrprofiles"
+          "bluetooth"
+          "backlight"
+          "network"
+          "wireplumber"
+          "battery"
+          "custom/power"
+        ];
 
         "hyprland/workspaces" = {
           active-only = false;
+          sort-by-number = true;
           format = "";
           persistent-workspaces = {
             "*" = 5;
@@ -89,6 +98,7 @@ in {
         "custom/power" = {
           format = "⭘";
           on-click = "shutdown now";
+          tooltip = false;
         };
       };
     };

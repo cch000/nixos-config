@@ -10,13 +10,21 @@ window#waybar {
 }
 
 #workspaces button {
-    color: #939393;
-    border-radius: 10px;
-}
-
-#workspaces button.active {
     border-radius: 10px;
     color: #ff7800;
+}
+
+#workspaces button.persistent {
+    color: #6A329F;
+}
+
+#workspaces button.empty {
+    color: #939393;
+}
+
+
+#workspaces button.active {
+    color: #00b817;
 }
 
 #network {
@@ -24,13 +32,17 @@ window#waybar {
     font-size: 23px;
 }
 
+#network.wifi {
+    color: #00b817;
+}
+
 #battery {
-    color: #939393;
+    color: #00b817;
     font-size: 23px;
 }
 
 #battery.warning {
-    color: orange
+    color: #ff7800;
 }
 
 #battery.critical {
@@ -47,9 +59,17 @@ window#waybar {
     font-size: 25px;
 }
 
+#wireplumber.muted {
+    color: #6A329F;
+}
+
 #bluetooth {
     color: #939393;
     font-size: 20px;
+}
+
+#bluetooth.connected {
+    color: #00b817;
 }
 
 #custom-power {
