@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-pwr_supply=$(echo /sys/class/power_supply/A*)
-connected="$pwr_supply/online"
-
-bat=$(echo /sys/class/power_supply/BAT*)
-bat_status="$bat/status"
+connected="$(echo /sys/class/power_supply/A*)/online"
+bat_status="$(echo /sys/class/power_supply/BAT*)/status"
 
 prev=0
 
@@ -29,19 +26,26 @@ while true; do
 
   if [[ $prev != "$governor" ]]; then
 
+    # Set cpu scheduling driver
     echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
 
+    # Set cpu scheduling governor
     for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
       echo "$governor" | tee "$i" >/dev/null
     done
 
-    systemctl "$ryzenadj" ryzenadj.service
+    # Start or stop ryzenadj service if it exists
+    if systemctl is-enabled ryzenadj.service >/dev/null; then
+      systemctl "$ryzenadj" ryzenadj.service
+    fi
 
     # Set power profile
     powerprofilesctl set "$profile"
 
-    # Update waybar icon
-    pkill -SIGRTMIN+8 waybar
+    # Update waybar icon if waybar is running
+    if pidof waybar >/dev/null; then
+      pkill -SIGRTMIN+8 waybar
+    fi
 
   fi
 
