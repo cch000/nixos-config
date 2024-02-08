@@ -7,6 +7,8 @@
     wl-clipboard
     tree
     killall
+    zip
+    unzip
 
     #gui
     evince
@@ -18,6 +20,7 @@
     tor-browser-bundle-bin
     fragments
     celluloid
+    pavucontrol
   ];
 
   programs.obs-studio.enable = true;

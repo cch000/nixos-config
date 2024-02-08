@@ -53,6 +53,7 @@ in {
 
         "wireplumber" = {
           format = "{icon}";
+          on-click = "${pkgs.busybox}/bin/pkill pavucontrol || ${pkgs.pavucontrol}/bin/pavucontrol";
           format-muted = "󰝟";
           format-icons = ["" "" ""];
           tooltip-format = "{node_name} {volume}%";
