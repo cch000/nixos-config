@@ -4,8 +4,6 @@
     ./ryzenadj.nix
   ];
 
-  programs.steam.enable = true;
-
   services = {
     asusd = {
       enable = true;

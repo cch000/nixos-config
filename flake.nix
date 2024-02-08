@@ -19,6 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
     vim-eva01 = {
       url = "github:hachy/eva01.vim";
       flake = false;
