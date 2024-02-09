@@ -9,8 +9,8 @@
     runtimeInputs = with pkgs; [power-profiles-daemon inotify-tools toybox];
   };
 
-  unplug = ''ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", RUN+="${lib.getExe pwrprofilecycle}"'';
-  plug = ''ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", RUN+="${lib.getExe pwrprofilecycle}"'';
+  unplug = ''ACTION=="change", KERNEL=="AC0", SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${lib.getExe pwrprofilecycle}"'';
+  plug = ''ACTION=="change", KERNEL=="AC0", SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${lib.getExe pwrprofilecycle}"'';
 in {
   services.udev.extraRules = lib.strings.concatLines [unplug plug];
 }
