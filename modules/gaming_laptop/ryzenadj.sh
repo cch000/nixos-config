@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#DEPRECATED
+
 prev=0
 
 while true; do
