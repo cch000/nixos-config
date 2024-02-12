@@ -9,7 +9,6 @@
   wayland = ../modules/wayland;
   gaming_laptop = ../modules/gaming_laptop;
   university = ../modules/university;
-  gaming = ../modules/gaming;
   hm_module = inputs.home-manager.nixosModules.home-manager;
 
   home-manager = {
@@ -27,7 +26,6 @@ in {
     modules = [
       {networking.hostName = "athena";}
       ./athena/hardware-configuration.nix
-      gaming
       nvidia
       core
       gaming_laptop
