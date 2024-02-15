@@ -1,13 +1,14 @@
 {
   pkgs,
-  self,
+  inputs,
   lib,
   ...
 }: {
   systemd.services.ryzenadj = {
     enable = true;
-    serviceConfig.ExecStart = lib.getExe' self.packages.x86_64-linux.pwr-cap-rs "pwr-cap-rs";
+    serviceConfig.ExecStart = lib.getExe' inputs.power-cap-rs.packages.x86_64-linux.default "pwr-cap-rs";
     path = with pkgs; [ryzenadj power-profiles-daemon];
     wantedBy = ["default.target"];
+    #script = builtins.readFile ./ryzenadj.sh;
   };
 }
