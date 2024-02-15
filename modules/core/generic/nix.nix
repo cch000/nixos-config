@@ -13,6 +13,9 @@
       #Don't warn me about the dirty git tree
       warn-dirty = false;
       allowed-users = ["@wheel"];
+      # for direnv GC roots
+      keep-derivations = true;
+      keep-outputs = true;
     };
     gc = {
       automatic = true;

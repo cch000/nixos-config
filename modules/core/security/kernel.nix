@@ -15,10 +15,13 @@
 
     apparmor = {
       enable = true;
+      enableCache = true;
       killUnconfinedConfinables = true;
       packages = [pkgs.apparmor-profiles];
     };
   };
+
+  services.dbus.apparmor = "enabled";
 
   boot = {
     kernelParams = [
