@@ -32,6 +32,13 @@
           version = "1.0.5892";
           sha256 = "0c4xvs96ccih47l76r6l5bkjfhgiair90yy8syibdq3zshw0kxvv";
         }
+        # requires microsoft c/c++ extension :(
+        #{
+        #  name = "vscode-arduino";
+        #  publisher = "vsciot-vscode";
+        #  version = "0.2.29";
+        #  sha256 = "0q727mgncrcjlrag6aaa95h65sa7x7z23c8cxnjcpmkgfb2gcmin";
+        #}
       ];
 
     userSettings = {
