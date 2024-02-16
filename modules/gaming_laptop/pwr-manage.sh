@@ -9,7 +9,7 @@ if [[ $(cat "$connected") == "0" ]]; then
 
   driver="passive"
   governor="conservative"
-  ryzenadj="start"
+  service="start"
   profile="power-saver"
   log="disconnected"
 
@@ -17,7 +17,7 @@ else
 
   driver="active"
   governor="performance"
-  ryzenadj="stop"
+  service="stop"
   profile="balanced"
   log="connected"
 
@@ -35,9 +35,9 @@ for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
   echo "$governor" | tee "$i" >/dev/null
 done
 
-# Start or stop ryzenadj service if it exists
-if systemctl is-enabled ryzenadj.service >/dev/null; then
-  systemctl "$ryzenadj" ryzenadj.service
+# Start or stop pwr-cap-rs service if it exists
+if systemctl is-enabled pwr-cap-rs.service >/dev/null; then
+  systemctl "$service" pwr-cap-rs.service
 fi
 
 # Set power profile
