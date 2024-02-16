@@ -1,7 +1,4 @@
-{
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   #systemd.services.ryzenadj = {
   #  enable = true;
   #  serviceConfig.ExecStart = lib.getExe inputs.power-cap-rs.packages.x86_64-linux.default;
