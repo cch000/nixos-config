@@ -30,7 +30,7 @@ if (($(echo "$kernel_version >= $min_version" | bc -l))); then
   echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
 fi
 
-# Set cpu scheduling governor
+# Set cpu scheduling governor if we are on a supported kernel
 for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
   echo "$governor" | tee "$i" >/dev/null
 done

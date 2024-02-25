@@ -1,7 +1,6 @@
 _: {
   security = {
     pam = {
-      # fix "too many files open"
       loginLimits = [
         {
           domain = "@wheel";
