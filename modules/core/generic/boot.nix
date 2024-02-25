@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -7,7 +7,7 @@
 
     plymouth.enable = false;
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "amd_pstate=passive"
       "quiet"
@@ -15,4 +15,6 @@
     # For gaming
     kernel.sysctl."vm.max_map_count" = 2147483642;
   };
+  # Tweaks CPU scheduler for responsiveness over throughput.
+  programs.cfs-zen-tweaks.enable = true;
 }

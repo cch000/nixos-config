@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }: let
   pwrprofilecycle = pkgs.writeShellApplication {
@@ -12,7 +11,7 @@
 in {
   programs.waybar = {
     enable = true;
-    package = inputs.waybar.packages.x86_64-linux.default;
+    #package = inputs.waybar.packages.x86_64-linux.default;
     systemd.enable = true;
     style = builtins.readFile ./style.css;
     settings = {

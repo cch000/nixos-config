@@ -1,13 +1,12 @@
 {
   config,
-  inputs,
   ...
 }: let
   pointer = config.home.pointerCursor;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.x86_64-linux.default;
+    #package = inputs.hyprland.packages.x86_64-linux.default;
     systemd.enable = true;
     settings = {
       "$mainMod" = "SUPER";
