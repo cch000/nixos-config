@@ -13,6 +13,9 @@
         vscodevim.vim
         valentjn.vscode-ltex
         redhat.java
+        vscjava.vscode-java-test
+        vscjava.vscode-maven
+        vscjava.vscode-java-debug
         matklad.rust-analyzer
         llvm-vs-code-extensions.vscode-clangd
         mkhl.direnv
