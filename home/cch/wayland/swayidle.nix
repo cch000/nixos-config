@@ -13,20 +13,17 @@
     pwr_supply=$(echo /sys/class/power_supply/A*)
     connected="$pwr_supply/online"
 
-    if [[ $(cat "$connected") == "0" ]]; then
+    # only do something if audio isn't running
+    pw-cli i all | rg running
+    if [[ $? == 1 ]]; then
 
-      # only suspend if audio isn't running
-      pw-cli i all | rg running
-      if [[ $? == 1 ]]; then
+      if [[ $(cat "$connected") == "0" ]]; then
         systemctl suspend
+      else
+        swaylock
+        sleep 2
+        hyprctl dispatch dpms off
       fi
-
-    else
-
-      swaylock
-      sleep 2
-      hyprctl dispatch dpms off
-
     fi
   '';
   dependencies = with pkgs;
