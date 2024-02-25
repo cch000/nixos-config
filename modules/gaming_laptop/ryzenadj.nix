@@ -10,5 +10,11 @@
     inputs.power-cap-rs.nixosModules.pwr-cap-rs
   ];
 
-  services.pwr-cap-rs.enable = true;
+  services.pwr-cap-rs = {
+    enable = true;
+    stapm-limit = 7000;
+    fast-limit = 7000;
+    slow-limit = 7000;
+    tctl-temp = 60;
+  };
 }
