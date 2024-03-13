@@ -1,12 +1,24 @@
-_: {
-  xdg.mimeApps = {
+{config, ...}: let
+  associations = {
+    "application/pdf" = ["org.gnome.Evince.desktop"];
+    "inode/directory" = ["org.gnome.Nautilus.desktop"];
+  };
+in {
+  xdg = {
     enable = true;
-    associations.added = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
+
+    mimeApps = {
+      enable = true;
+      associations.added = associations;
+      defaultApplications = associations;
     };
-    defaultApplications = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
-      "inode/directory" = ["org.gnome.Nautilus.desktop"];
+
+    userDirs = {
+      enable = true;
+
+      extraConfig = {
+        XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
+      };
     };
   };
 }
