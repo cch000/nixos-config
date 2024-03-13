@@ -6,7 +6,7 @@
   pwrprofilecycle = pkgs.writeShellApplication {
     name = "pwrprofilecycle";
     text = builtins.readFile ./pwrprofilecycle.sh;
-    runtimeInputs = with pkgs; [power-profiles-daemon coreutils];
+    runtimeInputs = with pkgs; [coreutils];
   };
 in {
   programs.waybar = {

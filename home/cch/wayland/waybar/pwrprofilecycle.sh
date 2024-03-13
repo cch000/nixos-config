@@ -2,13 +2,13 @@
 
 # inspired by https://gitlab.com/lassegs/powerprofilecycle
 
-PGET="powerprofilesctl get"
+PGET="$(cat /sys/firmware/acpi/platform_profile)"
 
-case $($PGET) in
+case $PGET in
 performance)
   echo 󰓅 && exit 0
   ;;
-power-saver)
+quiet)
   echo 󰾆 && exit 0
   ;;
 balanced)
