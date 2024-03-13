@@ -1,12 +1,15 @@
 {
+  inputs,
   config,
+  lib,
+  pkgs,
   ...
 }: let
   pointer = config.home.pointerCursor;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
-    #package = inputs.hyprland.packages.x86_64-linux.default;
+    package = inputs.hyprland.packages.x86_64-linux.default;
     systemd.enable = true;
     settings = {
       "$mainMod" = "SUPER";
@@ -92,22 +95,24 @@ in {
         disable_autoreload = true; # autoreload is unnecessary on nixos, because the config is readonly anyway
       };
       bind = [
-        ",XF86MonBrightnessUp, exec, brightnessctl set +10%"
-        ",XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+        "$mainMod, Print, exec, ${lib.getExe pkgs.grimblast} copysave output"
+        ", Print, exec, ${lib.getExe pkgs.grimblast} copysave area"
 
-        ",XF86KbdBrightnessUp, exec, asusctl -n"
-        ",XF86KbdBrightnessDown, exec, asusctl -p"
+        ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+
+        ", XF86KbdBrightnessUp, exec, asusctl -n"
+        ", XF86KbdBrightnessDown, exec, asusctl -p"
 
         ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        "SUPER, Z, exec, grimshot save area ~/$(date +'%Y-%m-%d-%H%M%S').png"
         ",XF86Launch4, exec, asusctl profile -n; pkill -SIGRTMIN+8 waybar"
 
         "$mainMod, T, exec, foot"
         "$mainMod, Q, killactive,"
         "$mainMod, O, exit,"
-        "$mainMod, E, exec, dolphin"
+        "$mainMod, F, exec, nautilus"
         "$mainMod, V, togglefloating,"
         "$mainMod, R, exec, wofi --show drun"
         "$mainMod, P, pseudo, # dwindle"
