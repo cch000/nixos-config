@@ -3,13 +3,11 @@
 
   # All inputs for the system
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    waybar.url = "github:Alexays/Waybar";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     impermanence.url = "github:nix-community/impermanence";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    #power-cap-rs.url = "github:cch000/power-cap-rs";
-    power-cap-rs.url = "git+file:///home/cch/experiments/pwr-cap-rs";
+    power-cap-rs.url = "github:cch000/power-cap-rs";
 
     hyprland = {
       url = "github:hyprwm/Hyprland/";
@@ -17,7 +15,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
