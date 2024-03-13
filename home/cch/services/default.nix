@@ -1,3 +1,3 @@
 _: {
-  imports = [./gammastep.nix];
+  imports = [./wlsunset.nix];
 }
