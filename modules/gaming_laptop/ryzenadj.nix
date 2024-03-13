@@ -15,6 +15,5 @@
     stapm-limit = 7000;
     fast-limit = 7000;
     slow-limit = 7000;
-    tctl-temp = 60;
   };
 }
