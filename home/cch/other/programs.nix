@@ -21,6 +21,9 @@
     fragments
     celluloid
     pavucontrol
+    webcord-vencord
+    spotify
+    vorta
   ];
 
   programs.obs-studio.enable = true;
