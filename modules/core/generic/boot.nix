@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -7,7 +7,7 @@ _: {
 
     plymouth.enable = false;
 
-    #kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "amd_pstate=passive"
       "quiet"
