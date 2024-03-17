@@ -9,6 +9,8 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     power-cap-rs.url = "github:cch000/power-cap-rs";
 
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
     hyprland = {
       url = "github:hyprwm/Hyprland/";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,23 +57,15 @@
             shellcheck.enable = true;
             deadnix.enable = true;
             statix.enable = true;
-            rustfmt.enable = true;
           };
         };
-        devShells.default = let
-          rust-toolchain = pkgs.symlinkJoin {
-            name = "rust-toolchain";
-            paths = with pkgs; [rustc cargo cargo-watch rust-analyzer rustPlatform.rustcSrc];
-          };
-        in
-          pkgs.mkShell {
-            inputsFrom = [config.treefmt.build.devShell];
+        devShells.default = pkgs.mkShell {
+          inputsFrom = [config.treefmt.build.devShell];
 
-            packages = with pkgs; [
-              nil
-              rust-toolchain
-            ];
-          };
+          packages = with pkgs; [
+            nil
+          ];
+        };
       };
       flake.nixosConfigurations = import ./hosts inputs;
     });
