@@ -2,7 +2,6 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
   modulesPath,
   ...
@@ -28,32 +27,32 @@
     "/" = {
       device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
-      options = ["subvol=root" "noatime"];
+      options = ["subvol=root" "noatime" "compress=zstd"];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
-      options = ["subvol=home" "noatime"];
+      options = ["subvol=home" "noatime" "compress=zstd"];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
-      options = ["subvol=nix" "noatime"];
+      options = ["subvol=nix" "noatime" "compress=zstd"];
     };
 
     "/persist" = {
       device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
-      options = ["subvol=persist" "noatime"];
+      options = ["subvol=persist" "noatime" "compress=zstd"];
       neededForBoot = true;
     };
 
     "/var/log" = {
       device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
-      options = ["subvol=log" "noatime"];
+      options = ["subvol=log" "noatime" "compress=zstd"];
       neededForBoot = true;
     };
 
@@ -74,5 +73,5 @@
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = true;
 }
