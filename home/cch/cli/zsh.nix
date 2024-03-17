@@ -7,7 +7,7 @@
   programs = {
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       #  historySubstringSearch = {
       #    enable = true;
       #    searchDownKey = "$terminfo[kcud1]";
