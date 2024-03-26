@@ -9,8 +9,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     power-cap-rs.url = "github:cch000/power-cap-rs";
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
-
     hyprland = {
       url = "github:hyprwm/Hyprland/";
       inputs.nixpkgs.follows = "nixpkgs";
