@@ -26,17 +26,24 @@ in {
           hide-when-typing = "yes";
         };
 
-        colors = rec {
+        colors = let
+          green = "00b817";
+          orange = "ff7800";
+          purple = "6A329F";
+        in {
           alpha = 0.8;
-          #comments are original colors
-          foreground = "ff7800"; #Text
+          foreground = orange; #Text
           background = "000000";
-          regular2 = "6A329F"; # Green
-          regular4 = "00b817"; # Blue
-          regular6 = "00b817"; # teal
-          bright2 = "${regular2}";
-          bright4 = "${regular4}";
-          bright6 = "${regular6}";
+          regular2 = purple;
+          regular4 = green;
+          regular5 = purple;
+          regular6 = green;
+          regular7 = orange;
+          bright2 = purple;
+          bright4 = green;
+          bright5 = purple;
+          bright6 = green;
+          bright7 = orange;
         };
       };
     };

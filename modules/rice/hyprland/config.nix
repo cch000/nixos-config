@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   username,
@@ -23,7 +22,6 @@ in {
 
     home-manager.users.${username}.wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.x86_64-linux.default;
       systemd.enable = true;
       settings = {
         "$mainMod" = "SUPER";
@@ -142,11 +140,6 @@ in {
           "$mainMod SHIFT, K, movewindow, u"
           "$mainMod SHIFT, J, movewindow, d"
 
-          "$mainMod CONTROL, H, resizeactive, -10 0"
-          "$mainMod CONTROL, L, resizeactive, 10 0"
-          "$mainMod CONTROL, K, resizeactive, 0 -10"
-          "$mainMod CONTROL, J, resizeactive, 0 10"
-
           "$mainMod, 1, workspace, 1"
           "$mainMod, 2, workspace, 2"
           "$mainMod, 3, workspace, 3"
@@ -169,6 +162,12 @@ in {
           "$mainMod SHIFT, 0, movetoworkspace, 10"
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
+        ];
+        binde = [
+          "$mainMod CONTROL, H, resizeactive, -10 0"
+          "$mainMod CONTROL, L, resizeactive, 10 0"
+          "$mainMod CONTROL, K, resizeactive, 0 -10"
+          "$mainMod CONTROL, J, resizeactive, 0 10"
         ];
         bindr = "SUPER, SUPER_L, exec, pkill wofi || wofi --show drun -a";
         bindm = ["$mainMod, mouse:272, movewindow" "$mainMod, mouse:273, resizewindow"];

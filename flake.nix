@@ -9,11 +9,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     power-cap-rs.url = "github:cch000/power-cap-rs";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland/";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
