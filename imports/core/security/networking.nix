@@ -27,8 +27,8 @@
   };
 
   networking = {
-    useDHCP = lib.mkForce false;
-    useNetworkd = lib.mkForce true;
+    #useDHCP = lib.mkForce false;
+    #useNetworkd = lib.mkForce true;
 
     # dns
     nameservers = [

@@ -4,37 +4,33 @@
   ...
 }: {
   myOptions = {
-    other = {
-      home-manager.enable = true;
-      defaultPrograms.enable = true;
-    };
+    home-manager.enable = true;
+    defaultPrograms.enable = true;
 
-    services.ollama = {
-      enable = true;
-      onlyOnAc = true;
+    ollama = {
+      enable = false;
+      enableOnBoot = false;
       ollamaEnableHyprlandKey = true;
       ollamaModelHyprlandKey = "codellama:13b";
     };
 
-    cli = {
-      git.enable = true;
-      zsh.enable = true;
+    git.enable = true;
+    zsh.enable = true;
+    steam.enable = true;
+    browsers = {
+      firefox = true;
+      chrome = true;
     };
-    gui = {
-      steam.enable = true;
-      browsers = {
-        firefox = true;
-        chrome = true;
-      };
-      vscodium.enable = true;
-      foot.enable = true;
-    };
+    vscodium.enable = true;
+    foot.enable = true;
 
-    tui = {
-      fancyNvim.enable = true;
-    };
+    fancyNvim.enable = true;
 
-    rice.enable = true;
+    hyprland.enable = true;
+    waybar.enable = true;
+    wofi.enable = true;
+    rice-services.enable = true;
+    theme.enable = true;
   };
 
   users.users.${username} = {
@@ -55,15 +51,19 @@
       efi.canTouchEfiVariables = true;
     };
 
+    #kernelPackages = pkgs.linuxPackages_latest;
+
     plymouth.enable = false;
 
-    #kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "amd_pstate=passive"
       "quiet"
     ];
-    # For gaming
-    kernel.sysctl."vm.max_map_count" = 2147483642;
+    kernel.sysctl = {
+      # For gaming
+      "vm.max_map_count" = 2147483642;
+      "vm.swappiness" = 10;
+    };
   };
   # Tweaks CPU scheduler for responsiveness over throughput.
   programs.cfs-zen-tweaks.enable = true;
