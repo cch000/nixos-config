@@ -20,6 +20,11 @@
     };
   };
 
+  # Do not run the garbage collectore when on battery
+  systemd.services.nix-gc = {
+    unitConfig.ConditionACPower = true;
+  };
+
   documentation = {
     doc.enable = false;
     info.enable = false;
