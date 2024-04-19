@@ -12,7 +12,10 @@
   options = ../modules;
   hm_module = inputs.home-manager.nixosModules.home-manager;
 
-  mkHost = hostName: config:
+  mkHost = hostName: {
+    username,
+    extraModules,
+  }:
     nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules =
@@ -23,16 +26,15 @@
           core
           hm_module
         ]
-        ++ config.addModules;
+        ++ extraModules;
       specialArgs = {
-        inherit inputs;
-        inherit (config) username;
+        inherit inputs username;
       };
     };
 in
   builtins.mapAttrs mkHost {
     athena = {
       username = "cch";
-      addModules = [laptop client nvidia];
+      extraModules = [laptop client nvidia];
     };
   }
