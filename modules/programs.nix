@@ -45,6 +45,7 @@ in {
         webcord-vencord
         spotify
         vorta
+        mgba
       ];
 
       programs.obs-studio = {

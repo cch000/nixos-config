@@ -19,8 +19,11 @@ in {
   config = mkIf cfg.enable {
     home-manager.users.${username}.programs.waybar = {
       enable = true;
-      #package = inputs.waybar.packages.x86_64-linux.default;
-      systemd.enable = true;
+      systemd = {
+        enable = true;
+        target = "hyprland-session.target";
+      };
+
       style = builtins.readFile ./style.css;
       settings = {
         mainBar = {

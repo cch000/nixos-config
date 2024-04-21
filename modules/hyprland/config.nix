@@ -114,7 +114,7 @@ in {
 
           "$mainMod, T, exec, foot"
           "$mainMod, Q, killactive,"
-          "$mainMod, O, exit,"
+          "$mainMod, O, exec, loginctl terminate-user $(whoami)"
           "$mainMod, F, exec, nautilus"
           "$mainMod, V, togglefloating,"
           "$mainMod, R, exec, wofi --show drun"
