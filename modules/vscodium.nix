@@ -24,8 +24,8 @@ in {
         [
           jnoortheen.nix-ide
           continue.continue
-          enkia.tokyo-night
           vscodevim.vim
+          jdinhlife.gruvbox
           valentjn.vscode-ltex
           redhat.java
           vscjava.vscode-java-test
@@ -60,7 +60,7 @@ in {
         ];
 
       userSettings = {
-        workbench.colorTheme = "Tokyo Night Storm";
+        workbench.colorTheme = "Gruvbox Dark Hard";
         files.autoSave = "afterDelay";
         window = {
           menuBarVisibility = "toggle";
