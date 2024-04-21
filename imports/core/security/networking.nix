@@ -27,9 +27,6 @@
   };
 
   networking = {
-    #useDHCP = lib.mkForce false;
-    #useNetworkd = lib.mkForce true;
-
     # dns
     nameservers = [
       "127.0.0.1"
@@ -47,10 +44,11 @@
       };
 
       #equivalent to "macchanger --ending"
-      extraConfig = ''
-        [connection]
-        wifi.generate-mac-address-mask=FE:FF:FF:00:00:00
-      '';
+      settings = {
+        connection = {
+          "wifi.generate-mac-address-mask" = "FE:FF:FF:00:00:00";
+        };
+      };
     };
 
     firewall = {
