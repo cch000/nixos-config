@@ -1,12 +1,11 @@
-{lib, ...}: {
-  users = {
-    groups.tcpcryptd = {};
-    users.tcpcryptd = {
-      group = "tcpcryptd";
-      isSystemUser = true;
-    };
-  };
-
+{
+  lib,
+  config,
+  ...
+}: let
+  dnscrypt = config.services.dnscrypt-proxy2.enable;
+  inherit (lib) mkIf;
+in {
   services = {
     dnscrypt-proxy2 = {
       enable = true;
@@ -19,11 +18,7 @@
       };
     };
     # systemd DNS resolver daemon
-    resolved.enable = false; #So we can use dnscrypt-proxy2
-  };
-
-  systemd.services.dnscrypt-proxy2.serviceConfig = {
-    StateDirectory = "dnscrypt-proxy";
+    resolved.enable = !dnscrypt; #So we can use dnscrypt-proxy2
   };
 
   networking = {
@@ -36,7 +31,7 @@
     networkmanager = {
       enable = true;
       plugins = lib.mkForce []; # disable all plugins
-      dns = "none"; # use dnscrypt-proxy2 as dns backend
+      dns = mkIf dnscrypt "none"; # use dnscrypt-proxy2 as dns backend
 
       wifi = {
         macAddress = "random";
@@ -53,8 +48,6 @@
 
     firewall = {
       enable = true;
-      allowedTCPPorts = [];
-      allowedUDPPorts = [];
       allowPing = false;
     };
 
@@ -69,6 +62,4 @@
       ];
     };
   };
-
-  boot.kernelModules = ["tcp_bbr"];
 }
