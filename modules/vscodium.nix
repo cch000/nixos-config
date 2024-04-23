@@ -22,6 +22,7 @@ in {
 
       extensions = with pkgs.vscode-extensions;
         [
+          twxs.cmake
           jnoortheen.nix-ide
           continue.continue
           vscodevim.vim
