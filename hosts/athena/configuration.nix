@@ -18,8 +18,8 @@
     zsh.enable = true;
     steam.enable = true;
     browsers = {
-      firefox = true;
-      chrome = true;
+      firefox.enable = true;
+      chrome.enable = true;
     };
     vscodium.enable = true;
     foot.enable = true;

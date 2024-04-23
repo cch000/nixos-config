@@ -10,18 +10,18 @@
   cfg = config.myOptions.browsers;
 in {
   options.myOptions.browsers = {
-    chrome = mkEnableOption "chromium";
-    firefox = mkEnableOption "firefox";
+    chrome.enable = mkEnableOption "chromium";
+    firefox.enable = mkEnableOption "firefox";
   };
 
   config = mkMerge [
-    (mkIf cfg.chrome {
+    (mkIf cfg.chrome.enable {
       home-manager.users.${username}.programs.chromium = {
         enable = true;
         package = pkgs.ungoogled-chromium;
       };
     })
-    (mkIf cfg.firefox {
+    (mkIf cfg.firefox.enable {
       home-manager.users.${username}.programs.firefox = {
         enable = true;
 
