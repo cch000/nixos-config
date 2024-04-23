@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  useTmpfs = config.boot.tmp.useTmpfs;
+  inherit (config.boot.tmp) useTmpfs;
 in {
   boot = {
     #Make /tmp volatile by mounting it in ram

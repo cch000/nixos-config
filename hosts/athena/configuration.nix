@@ -40,7 +40,6 @@
       "networkmanager"
       "wheel"
       "users"
-      "dialout" #for arduino development
     ];
     shell = pkgs.zsh;
   };
