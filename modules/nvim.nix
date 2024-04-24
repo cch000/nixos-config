@@ -29,8 +29,6 @@ in {
     })
     (mkIf cfg.enable {
       home-manager.users.${username} = {
-        home.packages = with pkgs; [nil alejandra];
-
         programs.neovim = {
           enable = true;
           vimAlias = true;
