@@ -45,6 +45,8 @@
   };
 
   boot = {
+    tmp.useTmpfs = false;
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -65,5 +67,5 @@
     };
   };
   # Tweaks CPU scheduler for responsiveness over throughput.
-  programs.cfs-zen-tweaks.enable = true;
+  #programs.cfs-zen-tweaks.enable = true;
 }
