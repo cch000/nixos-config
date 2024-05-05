@@ -14,10 +14,11 @@
 
   mkHost = hostName: {
     username,
-    extraModules,
+    system ? "x86_64-linux",
+    extraImports,
   }:
     nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      inherit system;
       modules =
         [
           {networking = {inherit hostName;};}
@@ -26,7 +27,7 @@
           core
           hm_module
         ]
-        ++ extraModules;
+        ++ extraImports;
       specialArgs = {
         inherit inputs username;
       };
@@ -35,6 +36,6 @@ in
   builtins.mapAttrs mkHost {
     athena = {
       username = "cch";
-      extraModules = [laptop client nvidia];
+      extraImports = [laptop client nvidia];
     };
   }
