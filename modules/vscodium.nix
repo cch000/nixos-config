@@ -24,7 +24,6 @@ in {
         [
           twxs.cmake
           jnoortheen.nix-ide
-          continue.continue
           vscodevim.vim
           jdinhlife.gruvbox
           valentjn.vscode-ltex

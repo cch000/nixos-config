@@ -46,6 +46,8 @@ in {
         spotify
         vorta
         mgba
+        zed-editor
+        freetube
       ];
 
       programs.obs-studio = {

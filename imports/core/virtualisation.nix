@@ -26,6 +26,13 @@
   programs.virt-manager.enable = true;
   networking.firewall.trustedInterfaces = ["virbr0" "br0"];
 
+  #docker impermanence
+  environment.persistence."/persist" = {
+    directories = [
+      "/var/lib/docker"
+    ];
+  };
+
   # do not start docker on boot
   # note that it can still be activated by its socket
   systemd.services.docker.wantedBy = lib.mkForce [];

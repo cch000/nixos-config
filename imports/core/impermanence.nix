@@ -31,17 +31,9 @@
     directories = [
       "/etc/NetworkManager"
       "/etc/asusd"
-      "/etc/mullvad-vpn"
-      "/var/db/sudo"
-      #"/var/lib/flatpak"
-      #"/var/lib/libvirt"
-      #"/var/lib/bluetooth"
-      #"/var/lib/nixos"
-      #"/var/lib/upower"
-      #"/var/lib/pipewire"
-      #"/var/lib/power-profiles-daemon"
-      #"/var/lib/systemd/coredump"
-      "/var/lib"
+
+      "/var/lib/libirt"
+      "/var/lib/btrfs/"
     ];
 
     files = [
@@ -49,13 +41,6 @@
       "/etc/machine-id"
     ];
   };
-
-  # for some reason *this* is what makes networkmanager not get screwed completely instead of the impermanence module
-  systemd.tmpfiles.rules = [
-    "L /var/lib/NetworkManager/secret_key - - - - /persist/var/lib/NetworkManager/secret_key"
-    "L /var/lib/NetworkManager/seen-bssids - - - - /persist/var/lib/NetworkManager/seen-bssids"
-    "L /var/lib/NetworkManager/timestamps - - - - /persist/var/lib/NetworkManager/timestamps"
-  ];
 
   # https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
   # Note `lib.mkBefore` is used instead of `lib.mkAfter` here.
