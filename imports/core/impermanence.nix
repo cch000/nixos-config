@@ -34,6 +34,8 @@
 
       "/var/lib/libirt"
       "/var/lib/btrfs/"
+      "/var/lib/bluetooth"
+      "/var/lib/systemd"
     ];
 
     files = [
