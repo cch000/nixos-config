@@ -30,8 +30,6 @@
   environment.persistence."/persist" = {
     directories = [
       "/etc/NetworkManager"
-      "/etc/asusd"
-
       "/var/lib/libirt"
       "/var/lib/btrfs/"
       "/var/lib/bluetooth"

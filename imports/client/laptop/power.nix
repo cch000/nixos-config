@@ -16,10 +16,7 @@
       slow-limit = 7000;
       onlyOnBattery = true;
     };
-    asusd = {
-      enable = true;
-      enableUserService = true;
-    };
+
     supergfxd.enable = true;
     switcherooControl.enable = true;
     power-profiles-daemon.enable = true;
@@ -27,7 +24,7 @@
       pwr-manage = pkgs.writeShellApplication {
         name = "pwr-manage";
         text = builtins.readFile ./pwr-manage.sh;
-        runtimeInputs = with pkgs; [power-profiles-daemon toybox];
+        runtimeInputs = with pkgs; [toybox];
       };
 
       unplug = ''ACTION=="change", KERNEL=="AC0", SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${lib.getExe pwr-manage}"'';

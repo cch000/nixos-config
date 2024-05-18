@@ -8,12 +8,13 @@
   pointer = config.home-manager.users.${username}.home.pointerCursor;
   inherit (lib) mkIf;
   cfg = config.myOptions.hyprland;
+  inherit (config) pwrprofilecycle;
 in {
   config = mkIf cfg.enable {
     programs.hyprland.enable = true;
 
     environment = {
-      systemPackages = with pkgs; [brightnessctl];
+      systemPackages = with pkgs; [brightnessctl hyprnome];
       variables = {
         GDK_SCALE = "2";
       };
@@ -51,7 +52,8 @@ in {
           drop_shadow = false;
         };
         animations = {
-          enabled = "yes";
+          enabled = true;
+          first_launch_animation = false;
 
           bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
@@ -80,6 +82,10 @@ in {
           apply_sens_to_raw = 0;
         };
 
+        debug = {
+          disable_logs = false;
+        };
+
         misc = {
           disable_splash_rendering = true;
           force_default_wallpaper = 0;
@@ -104,13 +110,13 @@ in {
           ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
           ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
 
-          ", XF86KbdBrightnessUp, exec, asusctl -n"
-          ", XF86KbdBrightnessDown, exec, asusctl -p"
+          ", XF86KbdBrightnessUp, exec, brightnessctl set -d asus::kbd_backlight 33%+"
+          ", XF86KbdBrightnessDown, exec, brightnessctl set -d asus::kbd_backlight 33%-"
 
           ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ",XF86Launch4, exec, asusctl profile -n; pkill -SIGRTMIN+8 waybar"
+          ",XF86Launch4, exec, ${lib.getExe pwrprofilecycle} -n; pkill -SIGRTMIN+8 waybar"
 
           "$mainMod, T, exec, foot"
           "$mainMod, Q, killactive,"
@@ -130,6 +136,11 @@ in {
           "$mainMod SHIFT, L, movewindow, r"
           "$mainMod SHIFT, K, movewindow, u"
           "$mainMod SHIFT, J, movewindow, d"
+
+          "$mainMod, A, exec, hyprnome --previous"
+          "$mainMod, S, exec, hyprnome"
+          "$mainMod SHIFT, A, exec, hyprnome --previous --move"
+          "$mainMod SHIFT, S, exec, hyprnome --move"
 
           "$mainMod, 1, workspace, 1"
           "$mainMod, 2, workspace, 2"
@@ -151,8 +162,8 @@ in {
           "$mainMod SHIFT, 8, movetoworkspace, 8"
           "$mainMod SHIFT, 9, movetoworkspace, 9"
           "$mainMod SHIFT, 0, movetoworkspace, 10"
-          "$mainMod, mouse_down, workspace, e+1"
-          "$mainMod, mouse_up, workspace, e-1"
+          "$mainMod, mouse_down, workspace, hyprnome"
+          "$mainMod, mouse_up, workspace, hyprnome --previous"
         ];
         binde = [
           "$mainMod CONTROL, H, resizeactive, -10 0"

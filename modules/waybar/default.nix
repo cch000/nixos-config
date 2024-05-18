@@ -7,11 +7,7 @@
 }: let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.myOptions.waybar;
-  pwrprofilecycle = pkgs.writeShellApplication {
-    name = "pwrprofilecycle";
-    text = builtins.readFile ./pwrprofilecycle.sh;
-    runtimeInputs = with pkgs; [coreutils];
-  };
+  inherit (config) pwrprofilecycle;
 in {
   options.myOptions.waybar = {
     enable = mkEnableOption "wabar";
@@ -83,7 +79,7 @@ in {
 
           "custom/pwrprofiles" = {
             exec = "${pkgs.toybox}/bin/sleep 1 && ${lib.getExe pwrprofilecycle}";
-            on-click = "${pkgs.asusctl}/bin/asusctl profile -n; ${pkgs.busybox}/bin/pkill -SIGRTMIN+8 waybar";
+            on-click = "${lib.getExe pwrprofilecycle} -n";
             tooltip = false;
             signal = 8;
           };

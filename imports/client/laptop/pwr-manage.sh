@@ -7,7 +7,7 @@ if [[ $(cat "$connected") == "0" ]]; then
 
   driver="passive"
   governor="conservative"
-  profile="power-saver"
+  profile="quiet"
   log="disconnected"
 
 else
@@ -30,7 +30,7 @@ for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
 done
 
 # Set power profile
-powerprofilesctl set "$profile"
+echo "$profile" | tee /sys/firmware/acpi/platform_profile
 
 # Update waybar icon if waybar is running
 if pidof waybar >/dev/null; then
