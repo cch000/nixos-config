@@ -103,7 +103,21 @@ in {
           key_press_enables_dpms = true; # enable dpms on keyboard action
           disable_autoreload = true; # autoreload is unnecessary on nixos, because the config is readonly anyway
         };
-        bind = [
+        bind = let
+          lock-script = pkgs.writeShellApplication {
+            name = "lock-script";
+            runtimeInputs = with pkgs; [
+              coreutils
+              hyprland
+              swaylock-effects
+            ];
+            text = ''
+              swaylock
+              sleep 2
+              hyprctl dispatch dpms off
+            '';
+          };
+        in [
           "$mainMod, Print, exec, ${lib.getExe pkgs.grimblast} copysave output"
           ", Print, exec, ${lib.getExe pkgs.grimblast} copysave area"
 
@@ -115,8 +129,11 @@ in {
 
           ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ",XF86Launch4, exec, ${lib.getExe pwrprofilecycle} -n; pkill -SIGRTMIN+8 waybar"
+
+          "$mainMod, L, exec, ${lib.getExe lock-script}"
 
           "$mainMod, T, exec, foot"
           "$mainMod, Q, killactive,"

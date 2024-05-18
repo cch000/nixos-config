@@ -141,10 +141,6 @@ in {
 
               if [[ $(cat "$connected") == "0" ]]; then
                 systemctl suspend
-              else
-                swaylock
-                sleep 2
-                hyprctl dispatch dpms off
               fi
             fi
           '';
@@ -153,8 +149,6 @@ in {
               ripgrep
               coreutils
               pipewire
-              swaylock-effects
-              hyprland
               systemd
             ];
         in {
