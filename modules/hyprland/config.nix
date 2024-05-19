@@ -99,7 +99,7 @@ in {
           swallow_regex = "foot"; # windows for which swallow is applied
 
           # dpms
-          mouse_move_enables_dpms = true; # enable dpms on mouse/touchpad action
+          #mouse_move_enables_dpms = true; # enable dpms on mouse/touchpad action
           key_press_enables_dpms = true; # enable dpms on keyboard action
           disable_autoreload = true; # autoreload is unnecessary on nixos, because the config is readonly anyway
         };
@@ -120,12 +120,6 @@ in {
         in [
           "$mainMod, Print, exec, ${lib.getExe pkgs.grimblast} copysave output"
           ", Print, exec, ${lib.getExe pkgs.grimblast} copysave area"
-
-          ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
-          ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
-
-          ", XF86KbdBrightnessUp, exec, brightnessctl set -d asus::kbd_backlight 33%+"
-          ", XF86KbdBrightnessDown, exec, brightnessctl set -d asus::kbd_backlight 33%-"
 
           ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
@@ -183,6 +177,12 @@ in {
           "$mainMod, mouse_up, workspace, hyprnome --previous"
         ];
         binde = [
+          ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
+          ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+
+          ", XF86KbdBrightnessUp, exec, brightnessctl set -d asus::kbd_backlight 33%+"
+          ", XF86KbdBrightnessDown, exec, brightnessctl set -d asus::kbd_backlight 33%-"
+
           "$mainMod CONTROL, H, resizeactive, -10 0"
           "$mainMod CONTROL, L, resizeactive, 10 0"
           "$mainMod CONTROL, K, resizeactive, 0 -10"
