@@ -1,11 +1,9 @@
-{pkgs, ...}: {
+_: {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    package = pkgs.nixFlakes;
     extraOptions = "experimental-features = nix-command flakes";
     settings = {
-      auto-optimise-store = true;
       #Don't warn me about the dirty git tree
       warn-dirty = false;
       allowed-users = ["@wheel"];
@@ -18,12 +16,22 @@
       dates = "daily";
       options = "--delete-older-than 10d";
     };
+
+    optimise = {
+      automatic = true;
+      dates = ["daily"];
+    };
   };
 
-  # Do not run the garbage collectore when on battery
-  systemd.services.nix-gc = {
-    unitConfig.ConditionACPower = true;
-  };
+  systemd.services = let
+    onlyOnAc = builtins.mapAttrs (service: config:
+      config
+      // {unitConfig.ConditionACPower = true;});
+  in
+    onlyOnAc {
+      nix-optimise = {};
+      nix-gc = {};
+    };
 
   documentation = {
     doc.enable = false;
