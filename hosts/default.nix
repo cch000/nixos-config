@@ -12,7 +12,7 @@
   options = ../modules;
   hm_module = inputs.home-manager.nixosModules.home-manager;
 
-  mkHost = hostName: {
+  mkHosts = builtins.mapAttrs (hostName: {
     username,
     system ? "x86_64-linux",
     extraImports,
@@ -31,9 +31,9 @@
       specialArgs = {
         inherit inputs username;
       };
-    };
+    });
 in
-  builtins.mapAttrs mkHost {
+  mkHosts {
     athena = {
       username = "cch";
       extraImports = [laptop client nvidia];
