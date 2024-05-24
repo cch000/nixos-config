@@ -127,7 +127,7 @@ in {
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ",XF86Launch4, exec, ${lib.getExe pwrprofilecycle} -n; pkill -SIGRTMIN+8 waybar"
 
-          "$mainMod, L, exec, ${lib.getExe lock-script}"
+          "$mainMod, B, exec, ${lib.getExe lock-script}"
 
           "$mainMod, T, exec, foot"
           "$mainMod, Q, killactive,"
