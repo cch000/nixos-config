@@ -7,19 +7,15 @@ if [[ $(cat "$connected") == "0" ]]; then
 
   driver="passive"
   governor="conservative"
-  profile="quiet"
-  log="disconnected"
+  profile="power-saver"
 
 else
 
   driver="active"
   governor="performance"
   profile="balanced"
-  log="connected"
 
 fi
-
-echo "$log" | systemd-cat -t pwr-manage
 
 # Set cpu scheduling driver
 echo "$driver" | tee /sys/devices/system/cpu/amd_pstate/status
@@ -30,7 +26,7 @@ for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
 done
 
 # Set power profile
-echo "$profile" | tee /sys/firmware/acpi/platform_profile
+powerprofilesctl set $profile
 
 # Update waybar icon if waybar is running
 if pidof waybar >/dev/null; then

@@ -59,7 +59,10 @@ in {
         pwr-manage = pkgs.writeShellApplication {
           name = "pwr-manage";
           text = builtins.readFile ./pwr-manage.sh;
-          runtimeInputs = with pkgs; [toybox];
+          runtimeInputs = with pkgs; [
+            power-profiles-daemon
+            toybox
+          ];
         };
       in {
         description = "power tweaks when unplugged";
