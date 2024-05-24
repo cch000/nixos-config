@@ -24,7 +24,7 @@ _: {
   };
 
   systemd.services = let
-    onlyOnAc = builtins.mapAttrs (service: config:
+    onlyOnAc = builtins.mapAttrs (_service: config:
       config
       // {unitConfig.ConditionACPower = true;});
   in
