@@ -7,7 +7,7 @@
 }: let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.myOptions.waybar;
-  inherit (config) pwrprofilecycle;
+  inherit (config.myScripts) pwrprofilecycle;
 in {
   options.myOptions.waybar = {
     enable = mkEnableOption "wabar";

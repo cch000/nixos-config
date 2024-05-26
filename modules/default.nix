@@ -16,6 +16,6 @@
     ./wofi
     ./xdg.nix
     ./zsh.nix
-    ./pwrprofilecycle
+    ./my-scripts
   ];
 }

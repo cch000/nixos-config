@@ -8,7 +8,7 @@
   pointer = config.home-manager.users.${username}.home.pointerCursor;
   inherit (lib) mkIf;
   cfg = config.myOptions.hyprland;
-  inherit (config) pwrprofilecycle;
+  inherit (config.myScripts) pwrprofilecycle;
 in {
   config = mkIf cfg.enable {
     programs.hyprland.enable = true;

@@ -2,9 +2,11 @@
   lib,
   pkgs,
   inputs,
+  config,
   ...
 }: let
   inherit (lib) getExe;
+  inherit (config.myScripts) pwr-manage;
   batCapPath = "/home/cch/.config/bat-cap";
 in {
   imports = [
@@ -55,16 +57,7 @@ in {
         wantedBy = ["multi-user.target"];
       };
 
-      pwr-manage = let
-        pwr-manage = pkgs.writeShellApplication {
-          name = "pwr-manage";
-          text = builtins.readFile ./pwr-manage.sh;
-          runtimeInputs = with pkgs; [
-            power-profiles-daemon
-            toybox
-          ];
-        };
-      in {
+      pwr-manage = {
         description = "power tweaks when unplugged";
 
         serviceConfig = {
