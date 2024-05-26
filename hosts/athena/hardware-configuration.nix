@@ -46,14 +46,12 @@
       device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
       options = ["subvol=persist" "noatime" "compress=zstd"];
-      neededForBoot = true;
     };
 
     "/var/log" = {
       device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
       fsType = "btrfs";
       options = ["subvol=log" "noatime" "compress=zstd"];
-      neededForBoot = true;
     };
 
     "/boot" = {

@@ -27,6 +27,16 @@
     };
   };
 
+  # Needed for impermanence
+  fileSystems = {
+    "/persist" = {
+      neededForBoot = true;
+    };
+    "/var/log" = {
+      neededForBoot = true;
+    };
+  };
+
   environment.persistence."/persist" = {
     directories = [
       "/etc/NetworkManager"
