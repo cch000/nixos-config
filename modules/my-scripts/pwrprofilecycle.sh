@@ -17,6 +17,8 @@ if [ "${1:-default}" == "-n" ]; then
   esac
 
   powerprofilesctl set "$profile"
+
+  pkill -SIGRTMIN+8 waybar
 fi
 
 case $profile in
