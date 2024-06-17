@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-connected="$(echo /sys/class/power_supply/A*)/online"
+connected="$(cat /sys/class/power_supply/A*/online)"
 
 #check if the laptop is plugged in
-if [[ $(cat "$connected") == "0" ]]; then
+if [[ $connected == "0" ]]; then
 
   driver="passive"
   governor="conservative"
