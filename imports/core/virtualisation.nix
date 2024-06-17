@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   username,
   ...
@@ -7,15 +6,6 @@
   virtualisation = {
     podman = {
       enable = true;
-    };
-
-    docker = {
-      enable = true;
-      #rootless = {
-      #  enable = true;
-      #  setSocketVariable = true;
-      #};
-      storageDriver = "btrfs";
     };
 
     libvirtd = {
@@ -26,16 +16,16 @@
   programs.virt-manager.enable = true;
   networking.firewall.trustedInterfaces = ["virbr0" "br0"];
 
-  #docker impermanence
-  environment.persistence."/persist" = {
-    directories = [
-      "/var/lib/docker"
-    ];
-  };
+  # docker impermanence
+  # environment.persistence."/persist" = {
+  #   directories = [
+  #     "/var/lib/docker"
+  #   ];
+  # };
 
   # do not start docker on boot
   # note that it can still be activated by its socket
-  systemd.services.docker.wantedBy = lib.mkForce [];
+  # systemd.services.docker.wantedBy = lib.mkForce [];
   # also do not start on boot
   systemd.services.libvirtd.wantedBy = lib.mkForce [];
   systemd.services.libvirt-guests.wantedBy = lib.mkForce [];
@@ -45,7 +35,8 @@
     flushL1DataCache = "always";
   };
 
-  environment.systemPackages = with pkgs; [docker-compose];
-
-  users.users.${username}.extraGroups = ["libvirtd" "docker"];
+  users.users.${username}.extraGroups = [
+    "libvirtd"
+    #"docker"
+  ];
 }
