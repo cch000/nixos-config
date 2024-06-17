@@ -32,7 +32,7 @@ in {
         unzip
 
         #gui
-        evince
+        papers
         gnome.eog
         gnome3.gnome-tweaks
         gnome.nautilus

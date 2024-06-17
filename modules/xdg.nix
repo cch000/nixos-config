@@ -4,8 +4,12 @@
   ...
 }: let
   associations = {
-    "application/pdf" = ["org.gnome.Evince.desktop"];
+    "application/pdf" = ["org.gnome.Papers.desktop"];
     "inode/directory" = ["org.gnome.Nautilus.desktop"];
+    "image/png" = ["org.gnome.eog.desktop"];
+    "image/jpeg" = ["org.gnome.eog.desktop"];
+
+    "x-scheme-handler/discord" = ["WebCord.desktop"];
   };
 in {
   home-manager.users.${username}.xdg = {
