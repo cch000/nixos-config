@@ -8,6 +8,7 @@
     (pkgs)
     power-profiles-daemon
     toybox
+    supergfxctl
     ;
 
   mkScript = name: runtimeInputs:
@@ -24,6 +25,12 @@
     power-profiles-daemon
     toybox
   ];
+
+  auto-profile = mkScript "auto-profile" [
+    toybox
+    power-profiles-daemon
+    supergfxctl
+  ];
 in {
   options.myScripts = {
     pwrprofilecycle = mkOption {
@@ -34,12 +41,17 @@ in {
       type = types.package;
       description = "power tweaks on plug/unplug";
     };
+    auto-profile = mkOption {
+      type = types.package;
+      description = "auto power profile selection";
+    };
   };
 
   config.myScripts = {
     inherit
       pwrprofilecycle
       pwr-manage
+      auto-profile
       ;
   };
 }

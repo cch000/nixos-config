@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) getExe;
-  inherit (config.myScripts) pwr-manage;
+  inherit (config.myScripts) pwr-manage auto-profile;
   batCapPath = "/home/cch/.config/bat-cap";
 in {
   imports = [
@@ -55,6 +55,17 @@ in {
         };
 
         wantedBy = ["multi-user.target"];
+      };
+
+      auto-profile = {
+        description = "auto power profile selection";
+        serviceConfig = {
+          Type = "simple";
+          User = "root";
+          Restart = "always";
+          ExecStart = getExe auto-profile;
+        };
+        after = ["power-profiles-daemon.service"];
       };
 
       pwr-manage = {
