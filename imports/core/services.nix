@@ -10,7 +10,10 @@
       enable = true;
       fileSystems = ["/"];
     };
+
     fstrim.enable = true;
+
+    fwupd.enable = true;
   };
 
   zramSwap = {
