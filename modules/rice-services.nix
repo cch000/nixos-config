@@ -18,7 +18,7 @@ in {
     services.gvfs.enable = true; # so that external devices to show up on nautilus
     security.polkit.enable = true;
     programs.dconf.enable = true;
-    hardware.opengl.enable = true;
+    hardware.graphics.enable = true;
 
     security.pam.services = {
       #Allow swaylock to unlock the screen
@@ -39,13 +39,14 @@ in {
     };
 
     systemd = {
-      user.services.polkit-pantheon-authentication-agent-1 = {
+      user.services.polkit-gnome-authentication-agent-1 = {
+        description = "polkit-gnome-authentication-agent-1";
         wantedBy = ["graphical-session.target"];
         wants = ["graphical-session.target"];
         after = ["graphical-session.target"];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.pantheon.pantheon-agent-polkit}/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
@@ -67,6 +68,7 @@ in {
         glib-networking.enable = true;
         gnome-keyring.enable = true;
       };
+    
       logind = {
         lidSwitch = "suspend";
         lidSwitchExternalPower = "lock";
