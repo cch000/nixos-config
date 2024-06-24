@@ -48,6 +48,7 @@ in {
         mgba
         zed-editor
         freetube
+        bitwarden
       ];
 
       programs.obs-studio = {

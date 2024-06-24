@@ -156,6 +156,7 @@ in {
               "@testpilot-containers" = "multiaccount-containers";
               "{3c078156-979c-498b-8990-85f7987dd929}" = "sidebery";
               "{9b84b6b4-07c4-4b4b-ba21-394d86f6e9ee}" = "black-theme";
+              "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
             };
           in {
             ExtensionSettings =
@@ -197,6 +198,9 @@ in {
                 user_pref("browser.tabs.firefox-view", false);
                 //Enable userChrome customisations
                 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true)
+
+                // bitwarden is used instead
+                lockPref("signon.rememberSignons", false);
               ''
             ];
             # Inspired by https://github.com/linuxmobile/SilentFox/tree/main
