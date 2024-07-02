@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sleep 60
+
 while true; do
 
   connected="$(cat /sys/class/power_supply/A*/online)"
@@ -19,6 +21,8 @@ while true; do
     if [ "$prev" != "$profile" ]; then
       powerprofilesctl set "$profile"
 
+      echo "profile switched to $profile"
+
       # Update waybar icon if waybar is running
       if pidof waybar >/dev/null; then
         pkill -SIGRTMIN+8 waybar
@@ -26,6 +30,6 @@ while true; do
     fi
   fi
 
-  sleep 300
+  sleep 200
 
 done

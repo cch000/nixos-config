@@ -65,7 +65,13 @@ in {
           Restart = "always";
           ExecStart = getExe auto-profile;
         };
-        after = ["power-profiles-daemon.service"];
+
+        after = [
+          "power-profiles-daemon.service"
+          "supergfxd.service"
+        ];
+
+        wantedBy = ["default.target"];
       };
 
       pwr-manage = {
