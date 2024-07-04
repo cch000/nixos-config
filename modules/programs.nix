@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
+  inherit (config.myScripts) btdu-helper;
   cfg = config.myOptions.defaultPrograms;
 in {
   options.myOptions.defaultPrograms = {
@@ -30,13 +31,13 @@ in {
         killall
         zip
         unzip
+        btdu-helper
 
         #gui
         papers
-        gnome.eog
-        gnome3.gnome-tweaks
-        gnome.nautilus
-        gnome.gnome-calendar
+        eog
+        nautilus
+        gnome-calendar
         gimp
         tor-browser-bundle-bin
         fragments

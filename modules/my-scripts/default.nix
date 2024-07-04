@@ -9,6 +9,7 @@
     power-profiles-daemon
     toybox
     supergfxctl
+    btdu
     ;
 
   mkScript = name: runtimeInputs:
@@ -31,6 +32,10 @@
     power-profiles-daemon
     supergfxctl
   ];
+
+  btdu-helper = mkScript "btdu-helper" [
+    btdu
+  ];
 in {
   options.myScripts = {
     pwrprofilecycle = mkOption {
@@ -45,6 +50,11 @@ in {
       type = types.package;
       description = "auto power profile selection";
     };
+
+    btdu-helper = mkOption {
+      type = types.package;
+      description = "helper script for btdu";
+    };
   };
 
   config.myScripts = {
@@ -52,6 +62,7 @@ in {
       pwrprofilecycle
       pwr-manage
       auto-profile
+      btdu-helper
       ;
   };
 }
