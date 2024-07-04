@@ -6,10 +6,7 @@
   };
 
   services = {
-    btrfs.autoScrub = {
-      enable = true;
-      fileSystems = ["/"];
-    };
+    btrfs.autoScrub.enable = true;
 
     fstrim.enable = true;
 
