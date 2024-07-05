@@ -44,6 +44,12 @@
     shell = pkgs.zsh;
   };
 
+  fileSystems = {
+    "/boot" = {
+      options = ["umask=0077"];
+    };
+  };
+
   boot = {
     loader = {
       systemd-boot.enable = true;
