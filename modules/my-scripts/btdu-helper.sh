@@ -11,6 +11,6 @@ mount -o subvol=/ /dev/mapper/enc /enc
 
 btdu /enc
 
-sleep .5
+sleep 1
 
 umount /enc
