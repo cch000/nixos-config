@@ -8,7 +8,7 @@
   pointer = config.home-manager.users.${username}.home.pointerCursor;
   inherit (lib) mkIf;
   cfg = config.myOptions.hyprland;
-  inherit (config.myScripts) pwrprofilecycle;
+  inherit (config.myScripts) pwrprofilecycle lock;
 in {
   config = mkIf cfg.enable {
     programs.hyprland.enable = true;
@@ -103,21 +103,7 @@ in {
           key_press_enables_dpms = true; # enable dpms on keyboard action
           disable_autoreload = true; # autoreload is unnecessary on nixos, because the config is readonly anyway
         };
-        bind = let
-          lock-script = pkgs.writeShellApplication {
-            name = "lock-script";
-            runtimeInputs = with pkgs; [
-              coreutils
-              hyprland
-              swaylock-effects
-            ];
-            text = ''
-              swaylock
-              sleep 2
-              hyprctl dispatch dpms off
-            '';
-          };
-        in [
+        bind = [
           "$mainMod, Print, exec, ${lib.getExe pkgs.grimblast} copysave output"
           ", Print, exec, ${lib.getExe pkgs.grimblast} copysave area"
 
@@ -127,7 +113,7 @@ in {
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ",XF86Launch4, exec, ${lib.getExe pwrprofilecycle} -n; pkill -SIGRTMIN+8 waybar"
 
-          "$mainMod, B, exec, ${lib.getExe lock-script}"
+          "$mainMod, B, exec, ${lib.getExe lock}"
 
           "$mainMod, T, exec, foot"
           "$mainMod, Q, killactive,"

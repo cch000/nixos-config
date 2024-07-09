@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf mkEnableOption;
+  inherit (config.myScripts) lock;
   cfg = config.myOptions.rice-services;
 in {
   options.myOptions.rice-services = {
@@ -163,7 +164,7 @@ in {
             }
             {
               event = "lock";
-              command = "${pkgs.swaylock-effects}/bin/swaylock";
+              command = "${lib.getExe lock}";
             }
           ];
           timeouts = [

@@ -7,9 +7,12 @@
   inherit
     (pkgs)
     power-profiles-daemon
-    toybox
     supergfxctl
     btdu
+    coreutils
+    toybox
+    hyprland
+    swaylock-effects
     ;
 
   mkScript = name: runtimeInputs:
@@ -28,13 +31,19 @@
   ];
 
   auto-profile = mkScript "auto-profile" [
-    toybox
+    coreutils
     power-profiles-daemon
     supergfxctl
   ];
 
   btdu-helper = mkScript "btdu-helper" [
     btdu
+  ];
+
+  lock = mkScript "lock" [
+    hyprland
+    swaylock-effects
+    coreutils
   ];
 in {
   options.myScripts = {
@@ -55,6 +64,11 @@ in {
       type = types.package;
       description = "helper script for btdu";
     };
+
+    lock = mkOption {
+      type = types.package;
+      description = "lock script";
+    };
   };
 
   config.myScripts = {
@@ -63,6 +77,7 @@ in {
       pwr-manage
       auto-profile
       btdu-helper
+      lock
       ;
   };
 }
