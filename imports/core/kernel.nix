@@ -76,6 +76,11 @@
       # Disable ftrace debugging
       "kernel.ftrace_enabled" = false;
 
+      # Kernel hardening checker
+      "dev.tty.legacy_tiocsti" = 0;
+      "fs.protected_fifos" = 2;
+      "fs.protected_regular" = 2;
+
       ###Networking###
 
       ## TCP hardening
