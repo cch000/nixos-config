@@ -12,7 +12,7 @@ while true; do
     profile=$prev
     load1min=$(LC_NUMERIC="en_US.UTF-8" printf %.0f "$(cut -d" " -f1 /proc/loadavg)")
 
-    if [[ load1min -lt 7 && $(supergfxctl -S) != "active" ]]; then
+    if [[ load1min -lt 3 ]]; then
 
       profile="power-saver"
 

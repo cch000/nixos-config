@@ -31,8 +31,8 @@
   ];
 
   auto-profile = mkScript "auto-profile" [
-    coreutils
     power-profiles-daemon
+    toybox
     supergfxctl
   ];
 
