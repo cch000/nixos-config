@@ -15,6 +15,7 @@
     ./logging.nix
     ./sudo.nix
     ./tmp.nix
+    ./impurity-logger.nix
   ];
 
   security.rtkit.enable = true;
