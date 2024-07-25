@@ -2,4 +2,4 @@
 
 swaylock
 sleep 2
-hyprctl dispatch dpms of
+hyprctl dispatch dpms off
