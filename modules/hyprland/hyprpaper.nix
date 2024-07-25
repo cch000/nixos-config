@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf getExe;
-  cfg = config.myOptions.hyprland;
+  cfg = config.myOptions.rice-services;
 in {
   config = mkIf cfg.enable {
     home-manager.users.${username} = {
@@ -21,7 +21,7 @@ in {
         Service = {
           ExecStart = "${getExe pkgs.hyprpaper}";
         };
-        Install.WantedBy = ["hyprland-session.target"];
+        Install.WantedBy = ["niri.target"];
       };
     };
   };

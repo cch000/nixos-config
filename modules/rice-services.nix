@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf mkEnableOption;
-  inherit (config.myScripts) lock;
+  inherit (config.myScripts) lock pwrprofilecycle;
   cfg = config.myOptions.rice-services;
 in {
   options.myOptions.rice-services = {
@@ -20,6 +20,18 @@ in {
     security.polkit.enable = true;
     programs.dconf.enable = true;
     hardware.graphics.enable = true;
+
+    environment = {
+      variables = {
+        GDK_SCALE = "2";
+      };
+      sessionVariables.NIXOS_OZONE_WL = "1";
+      systemPackages = [
+        pkgs.brightnessctl
+        pwrprofilecycle
+        lock
+      ];
+    };
 
     security.pam.services = {
       #Allow swaylock to unlock the screen
@@ -60,7 +72,7 @@ in {
         enable = true;
         settings = {
           default_session = {
-            command = "${pkgs.greetd.greetd}/bin/agreety --cmd Hyprland";
+            command = "${pkgs.greetd.greetd}/bin/agreety --cmd 'niri-session'";
           };
         };
       };
@@ -126,6 +138,7 @@ in {
           enable = true;
           latitude = "57.7";
           longitude = "11.9";
+          systemdTarget = "niri.target";
         };
         ### swayidle ###
         swayidle = let
@@ -155,7 +168,7 @@ in {
               systemd
             ];
         in {
-          systemdTarget = "hyprland-session.target";
+          systemdTarget = "niri.target";
           enable = true;
           events = [
             {

@@ -17,7 +17,7 @@ in {
       enable = true;
       systemd = {
         enable = true;
-        target = "hyprland-session.target";
+        target = "niri.target";
       };
 
       style = builtins.readFile ./style.css;
@@ -26,7 +26,7 @@ in {
           layer = "top";
           position = "left";
           modules-left = [
-            "hyprland/workspaces"
+            #"hyprland/workspaces"
           ];
           modules-center = [];
           modules-right = [

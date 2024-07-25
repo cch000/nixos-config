@@ -14,7 +14,7 @@ in {
     programs.hyprland.enable = true;
 
     environment = {
-      systemPackages = with pkgs; [brightnessctl hyprnome];
+      systemPackages = with pkgs; [hyprnome];
       variables = {
         GDK_SCALE = "2";
       };

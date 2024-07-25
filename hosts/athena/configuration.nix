@@ -26,7 +26,7 @@
 
     fancyNvim.enable = true;
 
-    hyprland.enable = true;
+    niri.enable = true;
     waybar.enable = true;
     wofi.enable = true;
     rice-services.enable = true;
