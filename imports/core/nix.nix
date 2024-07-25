@@ -14,7 +14,7 @@ _: {
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 10d";
+      options = "--delete-older-than 14d";
     };
 
     optimise = {
@@ -36,13 +36,13 @@ _: {
   documentation = {
     doc.enable = false;
     info.enable = false;
-    dev.enable = true;
+    dev.enable = false;
     nixos = {
-      enable = true;
+      enable = false;
       includeAllModules = true;
     };
     man = {
-      enable = true;
+      enable = false;
       generateCaches = true;
     };
   };
