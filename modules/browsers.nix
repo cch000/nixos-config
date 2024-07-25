@@ -189,18 +189,22 @@ in {
                 //user_pref("privacy.clearOnShutdown.cookies", false);
                 user_pref("privacy.clearOnShutdown.history", false);
                 // Disable Pocket.
-                pref("extensions.pocket.enabled", false);
-                // resume previous session
+                user_pref("extensions.pocket.enabled", false);
+
+                /// resume previous session
                 user_pref("browser.startup.page", 3);
+                user_pref("privacy.clearOnShutdown.history", false); // 2811 FF127 or lower
+                user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false); // 2811 FF128+
+
                 // never show bookmarks toolbar
                 user_pref("browser.toolbars.bookmarks.visibility", "never");
                 // disable firefox view
                 user_pref("browser.tabs.firefox-view", false);
                 //Enable userChrome customisations
-                user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true)
+                user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
                 // bitwarden is used instead
-                lockPref("signon.rememberSignons", false);
+                user_pref("signon.rememberSignons", false);
               ''
             ];
             # Inspired by https://github.com/linuxmobile/SilentFox/tree/main
