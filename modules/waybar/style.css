@@ -1,6 +1,15 @@
 window#waybar {
-    background-color: black;
+    background-color: transparent;
     font-family: JetBrainsMono Nerd Font Mono;
+}
+
+.modules-center {
+    background-color: black;
+    border: 3px solid #ff7800;
+    border-left-color: black;
+    border-left-width: 0px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 #workspaces {

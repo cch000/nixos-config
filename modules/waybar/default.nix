@@ -28,8 +28,7 @@ in {
           modules-left = [
             #"hyprland/workspaces"
           ];
-          modules-center = [];
-          modules-right = [
+          modules-center = [
             "custom/pwrprofiles"
             "bluetooth"
             "backlight"
@@ -38,6 +37,8 @@ in {
             "battery"
             "clock"
             "custom/power"
+          ];
+          modules-right = [
           ];
 
           "hyprland/workspaces" = {
