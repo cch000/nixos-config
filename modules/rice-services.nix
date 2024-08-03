@@ -23,7 +23,7 @@ in {
 
     environment = {
       variables = {
-        GDK_SCALE = "2";
+        GDK_SCALE = "1.8";
       };
       sessionVariables.NIXOS_OZONE_WL = "1";
       systemPackages = [

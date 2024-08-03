@@ -73,11 +73,13 @@ in {
           minimap.enabled = false;
           fontFamily = "JetBrainsMono Nerd Font";
           fontLigatures = true;
+          fontSize = 14;
           cursorSurroundingLines = 999;
         };
 
-        terminal = {
-          integrated.fontFamily = "JetBrainsMono Nerd Font Mono";
+        terminal.integrated = {
+          fontFamily = "JetBrainsMono Nerd Font Mono";
+          fontSize = 14;
         };
 
         extensions.ignoreRecommendations = true;

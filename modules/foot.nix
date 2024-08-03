@@ -17,7 +17,7 @@ in {
 
       settings = {
         main = {
-          font = "JetBrainsMono Nerd Font Mono:size=10";
+          font = "JetBrainsMono Nerd Font Mono:size=9";
           dpi-aware = "yes";
           pad = "16x16";
         };
