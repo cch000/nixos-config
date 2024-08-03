@@ -33,8 +33,8 @@
               "https://raw.githubusercontent.com"
               + "/firelzrd/bore-scheduler"
               + "/main/patches/stable"
-              + "/linux-6.6-bore/0001-linux6.6.30-bore5.1.0.patch";
-            hash = "sha256-XD5rIktEqs1fhrDl7oRh82AbA6RE5ClpwehabZA0gNc=";
+              + "/linux-6.6-bore/0001-linux6.6.30-bore5.1.4.patch";
+            hash = "sha256-NP7fjiMhgTvA+BigqkosLYgzUJR4zZyQS3TmNuuv5+o=";
           };
         }
         {
