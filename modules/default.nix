@@ -17,6 +17,6 @@
     ./xdg.nix
     ./zsh.nix
     ./my-scripts
-    ./niri.nix
+    ./niri
   ];
 }
