@@ -1,4 +1,4 @@
-_: {
+{lib, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -15,6 +15,7 @@ _: {
       automatic = true;
       dates = "daily";
       options = "--delete-older-than 14d";
+      persistent = false;
     };
 
     optimise = {
@@ -23,15 +24,20 @@ _: {
     };
   };
 
-  systemd.services = let
-    onlyOnAc = builtins.mapAttrs (_service: config:
-      config
-      // {unitConfig.ConditionACPower = true;});
-  in
-    onlyOnAc {
-      nix-optimise = {};
-      nix-gc = {};
-    };
+  systemd = {
+    #It runs daily anyway
+    timers.nix-optimise.timerConfig.Persistent = lib.mkForce false;
+
+    services = let
+      onlyOnAc = builtins.mapAttrs (_service: config:
+        config
+        // {unitConfig.ConditionACPower = true;});
+    in
+      onlyOnAc {
+        nix-optimise = {};
+        nix-gc = {};
+      };
+  };
 
   documentation = {
     doc.enable = false;

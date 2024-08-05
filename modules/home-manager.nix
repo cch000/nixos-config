@@ -30,6 +30,11 @@ in {
           automatic = true;
           frequency = "daily";
           options = "--delete-older-than 14d";
+          persistent = false;
+        };
+
+        systemd.user.services.nix-gc = {
+          Unit.ConditionACPower = true;
         };
 
         programs.home-manager.enable = true;
