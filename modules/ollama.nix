@@ -17,13 +17,6 @@ in {
         Wether to stop the service when the laptop is not plugged in
       '';
     };
-    enableOnBoot = mkOption {
-      default = true;
-      type = types.bool;
-      description = ''
-        Wether to run the service on boot
-      '';
-    };
     ollamaEnableHyprlandKey = mkOption {
       default = false;
       type = types.bool;
@@ -48,9 +41,9 @@ in {
       };
       systemd.services.ollama = {
         serviceConfig = {
-          IPAddressAllow = "localhost";
-          IPAddressDeny = "any";
-          SocketBindDeny = "any";
+          #IPAddressAllow = "localhost";
+          #IPAddressDeny = "any";
+          #SocketBindDeny = "any";
           SocketBindAllow = "tcp:11434";
         };
       };
@@ -65,8 +58,7 @@ in {
         plug = ''ACTION=="change", KERNEL=="AC0", SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl start ollama.service"'';
       in
         strings.concatLines [unplug plug];
-    })
-    (mkIf (!cfg.enableOnBoot) {
+
       # Do not start on boot
       systemd.services.ollama.wantedBy = mkForce [];
     })

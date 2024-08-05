@@ -9,9 +9,7 @@
 
     ollama = {
       enable = false;
-      enableOnBoot = false;
-      ollamaEnableHyprlandKey = true;
-      ollamaModelHyprlandKey = "codellama:13b";
+      onlyOnAc = true;
     };
 
     git.enable = true;
