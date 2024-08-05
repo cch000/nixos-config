@@ -26,6 +26,12 @@ in {
           stateVersion = mkDefault "23.05"; #Do not change this
         };
 
+        nix.gc = {
+          automatic = true;
+          frequency = "daily";
+          options = "--delete-older-than 14d";
+        };
+
         programs.home-manager.enable = true;
       };
     };
