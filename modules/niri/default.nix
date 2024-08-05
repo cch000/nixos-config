@@ -27,7 +27,7 @@ in {
     };
 
     home-manager.users.${username}.home = {
-      file.".config/niri" = {
+      file.".config/niri/config.kdl" = {
         text = builtins.readFile ./config.kdl;
       };
     };
