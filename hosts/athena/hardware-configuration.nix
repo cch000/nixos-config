@@ -2,6 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
+  config,
   lib,
   modulesPath,
   ...
@@ -10,55 +11,47 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot = {
-    initrd = {
-      availableKernelModules = ["nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod"];
-      kernelModules = [];
-      luks.devices."enc" = {
-        device = "/dev/disk/by-uuid/14115856-ad90-4ced-8de5-63170886747a";
-        allowDiscards = true;
-      };
-    };
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usbhid"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-amd"];
+  boot.extraModulePackages = [];
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/566d65d0-c4f4-4e73-a8fb-71222a5fa88d";
+    fsType = "btrfs";
+    options = ["subvol=root" "compress=zstd"];
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
-      fsType = "btrfs";
-      options = ["subvol=root" "noatime" "compress=zstd"];
-    };
+  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/9fb8c09a-bb3c-4291-bacf-01fe40b8bf20";
 
-    "/home" = {
-      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
-      fsType = "btrfs";
-      options = ["subvol=home" "noatime" "compress=zstd"];
-    };
+  fileSystems."/persist" = {
+    device = "/dev/disk/by-uuid/566d65d0-c4f4-4e73-a8fb-71222a5fa88d";
+    fsType = "btrfs";
+    options = ["subvol=persist" "compress=zstd"];
+  };
 
-    "/nix" = {
-      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
-      fsType = "btrfs";
-      options = ["subvol=nix" "noatime" "compress=zstd"];
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/566d65d0-c4f4-4e73-a8fb-71222a5fa88d";
+    fsType = "btrfs";
+    options = ["subvol=nix" "compress=zstd"];
+  };
 
-    "/persist" = {
-      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
-      fsType = "btrfs";
-      options = ["subvol=persist" "noatime" "compress=zstd"];
-    };
+  fileSystems."/var/log" = {
+    device = "/dev/disk/by-uuid/566d65d0-c4f4-4e73-a8fb-71222a5fa88d";
+    fsType = "btrfs";
+    options = ["subvol=log" "compress=zstd"];
+  };
 
-    "/var/log" = {
-      device = "/dev/disk/by-uuid/50503012-89a6-47cc-bed6-821e657cf00f";
-      fsType = "btrfs";
-      options = ["subvol=log" "noatime" "compress=zstd"];
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/566d65d0-c4f4-4e73-a8fb-71222a5fa88d";
+    fsType = "btrfs";
+    options = ["subvol=home" "compress=zstd"];
+  };
 
-    "/boot" = {
-      device = "/dev/disk/by-uuid/1E6F-2D1D";
-      fsType = "vfat";
-      options = ["noatime"];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/1E64-5899";
+    fsType = "vfat";
+    options = ["fmask=0077" "dmask=0077"];
   };
 
   swapDevices = [];
@@ -71,5 +64,5 @@
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = true;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

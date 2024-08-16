@@ -10,7 +10,7 @@
       serviceConfig = {
         Type = "oneshot";
         User = "root";
-        ExecStart = "/bin/sh -c 'echo 10 > /sys/fs/btrfs/50503012-89a6-47cc-bed6-821e657cf00f/allocation/data/bg_reclaim_threshold'";
+        ExecStart = "/bin/sh -c 'echo 10 > /sys/fs/btrfs/566d65d0-c4f4-4e73-a8fb-71222a5fa88d/allocation/data/bg_reclaim_threshold'";
       };
 
       wantedBy = ["multi-user.target"];
@@ -18,7 +18,10 @@
   };
 
   services = {
-    btrfs.autoScrub.enable = true;
+    btrfs.autoScrub = {
+      interval = "weekly";
+      enable = true;
+    };
     fstrim.enable = true;
     fwupd.enable = true;
   };
