@@ -8,7 +8,7 @@
     defaultPrograms.enable = true;
 
     ollama = {
-      enable = false;
+      enable = true;
       onlyOnAc = true;
     };
 
