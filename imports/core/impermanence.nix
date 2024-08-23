@@ -44,6 +44,7 @@
       "/var/lib/btrfs/"
       "/var/lib/bluetooth"
       "/var/lib/systemd"
+      "/var/lib/nixos"
     ];
 
     files = [
