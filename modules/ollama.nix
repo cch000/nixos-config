@@ -39,6 +39,11 @@ in {
         enable = true;
         acceleration = "cuda";
       };
+      #models are stored here
+      environment.persistence."/persist".directories = [
+        "/var/lib/private/ollama"
+      ];
+
       systemd.services.ollama = {
         serviceConfig = {
           #IPAddressAllow = "localhost";
