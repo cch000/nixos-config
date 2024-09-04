@@ -42,6 +42,9 @@ in {
           foxundermoon.shell-format
           james-yu.latex-workshop
           vadimcn.vscode-lldb
+          ms-python.python
+          ms-python.vscode-pylance
+          ms-python.black-formatter
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
