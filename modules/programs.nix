@@ -3,10 +3,12 @@
   lib,
   config,
   username,
+  inputs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
   inherit (config.myScripts) btdu-helper;
+  inherit (inputs.merged-yet.packages.${pkgs.system}) merged-yet;
   cfg = config.myOptions.defaultPrograms;
 in {
   options.myOptions.defaultPrograms = {
@@ -32,6 +34,7 @@ in {
         zip
         unzip
         btdu-helper
+        merged-yet
 
         #gui
         papers
