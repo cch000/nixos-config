@@ -7,7 +7,16 @@
     impermanence.url = "github:nix-community/impermanence";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    power-cap-rs.url = "github:cch000/power-cap-rs";
+
+    power-cap-rs = {
+      url = "github:cch000/power-cap-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    merged-yet = {
+      url = "github:cch000/merged-yet";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
