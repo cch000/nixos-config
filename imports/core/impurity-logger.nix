@@ -6,7 +6,7 @@
 }: let
   mkTracer = name: target: exe:
     lib.getExe (pkgs.writeShellScriptBin name ''
-      echo "PID $PPID executed ${target}" |& ${config.systemd.package}/bin/systemd-cat --identifier=impurity >/dev/null 2>/dev/null
+      echo "$(ps -p $PPID | sed '1d') executed ${target}" |& ${config.systemd.package}/bin/systemd-cat --identifier=impurity >/dev/null 2>/dev/null
       exec -a "$0" '${exe}' "$@"
     '');
 in {
