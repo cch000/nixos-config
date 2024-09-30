@@ -38,6 +38,7 @@ in {
       services.ollama = {
         enable = true;
         acceleration = "cuda";
+        home = "/var/lib/ollama";
       };
       #models are stored here
       environment.persistence."/persist".directories = [
@@ -59,8 +60,9 @@ in {
       };
 
       services.udev.extraRules = let
-        unplug = ''ACTION=="change", KERNEL=="AC0", SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl stop ollama.service"'';
-        plug = ''ACTION=="change", KERNEL=="AC0", SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl start ollama.service"'';
+        base = ''ACTION=="change", KERNEL=="AC0", SUBSYSTEM=="power_supply"'';
+        unplug = ''${base}, ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl stop ollama.service"'';
+        plug = ''${base}, ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl start ollama.service"'';
       in
         strings.concatLines [unplug plug];
 
