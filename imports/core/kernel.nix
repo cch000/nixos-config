@@ -86,7 +86,6 @@
       # for many vulnerabilities and is disabled on Android + ChromeOS.
       "kernel.io_uring_disabled" = "2";
 
-
       ###Networking###
 
       ## TCP hardening
