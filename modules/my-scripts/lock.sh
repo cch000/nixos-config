@@ -2,4 +2,11 @@
 
 swaylock
 sleep 2
-hyprctl dispatch dpms off
+
+if pidof hyprland >/dev/null; then
+    hyprctl dispatch dpms off
+fi
+
+if pidof niri >/dev/null; then
+    niri msg action power-off-monitors
+fi

@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   inherit (lib) mkOption types;
@@ -13,6 +14,7 @@
     toybox
     hyprland
     swaylock-effects
+    niri
     ;
 
   mkScript = name: runtimeInputs:
@@ -41,9 +43,19 @@
   ];
 
   lock = mkScript "lock" [
-    hyprland
+    (
+      if config.programs.hyprland.enable
+      then hyprland
+      else ""
+    )
+    (
+      if config.myOptions.niri.enable
+      then niri
+      else ""
+    )
     swaylock-effects
     coreutils
+    toybox
   ];
 in {
   options.myScripts = {
