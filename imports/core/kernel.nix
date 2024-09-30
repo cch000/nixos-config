@@ -75,10 +75,17 @@
       # Disable ftrace debugging
       "kernel.ftrace_enabled" = false;
 
-      # Kernel hardening checker
+      ##Kernel hardening checker
       "dev.tty.legacy_tiocsti" = 0;
       "fs.protected_fifos" = 2;
       "fs.protected_regular" = 2;
+
+      ##Nix-mineral
+
+      # Disable io_uring. May be desired for Proxmox, but is responsible
+      # for many vulnerabilities and is disabled on Android + ChromeOS.
+      "kernel.io_uring_disabled" = "2";
+
 
       ###Networking###
 
