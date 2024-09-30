@@ -47,6 +47,11 @@ input {
     // focus-follows-mouse
 }
 
+workspace "one"
+workspace "two"
+workspace "three"
+workspace "four"
+
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // The built-in laptop monitor is usually called "eDP-1".
@@ -187,7 +192,7 @@ layout {
     // layer-shell panels and regular gaps.
     struts {
         // left 64
-        right 10
+        // right 32
         // top 64
         // bottom 64
     }

@@ -3,7 +3,7 @@ window#waybar {
     font-family: JetBrainsMono Nerd Font Mono;
 }
 
-.modules-center {
+window#waybar.left .modules-center {
     background-color: black;
     border: 3px solid #ff7800;
     border-left-color: black;
@@ -12,13 +12,25 @@ window#waybar {
     border-bottom-right-radius: 12px;
 }
 
-#workspaces {
-    border-radius: 10px;
+window#waybar.right .modules-center {
     background-color: black;
-    font-size: 26px;
+    border: 3px solid #ff7800;
+    border-right-color: black;
+    border-right-width: 0px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+#workspaces {
+   border-radius: 10px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   font-size: 29px;   
 }
 
 #workspaces button {
+    margin: 1;
+    padding: 4px;
     border-radius: 10px;
     color: #ff7800;
 }

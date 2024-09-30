@@ -22,6 +22,29 @@ in {
 
       style = builtins.readFile ./style.css;
       settings = {
+        workspaces = {
+          layer = "top";
+          position = "right";
+          modules-center = [
+            "niri/workspaces"
+          ];
+
+          "niri/workspaces" = {
+            format = "{icon}";
+            format-icons = let
+              default = "";
+            in {
+              inherit default;
+              "active" = default;
+              "focused" = "";
+
+              "1" = default;
+              "2" = default;
+              "3" = default;
+              "4" = default;
+            };
+          };
+        };
         mainBar = {
           layer = "top";
           position = "left";
