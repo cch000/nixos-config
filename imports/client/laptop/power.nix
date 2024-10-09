@@ -7,15 +7,15 @@
 }: let
   inherit (lib) getExe;
   inherit (config.myScripts) pwr-manage auto-profile;
-  batCapPath = "/home/cch/.config/bat-cap";
+  batCapPath = "/home/cch/.config/batcap";
 in {
   imports = [
     inputs.power-cap-rs.nixosModules.pwr-cap-rs
   ];
 
   environment.systemPackages = let
-    bat-cap = pkgs.writeShellApplication {
-      name = "bat-cap";
+    batcap = pkgs.writeShellApplication {
+      name = "batcap";
       text = ''
         path=${batCapPath}
         var=''${1-default}
@@ -26,10 +26,10 @@ in {
         fi
       '';
     };
-  in [bat-cap];
+  in [batcap];
 
   systemd = {
-    paths.bat-cap = {
+    paths.batcap = {
       pathConfig = {
         PathChanged = batCapPath;
       };
@@ -37,9 +37,9 @@ in {
     };
 
     services = {
-      bat-cap = let
-        bat-cap = pkgs.writeShellApplication {
-          name = "bat-cap";
+      batcap = let
+        batcap = pkgs.writeShellApplication {
+          name = "batcap";
           text = ''
             percentage=$(cat ${batCapPath})
             echo "$percentage" | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
@@ -51,7 +51,7 @@ in {
         serviceConfig = {
           Type = "oneshot";
           User = "root";
-          ExecStart = getExe bat-cap;
+          ExecStart = getExe batcap;
         };
 
         wantedBy = ["multi-user.target"];
@@ -99,7 +99,29 @@ in {
 
     supergfxd.enable = true;
     switcherooControl.enable = true;
-    power-profiles-daemon.enable = true;
+    power-profiles-daemon = {
+      enable = true;
+      #package = pkgs.power-profiles-daemon.overrideAttrs (
+      #  _: let
+      #    version = "0.20";
+      #  in {
+      #    inherit version;
+      #    src = pkgs.fetchFromGitLab {
+      #      domain = "gitlab.freedesktop.org";
+      #      owner = "upower";
+      #      repo = "power-profiles-daemon";
+      #      rev = version;
+      #      sha256 = "sha256-8wSRPR/1ELcsZ9K3LvSNlPcJvxRhb/LRjTIxKtdQlCA=";
+      #    };
+
+      #    mesonFlags = [
+      #      "-Dsystemdsystemunitdir=${placeholder "out"}/lib/systemd/system"
+      #      "-Dgtk_doc=true"
+      #      "-Dpylint=false"
+      #    ];
+      #  }
+      #);
+    };
     udev.extraRules = let
       command = "${lib.getExe' pkgs.systemd "systemctl"} start pwr-manage.service";
       unplug = ''ACTION=="change", KERNEL=="AC0", SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${command}"'';
