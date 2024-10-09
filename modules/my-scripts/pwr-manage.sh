@@ -25,6 +25,9 @@ for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
   echo "$governor" | tee "$i" >/dev/null
 done
 
+#https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/issues/168
+systemctl restart power-profiles-daemon.service
+
 # Set power profile
 powerprofilesctl set $profile
 
