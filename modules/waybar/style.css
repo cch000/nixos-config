@@ -3,29 +3,44 @@ window#waybar {
     font-family: JetBrainsMono Nerd Font Mono;
 }
 
-window#waybar.left .modules-center {
+window#waybar.left .modules-right {
+    margin-bottom: 4px;
+    background-color: black;
+    border: 3px solid #ff7800;
+}
+
+window#waybar.right .modules-left {
+    margin-top: 4px;
+    background-color: black;
+    border: 3px solid #ff7800;
+}
+
+/*
+window#waybar.left .modules-right window#waybar.right .modules-left {
     background-color: black;
     border: 3px solid #ff7800;
     border-left-color: black;
-    border-left-width: 0px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+    
 }
+*/
 
-window#waybar.right .modules-center {
+/*
+window#waybar.right .modules-left {
     background-color: black;
     border: 3px solid #ff7800;
     border-right-color: black;
-    border-right-width: 0px;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
 }
+*/
 
 #workspaces {
-   border-radius: 10px;
-   margin-top: 20px;
-   margin-bottom: 20px;
-   font-size: 29px;   
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 29px;
 }
 
 #workspaces button {
@@ -76,12 +91,20 @@ window#waybar.right .modules-center {
 }
 
 #wireplumber {
-    color: #939393;
+    color:#939393;
     font-size: 25px;
 }
 
+#wireplumber.max {
+    color:#ff7800;
+}
+
 #wireplumber.muted {
-    color: #6A329F;
+    color: #939393;
+}
+
+#wireplumber.on {
+    color:#00b817;
 }
 
 #bluetooth {

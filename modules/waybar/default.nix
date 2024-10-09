@@ -25,7 +25,7 @@ in {
         workspaces = {
           layer = "top";
           position = "right";
-          modules-center = [
+          modules-left = [
             "niri/workspaces"
           ];
 
@@ -52,6 +52,8 @@ in {
             #"hyprland/workspaces"
           ];
           modules-center = [
+          ];
+          modules-right = [
             "custom/pwrprofiles"
             "bluetooth"
             "backlight"
@@ -60,8 +62,6 @@ in {
             "battery"
             "clock"
             "custom/power"
-          ];
-          modules-right = [
           ];
 
           "hyprland/workspaces" = {
@@ -87,6 +87,10 @@ in {
           "wireplumber" = {
             format = "{icon}";
             on-click = "${pkgs.busybox}/bin/pkill pavucontrol || ${pkgs.pavucontrol}/bin/pavucontrol";
+            states = {
+              on = 1;
+              max = 100;
+            };
             format-muted = "󰝟";
             format-icons = ["" "" ""];
             tooltip-format = "{node_name} {volume}%";
