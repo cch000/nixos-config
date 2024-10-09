@@ -141,33 +141,7 @@ in {
           systemdTarget = "niri.target";
         };
         ### swayidle ###
-        swayidle = let
-          suspendScript = pkgs.writeScript "suspend-script" ''
-
-            #!/usr/bin/env bash
-
-            export PATH=$PATH:${dependencies}
-
-            pwr_supply=$(echo /sys/class/power_supply/A*)
-            connected="$pwr_supply/online"
-
-            # only do something if audio isn't running
-            pw-cli i all | rg running
-            if [[ $? == 1 ]]; then
-
-              if [[ $(cat "$connected") == "0" ]]; then
-                systemctl suspend
-              fi
-            fi
-          '';
-          dependencies = with pkgs;
-            lib.makeBinPath [
-              ripgrep
-              coreutils
-              pipewire
-              systemd
-            ];
-        in {
+        swayidle = {
           systemdTarget = "niri.target";
           enable = true;
           events = [
@@ -180,10 +154,56 @@ in {
               command = "${lib.getExe lock}";
             }
           ];
-          timeouts = [
+          timeouts = let
+            suspendScript = pkgs.writeScript "suspend-script" ''
+
+              #!/usr/bin/env bash
+
+              export PATH=$PATH:${dependencies}
+
+              pwr_supply=$(echo /sys/class/power_supply/A*)
+              connected="$pwr_supply/online"
+
+              # only do something if audio isn't running
+              pw-cli i all | rg running
+              if [[ $? == 1 ]]; then
+
+                if [[ $(cat "$connected") == "0" ]]; then
+                  systemctl suspend
+                fi
+              fi
+            '';
+
+            notifyScript = pkgs.writeScript "notify-script" ''
+              #!/usr/bin/env bash
+
+              export PATH=$PATH:${dependencies}
+
+              connected=$(cat /sys/class/power_supply/A*/online)
+
+              if [ $connected == "0" ]; then
+
+                notify-send -t 18000 "ZZZZZZZZZZZ soon"
+
+              fi
+            '';
+
+            dependencies = with pkgs;
+              lib.makeBinPath [
+                ripgrep
+                coreutils
+                pipewire
+                systemd
+                libnotify
+              ];
+          in [
             {
               timeout = 300;
               command = suspendScript.outPath;
+            }
+            {
+              timeout = 285;
+              command = notifyScript.outPath;
             }
           ];
         };
