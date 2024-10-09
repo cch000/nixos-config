@@ -122,6 +122,8 @@ in {
         ];
 
         telemetry.telemetryLevel = "off";
+
+        latex-workshop.latex.recipe.default = "latexmk (lualatex)";
       };
     };
   };
