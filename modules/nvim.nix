@@ -29,6 +29,10 @@ in {
     })
     (mkIf cfg.enable {
       home-manager.users.${username} = {
+        home.packages = [
+          pkgs.nodePackages_latest.nodejs
+        ];
+
         programs.neovim = {
           enable = true;
           vimAlias = true;
@@ -74,6 +78,16 @@ in {
 
             "Close folds
             nmap <S-f> :foldclose<CR>
+
+            map <S-g> :w <enter> :! pandoc *.md -o notes.pdf <enter> <enter>
+
+            colorscheme eva01
+
+            nmap <buffer><silent> <S-q> :call mdip#MarkdownClipboardImage()<CR>
+
+            nmap <S-d> :CocCommand editor.action.formatDocument<CR>
+            inoremap <silent><expr> <A-k> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
           '';
 
           coc = {
