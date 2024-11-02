@@ -33,8 +33,8 @@
               "https://raw.githubusercontent.com"
               + "/firelzrd/bore-scheduler"
               + "/main/patches/stable"
-              + "/linux-6.6-bore/0001-linux6.6.30-bore5.1.8.patch";
-            hash = "sha256-iXYDquRhqHpCg6vF72D2SzQ1F82dLY+76H+FrtAQuxE=";
+              + "/linux-6.6-bore/0001-linux6.6.30-bore5.6.1.patch";
+            hash = "sha256-aWkhsiZWyPVmtTiG4Kf9oTgelz4dXrednJop5Bc99Ao=";
           };
         }
         {
@@ -77,5 +77,6 @@ in {
   ];
   boot = {
     kernelPackages = pkgs.linuxPackagesFor finalKernel;
+    #kernelPackages = pkgs.linuxPackages_latest;
   };
 }
