@@ -19,7 +19,7 @@ fi
 powerprofilesctl set $profile
 
 # Set amd gpu profile
-echo "$amdgpu" > /sys/class/drm/card1/device/power_dpm_state 
+echo "$amdgpu" >/sys/class/drm/card1/device/power_dpm_state
 
 # Update waybar icon if waybar is running
 if pidof waybar >/dev/null; then

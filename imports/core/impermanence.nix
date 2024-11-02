@@ -49,11 +49,11 @@
         mode = "0700";
       }
     ];
-
-    systemd.tmpfiles.rules = [
-      "L /etc/machine-id - - - - /persist/etc/machine-id"
-    ];
   };
+
+  systemd.tmpfiles.rules = [
+    "L /etc/machine-id - - - - /persist/etc/machine-id"
+  ];
 
   boot.initrd.systemd.enable = true;
 
