@@ -123,7 +123,20 @@ in {
 
         telemetry.telemetryLevel = "off";
 
-        latex-workshop.latex.recipe.default = "latexmk (lualatex)";
+        ltex = {
+          additionalRules.motherTongue = "es";
+          language = "en-GB";
+          additionalRules.enablePickyRules = true;
+        };
+        latex-workshop = {
+          latex = {
+            recipe.default = "latexmk (lualatex)";
+            autoBuild.run = "never";
+          };
+
+          message.error.show = false;
+          message.warning.show = false;
+        };
       };
     };
   };
