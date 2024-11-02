@@ -81,7 +81,7 @@ in {
 
           "clock" = {
             format = "{:%H\n%M}";
-            tooltip = false;
+            tooltip-format = "{:%A, %d-%m-%Y (%W)}";
           };
 
           "wireplumber" = {
