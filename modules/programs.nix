@@ -36,6 +36,7 @@ in {
         btdu-helper
         merged-yet
         typioca
+        mpv
 
         #gui
         papers
@@ -45,7 +46,7 @@ in {
         gimp
         tor-browser-bundle-bin
         fragments
-        totem
+        celluloid
         pavucontrol
         webcord-vencord
         spotify
