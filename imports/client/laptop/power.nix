@@ -21,6 +21,10 @@ in {
         var=''${1-default}
         if [ "$var" == default ]; then
           cat "$path"
+        elif [ "$var" == full ]; then
+          echo 100 > "$path"
+        elif [ "$var" == limit ]; then
+          echo 80 > "$path"
         else
           echo "$var" > "$path"
         fi
@@ -89,38 +93,35 @@ in {
   };
 
   services = {
-    pwr-cap-rs = {
+    pwr-cap-rs = let
+      limit = 7000;
+    in {
       enable = true;
-      stapm-limit = 7000;
-      fast-limit = 7000;
-      slow-limit = 7000;
-      onlyOnBattery = true;
+      tctl_limit = 85;
+      quiet = {
+        unplugged = {
+          enable = true;
+          stapm_limit = limit;
+          fast_limit = limit;
+          slow_limit = limit;
+          apu_slow_limit = 20000;
+        };
+        plugged.enable = false;
+      };
+      balanced = {
+        unplugged.enable = false;
+        plugged.enable = false;
+      };
+      performance = {
+        unplugged.enable = false;
+        plugged.enable = false;
+      };
     };
 
     supergfxd.enable = true;
     switcherooControl.enable = true;
     power-profiles-daemon = {
       enable = true;
-      #package = pkgs.power-profiles-daemon.overrideAttrs (
-      #  _: let
-      #    version = "0.20";
-      #  in {
-      #    inherit version;
-      #    src = pkgs.fetchFromGitLab {
-      #      domain = "gitlab.freedesktop.org";
-      #      owner = "upower";
-      #      repo = "power-profiles-daemon";
-      #      rev = version;
-      #      sha256 = "sha256-8wSRPR/1ELcsZ9K3LvSNlPcJvxRhb/LRjTIxKtdQlCA=";
-      #    };
-
-      #    mesonFlags = [
-      #      "-Dsystemdsystemunitdir=${placeholder "out"}/lib/systemd/system"
-      #      "-Dgtk_doc=true"
-      #      "-Dpylint=false"
-      #    ];
-      #  }
-      #);
     };
     udev.extraRules = let
       command = "${lib.getExe' pkgs.systemd "systemctl"} start pwr-manage.service";
@@ -129,6 +130,4 @@ in {
     in
       lib.strings.concatLines [unplug plug];
   };
-
-  powerManagement.cpuFreqGovernor = "conservative";
 }

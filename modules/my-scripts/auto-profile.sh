@@ -2,25 +2,36 @@
 
 sleep 60
 
+naptime=200
+
 while true; do
 
   connected="$(cat /sys/class/power_supply/A*/online)"
 
   if [ "$connected" == "1" ]; then
 
-    prev=$(powerprofilesctl get)
+    prev="$(powerprofilesctl get)"
     profile=$prev
-    load1min=$(LC_NUMERIC="en_US.UTF-8" printf %.0f "$(cut -d" " -f1 /proc/loadavg)")
+    temp="$(cat /sys/class/thermal/thermal_zone0/temp)"
 
-    if [[ load1min -lt 3 ]]; then
+    if [ "$prev" == "performance" ]; then
+      sleep "$naptime"
+      continue
+    fi
+
+    if [ "$temp" -lt 55000 ]; then
 
       profile="power-saver"
+
+    elif [ "$temp" -gt 80000 ]; then
+
+      profile="balanced"
 
     fi
 
     if [ "$prev" != "$profile" ]; then
-      powerprofilesctl set "$profile"
 
+      powerprofilesctl set "$profile"
       echo "profile switched to $profile"
 
       # Update waybar icon if waybar is running
@@ -30,6 +41,6 @@ while true; do
     fi
   fi
 
-  sleep 200
+  sleep "$naptime"
 
 done
