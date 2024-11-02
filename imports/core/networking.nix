@@ -9,6 +9,7 @@ in {
   services = {
     dnscrypt-proxy2 = {
       enable = true;
+      upstreamDefaults = true;
       settings = {
         ipv6_servers = true;
         require_dnssec = true;
@@ -21,19 +22,28 @@ in {
     resolved.enable = !dnscrypt; #So we can use dnscrypt-proxy2
   };
 
+  systemd.services = {
+    dnscrypt-proxy2 = {
+      partOf = ["network.target"];
+    };
+  };
+
   networking = {
     # dns
     nameservers = [
       "127.0.0.1"
       "::1"
     ];
-
+    # explicity disable dhcpcd
+    useDHCP = false;
+    dhcpcd.enable = false;
     networkmanager = {
       enable = true;
       plugins = lib.mkForce []; # disable all plugins
       dns = mkIf dnscrypt "none"; # use dnscrypt-proxy2 as dns backend
 
       wifi = {
+        powersave = true;
         macAddress = "random";
         scanRandMacAddress = true; #random MAC when scanning for wifi networks
       };
