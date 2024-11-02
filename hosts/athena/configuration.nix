@@ -38,6 +38,7 @@
       "networkmanager"
       "wheel"
       "users"
+      "video"
     ];
     shell = pkgs.zsh;
   };
@@ -59,7 +60,7 @@
     plymouth.enable = false;
 
     kernelParams = [
-      "amd_pstate=passive"
+      "amd_pstate=active"
       "quiet"
     ];
     kernel.sysctl = {
@@ -68,6 +69,4 @@
       "vm.swappiness" = 10;
     };
   };
-  # Tweaks CPU scheduler for responsiveness over throughput.
-  #programs.cfs-zen-tweaks.enable = true;
 }
