@@ -36,8 +36,7 @@ in {
         btdu-helper
         merged-yet
         typioca
-        mpv
-
+        (mpv.override {scripts = [mpvScripts.mpris];})
         #gui
         papers
         eog
