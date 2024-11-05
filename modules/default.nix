@@ -13,10 +13,10 @@
     ./theme.nix
     ./vscodium.nix
     ./waybar
-    ./wofi
     ./xdg.nix
     ./zsh.nix
     ./my-scripts
     ./niri
+    ./tofi
   ];
 }

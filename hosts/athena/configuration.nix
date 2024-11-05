@@ -26,7 +26,6 @@
 
     niri.enable = true;
     waybar.enable = true;
-    wofi.enable = true;
     rice-services.enable = true;
     theme.enable = true;
   };

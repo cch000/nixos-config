@@ -268,7 +268,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T { spawn "foot"; }
-    Mod+D { spawn "bash" "-c" "pkill wofi || wofi --show drun -a"; }
+    Mod+D { spawn "bash" "-c" "pkill tofi-drun || tofi-drun | xargs niri msg action spawn --"; }
     Super+B { spawn "lock"; }
 
     XF86MonBrightnessUp { spawn "brightnessctl" "set" "10%+"; }

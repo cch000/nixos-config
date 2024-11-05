@@ -1,0 +1,90 @@
+From e2b5c2a35b4c91ef3e95db0b04a462f21d9132bb Mon Sep 17 00:00:00 2001
+From: itshog <itshog@protonmail.com>
+Date: Sun, 11 Aug 2024 21:01:54 +0200
+Subject: [PATCH 1/2] Fix anchoring in kwin and smithay
+
+Solves a bug regarding wrong anchoring which also caused the content of the tofi window to get stretched in strange ways in kwin and compositors using smithay. Instead of setting all anchors for centering (or, for instance, setting both left and right anchor to achieve horizontal centering), we now only set the needed anchor
+---
+ src/config.c | 31 +++++--------------------------
+ 1 file changed, 5 insertions(+), 26 deletions(-)
+
+diff --git a/src/config.c b/src/config.c
+index 52e14d8..5957f9f 100644
+--- a/src/config.c
++++ b/src/config.c
+@@ -28,44 +28,23 @@
+ 		ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP \
+ 		| ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT \
+ 		)
+-#define ANCHOR_TOP (\
+-		ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT \
+-		)
++#define ANCHOR_TOP ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP
+ #define ANCHOR_TOP_RIGHT (\
+ 		ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP \
+ 		| ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT \
+ 		)
+-#define ANCHOR_RIGHT (\
+-		ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM \
+-		)
++#define ANCHOR_RIGHT ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT
+ #define ANCHOR_BOTTOM_RIGHT (\
+ 		ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM \
+ 		| ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT \
+ 		)
+-#define ANCHOR_BOTTOM (\
+-		ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT \
+-		)
++#define ANCHOR_BOTTOM ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM
+ #define ANCHOR_BOTTOM_LEFT (\
+ 		ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM \
+ 		| ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT \
+ 		)
+-#define ANCHOR_LEFT (\
+-		ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM \
+-		)
+-#define ANCHOR_CENTER (\
+-		ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT \
+-		| ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT \
+-		)
++#define ANCHOR_LEFT ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT
++#define ANCHOR_CENTER 0
+ 
+ struct uint32_percent {
+ 	uint32_t value;
+
+From 1aa56b12c60cb42b00d85808fc21b343a4a4682c Mon Sep 17 00:00:00 2001
+From: itshog <itshog@protonmail.com>
+Date: Fri, 16 Aug 2024 19:54:05 +0200
+Subject: [PATCH 2/2] Fix default anchor (center)
+
+---
+ src/main.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/src/main.c b/src/main.c
+index e91838f..2457fa7 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -1192,10 +1192,7 @@ int main(int argc, char *argv[])
+ 				.cursor_theme.thickness = 2
+ 			}
+ 		},
+-		.anchor =  ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP
+-			| ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM
+-			| ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT
+-			| ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT,
++		.anchor = 0,
+ 		.use_history = true,
+ 		.require_match = true,
+ 		.use_scale = true,

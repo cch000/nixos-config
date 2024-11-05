@@ -9,6 +9,7 @@
   inherit (config.myScripts) lock pwrprofilecycle;
   cfg = config.myOptions.rice-services;
 in {
+  # Note that other modules also depend on this option to be true
   options.myOptions.rice-services = {
     enable = mkEnableOption "some necessary services and configurations for wms";
   };
