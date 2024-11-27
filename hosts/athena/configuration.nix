@@ -8,7 +8,7 @@
     defaultPrograms.enable = true;
 
     ollama = {
-      enable = true;
+      enable = false;
       onlyOnAc = true;
     };
 
@@ -53,6 +53,12 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+
+    initrd.kernelModules = [
+      "nvidia_drm "
+      "nvidia_modeset"
+      "nvidia"
+    ];
 
     #kernelPackages = pkgs.linuxPackages_latest;
 
