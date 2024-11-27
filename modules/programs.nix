@@ -37,8 +37,10 @@ in {
         merged-yet
         typioca
         (mpv.override {scripts = [mpvScripts.mpris];})
+        cbonsai
+
         #gui
-        papers
+        evince #papers
         eog
         nautilus
         gnome-calendar
@@ -51,17 +53,14 @@ in {
         spotify
         vorta
         mgba
-        zed-editor
+        #zed-editor
         freetube
         bitwarden
+        foliate
+        impression
       ];
 
-      programs.obs-studio = {
-        enable = true;
-        plugins = with pkgs.obs-studio-plugins; [
-          wlrobs #For screen capture in Hyprland
-        ];
-      };
+      programs.obs-studio.enable = true;
     };
   };
 }
