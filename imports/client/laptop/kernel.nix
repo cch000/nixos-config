@@ -5,7 +5,7 @@
 }: let
   custom = let
     baseKernel = pkgs.linux;
-    suffix = "-bore";
+    suffix = "-athena";
   in
     pkgs.linuxManualConfig {
       inherit (baseKernel) src;
@@ -26,12 +26,14 @@
                 "CONFIG_X86_EXTENDED_PLATFORM=y"
                 "CONFIG_X86_MCE_INTEL=y"
                 "CONFIG_PREEMPT_VOLUNTARY=y"
+                ''CONFIG_LOCALVERSION=""''
               ]
               #to
               [
                 "CONFIG_X86_EXTENDED_PLATFORM=n"
                 "CONFIG_X86_MCE_INTEL=n"
                 "CONFIG_PREEMPT_VOLUNTARY=n"
+                ''CONFIG_LOCALVERSION="${suffix}"''
               ]
               (builtins.readFile ./config))
             #add
@@ -134,6 +136,6 @@ in {
   ];
   boot = {
     kernelPackages = pkgs.linuxPackagesFor finalKernel;
-    #kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages;
   };
 }
