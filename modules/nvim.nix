@@ -29,10 +29,6 @@ in {
     })
     (mkIf cfg.enable {
       home-manager.users.${username} = {
-        home.packages = [
-          pkgs.nodePackages_latest.nodejs
-        ];
-
         programs.neovim = {
           enable = true;
           vimAlias = true;
