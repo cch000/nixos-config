@@ -139,6 +139,7 @@ in {
           enable = true;
           latitude = "57.7";
           longitude = "11.9";
+          temperature.night = 3000;
           systemdTarget = "niri.target";
         };
         ### swayidle ###
